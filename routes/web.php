@@ -17,18 +17,36 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', function () {
-    return view('dashboard');
+    return view('dashboard',[
+        'title'=>'Dashboard'
+    ]);
 });
 Route::get('/pasien', function () {
-    return view('pasien.index');
+    return view('pasien.index',[
+        'title' => 'Data Pasien'
+    ]);
 });
 Route::get('/dokter', function () {
-    return view('dokter');
+    return view('dokter.index',[
+        'title' => 'Data Dokter'
+    ]);
 });
 Route::get('/obat', function () {
-    return view('obat');
+    return view('obat.index',[
+        'title'=>'Data Obat'
+    ]);
 });
 Route::get('/rekam-medis', function () {
-    return view('rekam-medis');
+    return view('rekam-medis.index',[
+        'title'=>'Rekam Medis'
+    ]);
+});
+Route::get('/profile', function () {
+    return view('profile',[
+        'title'=>'Profile'
+    ]);
+});
+Route::get('/login', function () {
+    return view('auth.login');
 });
 

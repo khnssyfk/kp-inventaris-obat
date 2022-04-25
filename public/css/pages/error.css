@@ -1,0 +1,12 @@
+#error {
+    height: 100vh;
+    background-color: #ebf3ff;
+    padding-top: 0rem;}
+
+    .img-error {
+        width: 70%;
+    }
+    .error-title {
+        font-size: 2rem;
+        margin-top: 1rem;
+    }

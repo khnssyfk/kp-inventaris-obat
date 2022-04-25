@@ -12,29 +12,34 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-item active"> 
-                    <a href="/" class="sidebar-link ">
+                <li class="sidebar-item {{ Request::is('/') ? 'active' :'' }}"> 
+                    <a href="/" class="sidebar-link">
                         <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item"> 
-                    <a href="/pasien" class="sidebar-link ">
+                <li class="sidebar-item {{ Request::is('pasien') ? 'active' :'' }}"> 
+                    <a href="/pasien" class="sidebar-link active">
                         <i class="bi bi-person-fill"></i><span>Data Pasien</span>
                     </a>
                 </li>
-                <li class="sidebar-item "> 
-                    <a href="/dokter" class="sidebar-link">
+                <li class="sidebar-item {{ Request::is('dokter') ? 'active' :'' }}"> 
+                    <a href="/dokter" class="sidebar-link {{ Request::is('dokter') ? 'active' :'' }}">
                         <i class="bi bi-hospital-fill"></i><span>Data Dokter</span>
                     </a>
                 </li>
-                <li class="sidebar-item "> 
-                    <a href="/obat" class="sidebar-link">
+                <li class="sidebar-item {{ Request::is('obat') ? 'active' :'' }}"> 
+                    <a href="/obat" class="sidebar-link ">
                         <i class="bi bi-clipboard-data-fill"></i><span>Data Obat</span>
                     </a>
                 </li>
-                <li class="sidebar-item "> 
-                    <a href="rekam-medis" class="sidebar-link">
-                        <i class="bi bi-file-medical-fill"></i><span>Rekam Medis</span>
+                <li class="sidebar-item {{ Request::is('pemeriksaan') ? 'active' :'' }}"> 
+                    <a href="/pemeriksaan" class="sidebar-link">
+                        <i class="bi bi-file-medical-fill"></i><span>Riwayat Pemeriksaan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ Request::is('admin') ? 'active' :'' }}"> 
+                    <a href="/admin" class="sidebar-link">
+                        <i class="bi bi-wrench-adjustable"></i><span>Admin</span>
                     </a>
                 </li>
             </ul>
