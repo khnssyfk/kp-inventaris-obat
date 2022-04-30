@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SuperAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,33 +23,42 @@ Route::get('/', function () {
     return view('dashboard',[
         'title'=>'Dashboard'
     ]);
-});
-Route::get('/pasien', function () {
+})->middleware('auth');
+Route::get('/data-pasien', function () {
     return view('pasien.index',[
         'title' => 'Data Pasien'
     ]);
-});
-Route::get('/dokter', function () {
+})->middleware('auth');
+Route::get('/data-dokter', function () {
     return view('dokter.index',[
         'title' => 'Data Dokter'
     ]);
-});
-Route::get('/obat', function () {
+})->middleware('auth');
+Route::get('/data-obat', function () {
     return view('obat.index',[
         'title'=>'Data Obat'
     ]);
-});
+})->middleware('auth');
 Route::get('/rekam-medis', function () {
     return view('rekam-medis.index',[
         'title'=>'Rekam Medis'
     ]);
-});
+})->middleware('auth');
 Route::get('/profile', function () {
     return view('profile',[
         'title'=>'Profile'
     ]);
-});
-Route::get('/login', function () {
-    return view('auth.login');
-});
+})->middleware('auth');
+Route::get('/pasien/create', function () {
+    return view('pasien.create',[
+        'title'=>'Pasien'
+    ]);
+})->middleware('auth');
+
+Route::get('/data-user',[SuperAdminController::class,'index'])->middleware('auth');
+Route::get('/data-user/create',[SuperAdminController::class,'create']);
+Route::post('/data-user/create',[SuperAdminController::class,'store']);
+Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login',[LoginController::class, 'authenticate']);
+Route::post('/logout',[LoginController::class, 'logout']);
 

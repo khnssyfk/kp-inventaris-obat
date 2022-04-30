@@ -3,7 +3,7 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="#"><img src="images\logo\logo-melife.png" alt="Logo" srcset=""></a>
+                    <a href="/"><img src="\images\logo\logo-melife.png" alt="Logo" srcset=""></a>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -12,38 +12,58 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-item {{ Request::is('/') ? 'active' :'' }}"> 
+                <li class="sidebar-item"> 
                     <a href="/" class="sidebar-link">
                         <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item {{ Request::is('pasien') ? 'active' :'' }}"> 
-                    <a href="/pasien" class="sidebar-link active">
-                        <i class="bi bi-person-fill"></i><span>Data Pasien</span>
+                <li class="sidebar-item has-sub "> 
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-wrench-adjustable"></i><span>Admin Klinik</span>
                     </a>
+                    <ul class="submenu" style="display: none;">
+                        <li class="submenu-item">
+                            <a href="/data-pasien" class="sidebar-link">Data Pasien</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="/data-dokter" class="sidebar-link">Data Dokter</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidebar-item {{ Request::is('dokter') ? 'active' :'' }}"> 
-                    <a href="/dokter" class="sidebar-link {{ Request::is('dokter') ? 'active' :'' }}">
-                        <i class="bi bi-hospital-fill"></i><span>Data Dokter</span>
+                <li class="sidebar-item has-sub "> 
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-person-fill"></i><span>Dokter</span>
                     </a>
+                    <ul class="submenu" style="display: none;">
+                        <li class="submenu-item">
+                            <a href="/riwayat-pemeriksaan" class="sidebar-link">Riwayat Pemeriksaan</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidebar-item {{ Request::is('obat') ? 'active' :'' }}"> 
-                    <a href="/obat" class="sidebar-link ">
-                        <i class="bi bi-clipboard-data-fill"></i><span>Data Obat</span>
+                <li class="sidebar-item has-sub "> 
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-clipboard-data-fill"></i><span>Farmasi</span>
                     </a>
+                    <ul class="submenu" style="display: none;">
+                        <li class="submenu-item">
+                            <a href="/data-obat" class="sidebar-link">Data Obat</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="#" class="sidebar-link">Riwayat Resep</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidebar-item {{ Request::is('pemeriksaan') ? 'active' :'' }}"> 
-                    <a href="/pemeriksaan" class="sidebar-link">
-                        <i class="bi bi-file-medical-fill"></i><span>Riwayat Pemeriksaan</span>
+                <li class="sidebar-item has-sub"> 
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-grid-1x2-fill"></i><span>Super Admin</span>
                     </a>
-                </li>
-                <li class="sidebar-item {{ Request::is('admin') ? 'active' :'' }}"> 
-                    <a href="/admin" class="sidebar-link">
-                        <i class="bi bi-wrench-adjustable"></i><span>Admin</span>
-                    </a>
+                    <ul class="submenu" style="display: none;">
+                        <li class="submenu-item">
+                            <a href="/data-user" class="sidebar-link">Data User</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
-        <button class="sidebar-toggler btn x"><i class="bi bi-x"></i></button>
-    </div>
+        </div>
 </div>

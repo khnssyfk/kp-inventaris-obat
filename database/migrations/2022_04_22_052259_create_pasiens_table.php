@@ -19,12 +19,13 @@ return new class extends Migration
             $table->string('no_rekam_medis')->nullable();
             $table->string('no_bpjs')->nullable();
             $table->string('no_ktp')->nullable();
+            $table->string('nama');
             $table->date('tgl_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('status_pernikahan')->nullable();
             $table->bigInteger('id_status')->nullable();
             $table->string('agama')->nullable();
-            $table->string('verifikasi')->nullable();
+            $table->foreignId('id_role')->unsigned();
             $table->string('pendidikan_terakhir')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->longText('alamat')->nullable();

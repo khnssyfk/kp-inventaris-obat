@@ -17,7 +17,7 @@
                     <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="user-menu d-flex">
                             <div class="user-name text-end me-3">
-                                <h6 class="mb-0 text-gray-600">Khansa</h6>
+                                <h6 class="mb-0 text-gray-600">{{ auth()->user()->nama }}</h6>
                                 <p class="mb-0 text-sm text-success">Online</p>
                             </div>
                             <div class="user-img d-flex align-items-center">
@@ -29,28 +29,21 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         <li>
-                            <h6 class="dropdown-header">Hello, khansa!</h6>
+                            <h6 class="dropdown-header">Hello, {{ auth()->user()->nama }}!</h6>
                         </li>
                         <li><a class="dropdown-item" href="/profile"><i class="icon-mid bi bi-person me-2"></i> My
                                 Profile</a></li>
-                        {{-- @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                        <li>
-                            <a class="dropdown-item" href="#"><i class="icon-mid bi bi-gear me-2"></i>
-                            {{ __('API Tokens') }}
-                            </a>
-                        </li>
-                        @endif --}}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
 
-                            <li>
-                                <a class="dropdown-item" href="/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="icon-mid bi bi-box-arrow-left me-2"></i>
-                                    {{ __('Logout') }}
-                                </a>    
-                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                        <li>
+                                <form id="logout-form" action="/logout" method="post">
                                     @csrf
+                                    <button type="submit" class="dropdown-item"><i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout</button>
+                                    {{-- <a class="dropdown-item" href="/logout" >
+                                        <i class="icon-mid bi bi-box-arrow-left me-2"></i> Logout
+                                    </a>     --}}
                                 </form>
                             </li>
                     </ul>

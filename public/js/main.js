@@ -45,14 +45,16 @@ if(typeof PerfectScrollbar == 'function') {
     });
 }
 
-
-
 document.querySelectorAll('.sidebar-item').forEach(sidebarItem => {
     sidebarItem.querySelectorAll('.sidebar-link').forEach(sidebarLink => {
-        if(sidebarLink.getAttribute('href') == window.location.href) sidebarItem.classList.add('active')
+        if(sidebarLink.href == window.location.href){
+            sidebarItem.classList.add('active');
+        } 
         
     })
 });
 
+
+
 // Scroll into active sidebar
-document.querySelector('.sidebar-item.active').scrollIntoView(false)
+// document.querySelector('.sidebar-item.active').scrollIntoView(false)

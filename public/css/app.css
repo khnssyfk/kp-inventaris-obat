@@ -882,7 +882,7 @@
   top: 12px;
   display: block;
 }
-.sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
+.sidebar-wrapper .menu .sidebar-item.active>.sidebar-link {
   background-color: #435ebe;
 }
 .sidebar-wrapper .menu .sidebar-item.active .sidebar-link span {
