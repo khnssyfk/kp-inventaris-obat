@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Role;
-use App\Models\User;
+use App\Models\DataObat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
-class SuperAdminController extends Controller
+class DataObatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +16,11 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        return view('super-admin.index',[
-            'title'=>'Data User',
-            'users'=>User::all()
+        return view('nama-obat.index',[
+            'title'=>'Nama Obat',
+            'data_obats'=>DataObat::all()
         ]);
+
     }
 
     /**
@@ -29,9 +30,8 @@ class SuperAdminController extends Controller
      */
     public function create()
     {
-        return view('super-admin.create',[
-            'title'=>'Buat Akun User',
-            'roles'=>Role::all()
+        return view('nama-obat.create',[
+            'title'=>'Tambah Obat Baru'
         ]);
     }
 
@@ -44,32 +44,29 @@ class SuperAdminController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama' => 'required|max:255',
-            'no_hp'=>'required|max:20|unique:users',
-            'email' => ['required','email:dns','unique:users'],
-            'role_id'=> 'required',
-            'password'=> ['required','min:5','max:255']
+            'nama_obat' => 'required|max:255',
+            'satuan'=>'required'
         ]);
         
-        // if ($validatedData['role_id'] == 3){
-        //         alert('uhuyyy');
-        //     }
-            $validatedData['password'] = bcrypt($validatedData['password']);
-            // dd($validatedData);
-        //masukan data ke tabel user
-        User::create($validatedData);
+        
+        $id = IdGenerator::generate(['table' => 'data_obats','field'=>'id' ,'length' => 10, 'prefix' =>'OBT-']);
+        // dd($validatedData);
+        DB::table('data_obats')->insert(['id'=>$id,'nama_obat'=>$validatedData['nama_obat'],'satuan'=>$validatedData['satuan']]);
+
         // $request->session()->flash('success','Registration successful! Please Login');
-        Alert::success('Sukses', 'Akun Berhasil Dibuat!');
-        return redirect('/data-user');
+        Alert::success('Sukses', 'Obat Berhasil Ditambah!');
+        return redirect('/nama-obat');
+    
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DataObat $dataObat)
     {
         //
     }
@@ -77,10 +74,10 @@ class SuperAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(DataObat $dataObat)
     {
         //
     }
@@ -89,10 +86,10 @@ class SuperAdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DataObat $dataObat)
     {
         //
     }
@@ -100,13 +97,11 @@ class SuperAdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DataObat $dataObat)
     {
-        User::destroy($id);
-        Alert::success('Sukses', 'Akun Berhasil Dihapus!');
-        return redirect('/data-user');
+        //
     }
 }

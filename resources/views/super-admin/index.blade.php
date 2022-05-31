@@ -19,16 +19,16 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-body">
-                    <div class="table-responsive mb-4">
-                        <table class="table table-striped p-2">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="myTable">
                             {{-- <div class="btn-group"> --}}
-                                <a href="/data-user/create" class="btn btn-primary mb-3 mt-1"><i class="bi bi-plus-lg"></i> Tambah User Baru</a>
-                                <div class="col-lg-3 mb-1 float-end " >
+                                <a href="/data-user/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah User Baru</a>
+                                {{-- <div class="col-lg-3 float-end" >
                                     <div class="input-group mb-3 p-1">
                                         <input type="text" class="form-control" placeholder="Cari User...">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cari</button>
                                     </div>
-                                </div>
+                                </div> --}}
                             {{-- </div> --}}
                             <thead>
                                 <tr>
@@ -49,8 +49,12 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->rolename }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm"><i class="bi bi-eye-fill"></i></a>
-                                        <a href="" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+                                        <a href="" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                        <form action="{{route('data-user.destroy', $user->id) }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -62,6 +66,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 

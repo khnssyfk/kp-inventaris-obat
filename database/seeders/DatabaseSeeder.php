@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'nama'=>'khansa',
             'no_hp'=>'082251920006',
             'email'=>'ksyafika@gmail.com',
-            'id_role'=>1,
+            'role_id'=>1,
             'password'=> bcrypt('1234')
         ]);
         Role::create([

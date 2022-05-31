@@ -20,15 +20,15 @@
             <div class="card-content">
                 <div class="card-body">
                     <div class="table-responsive mb-4">
-                        <table class="table table-striped ">
+                        <table class="table table-striped " id="myTable">
                             {{-- <div class="btn-group"> --}}
-                                <a href="pasien/create" class="btn btn-primary mb-3 mt-1"><i class="bi bi-plus-lg"></i> Tambah Pasien Baru</a>
-                                <div class="col-lg-3 mb-1 float-end" >
+                                <a href="data-pasien/create" class="btn btn-primary mb-3 mt-1 ms-1 "><i class="bi bi-plus-lg"></i> Tambah Pasien Baru</a>
+                                {{-- <div class="col-lg-3 mb-1 float-end" >
                                     <div class="input-group mb-3 p-1">
                                         <input type="text" class="form-control" placeholder="Cari Pasien...">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cari</button>
                                     </div>
-                                </div>
+                                </div> --}}
                             {{-- </div> --}}
                             <thead>
                                 <tr>

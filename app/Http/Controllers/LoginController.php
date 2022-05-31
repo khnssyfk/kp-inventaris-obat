@@ -26,7 +26,7 @@ class LoginController extends Controller
  
             return redirect()->intended('/');
         }
-        return back()->with('loginError','Login Tidak Berhasil. Silahkan cek kembali Email dan Password!');
+        return back()->with('loginError','Login Tidak Berhasil. Silahkan cek kembali Email atau Password!');
     }
     public function logout(){
         Auth::logout();

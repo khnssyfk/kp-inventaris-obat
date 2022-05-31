@@ -11,7 +11,7 @@ body {
   background: linear-gradient(90deg, #2d499d, #3f5491);
 }
 #auth #auth-left {
-  padding: 5rem 4rem;
+  padding: 3rem 6rem;
 }
 #auth #auth-left .auth-title {
   font-size: 4rem;
@@ -23,7 +23,7 @@ body {
   color: #a8aebb;
 }
 #auth #auth-left .auth-logo {
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
 }
 #auth #auth-left .auth-logo img {
   height: 3rem;

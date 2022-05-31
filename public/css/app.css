@@ -923,6 +923,7 @@
 }
 .sidebar-wrapper .menu .submenu .submenu-item a:hover {
   margin-left: 0.3rem;
+  color: #435ebe;
 }
 
 @media screen and (max-width: 1199px) {

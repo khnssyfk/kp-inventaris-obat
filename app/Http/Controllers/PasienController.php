@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Pasien;
 
-use App\Models\Role;
-use App\Models\User;
+
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class SuperAdminController extends Controller
+class PasienController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,10 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        return view('super-admin.index',[
-            'title'=>'Data User',
-            'users'=>User::all()
+        return view('pasien.index',[
+            'title' => 'Data Pasien',
+            'users'=>Pasien::all()
+
         ]);
     }
 
@@ -29,9 +29,8 @@ class SuperAdminController extends Controller
      */
     public function create()
     {
-        return view('super-admin.create',[
-            'title'=>'Buat Akun User',
-            'roles'=>Role::all()
+        return view('pasien.create',[
+            'title'=>'Buat Data Pasien'
         ]);
     }
 
@@ -43,24 +42,7 @@ class SuperAdminController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required|max:255',
-            'no_hp'=>'required|max:20|unique:users',
-            'email' => ['required','email:dns','unique:users'],
-            'role_id'=> 'required',
-            'password'=> ['required','min:5','max:255']
-        ]);
-        
-        // if ($validatedData['role_id'] == 3){
-        //         alert('uhuyyy');
-        //     }
-            $validatedData['password'] = bcrypt($validatedData['password']);
-            // dd($validatedData);
-        //masukan data ke tabel user
-        User::create($validatedData);
-        // $request->session()->flash('success','Registration successful! Please Login');
-        Alert::success('Sukses', 'Akun Berhasil Dibuat!');
-        return redirect('/data-user');
+        //
     }
 
     /**
@@ -105,8 +87,6 @@ class SuperAdminController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        Alert::success('Sukses', 'Akun Berhasil Dihapus!');
-        return redirect('/data-user');
+        //
     }
 }

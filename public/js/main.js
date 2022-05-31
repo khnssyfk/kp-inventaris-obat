@@ -13,6 +13,41 @@ for(var i = 0; i < sidebarItems.length; i++) {
     })
 }
 
+let submenuItems = document.querySelectorAll('.submenu-item');
+
+for(var i = 0;i < submenuItems.length;i++){
+    let submenuItem = submenuItems[i];
+    // console.log(submenuItems[i])
+    // if(submenuItem.href == window.location.href){
+    //     console.log(window.location.href)
+    // }
+    // console.log(submenuItems[i])
+    submenuItems[i].querySelector('.submenu-item a').addEventListener('click',function(e){
+        // e.preventDefault()
+        // let submenuItem = e.target.parentNode
+        // submenuItem.classList.add('active')
+        // let submenu = submenuItem.parentNode
+        // submenu.classList.add('active')
+        // let sidebar = submenu.parentNode
+        // sidebar.classList.add('active')
+        let sidebarItem = document.querySelector('.sidebar-item')
+        console.log(sidebarItem)
+
+
+        // let submenuItem = submenuItem.querySelector('.submenu-item')
+        // let submenu = submenuItem.querySelector('.submenu')
+        // let sidebarItem = submenuItem.querySelector('.sidebar-item')
+
+        // submenuItem.classList.add('active');
+        // submenu.classList.add('active');
+        // sidebarItem.classList.add('active');
+
+
+    })
+}
+
+
+
 window.addEventListener('DOMContentLoaded', (event) => {
     var w = window.innerWidth;
     if(w < 1200) {
@@ -53,6 +88,47 @@ document.querySelectorAll('.sidebar-item').forEach(sidebarItem => {
         
     })
 });
+document.querySelectorAll('.submenu-item').forEach(submenuItem=>{
+    if(submenuItem.addEventListener('click',function(){
+        // console.log(submenuItem);
+        // e.preventDefault()
+        console.log(window.location.href)
+    }));
+})
+
+
+// var formDelete = document.getElementsByClassName('form-delete')
+
+function swalDelete(event){
+    event.preventDefault();
+    form = event.currentTarget
+    console.log(form)
+    swal({
+                title: "Apakah Anda Yakin Ingin Menghapus?",
+                text: "Data Anda Tidak Dapat Dikembalikan",
+                icon: "warning",
+                buttons: ["Batal","Hapus"],
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    form.submit();
+                    // swal("Sukses", "Akun Berhasil Dihapusp!", "success");
+                    // window.location.href = "/data-user";
+
+                }
+            });
+
+}
+
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+
+// document.getElementsByClassName('new-user-btn').addEventListener('click',()=>{
+//     alert('uhuy')
+// })
+
+// window.PerfectScrollbar = require('perfect-scrollbar.min.js');
 
 
 

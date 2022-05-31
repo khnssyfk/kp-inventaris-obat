@@ -17,51 +17,38 @@
                         <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item has-sub "> 
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-wrench-adjustable"></i><span>Admin Klinik</span>
+                <li class="sidebar-item"> 
+                    <a href="/data-pasien" class="sidebar-link">
+                        <i class="bi bi-grid-1x2-fill"></i><span>Data Pasien</span></a>
+                </li>
+                <li class="sidebar-item ">
+                    <a href="/data-dokter" class="sidebar-link"><span>Data Dokter</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="/riwayat-pemeriksaan" class="sidebar-link"><i class="bi bi-file-medical-fill"></i><span>Rekam Medis</span> </a>
+                </li>
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Data Obat</span>
                     </a>
-                    <ul class="submenu" style="display: none;">
+                    <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="/data-pasien" class="sidebar-link">Data Pasien</a>
+                            <a href="/nama-obat">Nama Obat</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="/data-dokter" class="sidebar-link">Data Dokter</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item has-sub "> 
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-person-fill"></i><span>Dokter</span>
-                    </a>
-                    <ul class="submenu" style="display: none;">
-                        <li class="submenu-item">
-                            <a href="/riwayat-pemeriksaan" class="sidebar-link">Riwayat Pemeriksaan</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item has-sub "> 
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-clipboard-data-fill"></i><span>Farmasi</span>
-                    </a>
-                    <ul class="submenu" style="display: none;">
-                        <li class="submenu-item">
-                            <a href="/data-obat" class="sidebar-link">Data Obat</a>
+                            <a href="/obat-masuk">Obat Masuk</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="#" class="sidebar-link">Riwayat Resep</a>
+                            <a href="/obat-keluar">Obat Keluar</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="/stok-obat">Stok Obat</a>
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item has-sub"> 
-                    <a href="#" class="sidebar-link">
-                        <i class="bi bi-grid-1x2-fill"></i><span>Super Admin</span>
-                    </a>
-                    <ul class="submenu" style="display: none;">
-                        <li class="submenu-item">
-                            <a href="/data-user" class="sidebar-link">Data User</a>
-                        </li>
-                    </ul>
+                <li class="sidebar-item">
+                    <a href="/data-user" class="sidebar-link"><span>Data User</span> </a>
                 </li>
             </ul>
         </div>

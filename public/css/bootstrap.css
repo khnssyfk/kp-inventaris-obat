@@ -2662,6 +2662,11 @@ textarea.form-control-lg {
   align-items: stretch;
   width: 100%;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .input-group > .form-control,
 .input-group > .form-select {
   position: relative;
@@ -2814,7 +2819,7 @@ textarea.form-control-lg {
 .invalid-feedback {
   display: block;
   width: 100%;
-  margin-top: -1rem;
+  margin-top: 0rem;
   font-size: 0.875em;
   color: #dc3545;
 }
@@ -2913,6 +2918,7 @@ textarea.form-control-lg {
   }
 }
 .btn:hover {
+  color: #607080;
   color: #607080;
 }
 .btn-check:focus + .btn, .btn:focus {
@@ -4227,6 +4233,7 @@ textarea.form-control-lg {
 .navbar-dark .navbar-text a:focus {
   color: #fff;
 }
+
 
 .card {
   position: relative;

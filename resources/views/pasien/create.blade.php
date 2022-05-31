@@ -24,14 +24,14 @@
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                    <label for="first-name-column">First Name</label>
+                                    <label for="nama">Nama</label>
                                     <input type="text" id="first-name-column" class="form-control"
                                         placeholder="First Name" name="fname-column">
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
                                 <div class="form-group">
-                                    <label for="last-name-column">Last Name</label>
+                                    <label for="tgl_lahir">Tanggal Lahir</label>
                                     <input type="text" id="last-name-column" class="form-control"
                                         placeholder="Last Name" name="lname-column">
                                 </div>

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('riwayats', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('id_biodata')->unsigned();
+            $table->bigInteger('pasien_id')->unsigned();
             $table->datetime('tanggal')->nullable();
             $table->double('berat_badan')->nullable();
             $table->double('tinggi_badan')->nullable();
