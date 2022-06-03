@@ -51,9 +51,6 @@ class SuperAdminController extends Controller
             'password'=> ['required','min:5','max:255']
         ]);
         
-        // if ($validatedData['role_id'] == 3){
-        //         alert('uhuyyy');
-        //     }
             $validatedData['password'] = bcrypt($validatedData['password']);
             // dd($validatedData);
         //masukan data ke tabel user
@@ -66,7 +63,7 @@ class SuperAdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -77,36 +74,63 @@ class SuperAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int   \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        // $user = User::where('id',$id)->first();
+        // dd($user->email);
+        return view('super-admin.edit',[
+            'roles'=>Role::all(),
+            'title'=>'Edit Akun',
+            'user'=> User::where('id',$id)->first()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
-        //
+
+        $user = User::where('id',$id)->first();
+        $rules = ([
+            'nama' => 'required|max:255',
+            'role_id'=> 'required',
+            'password'=> ['required','min:5','max:255']
+        ]);
+        if($request->no_hp != $user->no_hp){
+            $rules['no_hp'] = 'required|max:20|unique:users';
+            
+        }
+        if($request->email != $user->email){
+            $rules['email'] = 'required|email:dns|unique:users';
+        };
+        // dd($request->validate($rules));
+        
+        $validatedData = $request->validate($rules);
+        $validatedData['id'] = $user->id;
+        User::where('id',$id)->update($validatedData);
+        Alert::success('Sukses', 'Akun Berhasil Dihapus!');
+        return redirect('/data-user');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        User::destroy($id);
+        User::destroy($user->id);
         Alert::success('Sukses', 'Akun Berhasil Dihapus!');
         return redirect('/data-user');
     }
+
 }

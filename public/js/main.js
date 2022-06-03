@@ -31,7 +31,7 @@ for(var i = 0;i < submenuItems.length;i++){
         // let sidebar = submenu.parentNode
         // sidebar.classList.add('active')
         let sidebarItem = document.querySelector('.sidebar-item')
-        console.log(sidebarItem)
+        // console.log(sidebarItem)
 
 
         // let submenuItem = submenuItem.querySelector('.submenu-item')
@@ -76,8 +76,12 @@ document.querySelector('.sidebar-hide').addEventListener('click', () => {
 if(typeof PerfectScrollbar == 'function') {
     const container = document.querySelector(".sidebar-wrapper");
     const ps = new PerfectScrollbar(container, {
-        wheelPropagation: false
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        minScrollbarLength: 20
     });
+    ps.update();
+
 }
 
 document.querySelectorAll('.sidebar-item').forEach(sidebarItem => {
@@ -88,12 +92,20 @@ document.querySelectorAll('.sidebar-item').forEach(sidebarItem => {
         
     })
 });
-document.querySelectorAll('.submenu-item').forEach(submenuItem=>{
-    if(submenuItem.addEventListener('click',function(){
-        // console.log(submenuItem);
-        // e.preventDefault()
-        console.log(window.location.href)
-    }));
+
+document.querySelectorAll('.sidebar-item').forEach(sidebarItem=>{
+    sidebarItem.querySelectorAll('.submenu').forEach(submenu =>{
+        submenu.querySelectorAll('.submenu-item').forEach(submenuItem=>{
+            submenuItem.querySelectorAll('.submenu-item a').forEach(submenuItemLink=>{
+                if(submenuItemLink.href == window.location.href){
+                    submenuItem.classList.add('active')
+                    submenu.classList.add('active')
+                    sidebarItem.classList.add('active')
+                }
+            })
+        })
+        
+    })
 })
 
 
@@ -124,13 +136,11 @@ $(document).ready( function () {
     $('#myTable').DataTable();
 } );
 
-// document.getElementsByClassName('new-user-btn').addEventListener('click',()=>{
-//     alert('uhuy')
-// })
+
 
 // window.PerfectScrollbar = require('perfect-scrollbar.min.js');
 
 
 
 // Scroll into active sidebar
-// document.querySelector('.sidebar-item.active').scrollIntoView(false)
+document.querySelector('.sidebar-item.active').scrollIntoView(true)

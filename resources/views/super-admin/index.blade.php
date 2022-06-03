@@ -49,10 +49,10 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role->rolename }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
-                                        <form action="{{route('data-user.destroy', $user->id) }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                        <a href="/data-user/{{ $user->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                        <form action="/data-user/{{ $user->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                            @method("delete")
                                             @csrf
-                                            @method("DELETE")
                                             <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
                                         </form>
                                     </td>
