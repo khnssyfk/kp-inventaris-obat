@@ -9,14 +9,14 @@
 @endif
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Tambah Data Obat Baru</h3>
+        <h3>Edit Obat Baru</h3>
         {{-- <p class="text-subtitle text-muted">Data Pasien</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/nama-obat">Data Obat</a></li>
-                <li class="breadcrumb-item active">Tambah Obat Baru</li>
+                <li class="breadcrumb-item active">Edit Obat Baru</li>
             </ol>
         </nav>
     </div>
@@ -25,27 +25,25 @@
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">Buat Data Obat</h4>
-            {{-- <a  class="btn btn-primary mt-1 ms-1" onclick=dataObatBaru(event)><i class="bi bi-plus-lg"></i> Tambah Data</a> --}}
-
     </div>
     <div class="card-body">
-        <form action="/nama-obat" method="post" id="namaobat-form">
+        <form action="/nama-obat/{{ $data_obat->id }}" method="post" id="namaobat-form">
             @csrf 
+            @method('PUT')
         <div class="row" id="fieldobat">
-            {{-- <div class="col-md-6 col-12"> --}}
                 <div class="form-group col-md-6 col-12">
                     <label for="nama_obat" class="sr-only">Nama Obat</label>
-                    <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat" class="form-control @error('nama_obat') is-invalid @enderror" required value="{{ old('nama_obat') }}">
+                    <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat" class="form-control @error('nama_obat') is-invalid @enderror" required value="{{ old('nama_obat', $data_obat->nama_obat) }}">
                     @error('nama_obat')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
                     @enderror
                 </div>
-            {{-- </div> --}}
+         
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
-                    <select class="form-select @error('satuan') is-invalid @enderror" name="satuan" required>
+                    <select class="form-select @error('satuan',$data_obat->satuan) is-invalid @enderror" name="satuan" required>
                         <option value="Strip">Strip</option>
                         <option value="Tablet">Tablet</option>
                         <option value="Botol">Botol</option>
@@ -59,6 +57,7 @@
                     </div>
                     @enderror
                 </div>
+           
         </div>
                 <button class="btn btn-primary float-end mt-2 new-user-btn">Simpan</button>
 

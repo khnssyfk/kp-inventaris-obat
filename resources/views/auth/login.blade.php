@@ -22,6 +22,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
+                    @if(session()->has('PasswordBerhasil')) 
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('PasswordBerhasil') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                 <h1 class="auth-title">Log in.</h1>
                 <p class="auth-subtitle mb-4">Log in dengan Email dan Password kamu!</p>
                 

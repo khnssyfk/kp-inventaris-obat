@@ -35,12 +35,14 @@
                                 @foreach($data_obats as $data_obat)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data_obat->id }}</td>
+                                    <td>{{ $data_obat->kode_obat }}</td>
                                     <td>{{ $data_obat->nama_obat }}</td>
                                     <td>{{ $data_obat->satuan }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
-                                        <form action="/nama_obat/{{$data_obat->id}}" onclick="swalDelete(event)" method="get" class="d-inline form-delete">
+                                        <a href="/nama-obat/{{ $data_obat->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                        <form action="/nama-obat/{{ $data_obat->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                            @method("delete")
+                                            @csrf
                                             <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
                                         </form>
                                     </td>

@@ -15,37 +15,6 @@ for(var i = 0; i < sidebarItems.length; i++) {
 
 let submenuItems = document.querySelectorAll('.submenu-item');
 
-for(var i = 0;i < submenuItems.length;i++){
-    let submenuItem = submenuItems[i];
-    // console.log(submenuItems[i])
-    // if(submenuItem.href == window.location.href){
-    //     console.log(window.location.href)
-    // }
-    // console.log(submenuItems[i])
-    submenuItems[i].querySelector('.submenu-item a').addEventListener('click',function(e){
-        // e.preventDefault()
-        // let submenuItem = e.target.parentNode
-        // submenuItem.classList.add('active')
-        // let submenu = submenuItem.parentNode
-        // submenu.classList.add('active')
-        // let sidebar = submenu.parentNode
-        // sidebar.classList.add('active')
-        let sidebarItem = document.querySelector('.sidebar-item')
-        // console.log(sidebarItem)
-
-
-        // let submenuItem = submenuItem.querySelector('.submenu-item')
-        // let submenu = submenuItem.querySelector('.submenu')
-        // let sidebarItem = submenuItem.querySelector('.sidebar-item')
-
-        // submenuItem.classList.add('active');
-        // submenu.classList.add('active');
-        // sidebarItem.classList.add('active');
-
-
-    })
-}
-
 
 
 window.addEventListener('DOMContentLoaded', (event) => {
@@ -84,30 +53,22 @@ if(typeof PerfectScrollbar == 'function') {
 
 }
 
-document.querySelectorAll('.sidebar-item').forEach(sidebarItem => {
-    sidebarItem.querySelectorAll('.sidebar-link').forEach(sidebarLink => {
-        if(sidebarLink.href == window.location.href){
-            sidebarItem.classList.add('active');
-        } 
         
-    })
-});
+//     })
+// })
+// console.log(window.location.href)
+function dataObatBaru(event){
+    event.preventDefault();
+    var divNama = document.createElement('div');
+    divNama.className ='form-group col-md-6 col-12'
+    divNama.innerHTML = '<label for="nama_obat" class="sr-only">Nama Obat</label> <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error("nama_obat") is-invalid @enderror" required>'
+    var divSatuan = document.createElement('div');
+    divSatuan.className ='form-group col-md-6 col-12'
+    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Strip">Strip</option><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
+    document.getElementById('fieldobat').appendChild(divNama)
+    document.getElementById('fieldobat').appendChild(divSatuan)
 
-document.querySelectorAll('.sidebar-item').forEach(sidebarItem=>{
-    sidebarItem.querySelectorAll('.submenu').forEach(submenu =>{
-        submenu.querySelectorAll('.submenu-item').forEach(submenuItem=>{
-            submenuItem.querySelectorAll('.submenu-item a').forEach(submenuItemLink=>{
-                if(submenuItemLink.href == window.location.href){
-                    submenuItem.classList.add('active')
-                    submenu.classList.add('active')
-                    sidebarItem.classList.add('active')
-                }
-            })
-        })
-        
-    })
-})
-
+}
 
 // var formDelete = document.getElementsByClassName('form-delete')
 
@@ -136,7 +97,30 @@ $(document).ready( function () {
     $('#myTable').DataTable();
 } );
 
+function addRow(event){
+    event.preventDefault();
+    // alert('test');
+    var divNama = document.createElement('div');
+    divNama.className ='form-group col-md-6'
+    divNama.innerHTML = '<label for="nama_obat" class="sr-only ">Nama Obat</label>'+
+    '<select class="form-select name="nama_obat" required id="nama_obat" onclick="autofill()"><option value="">-- Masukan Nama Obat -- </option> @foreach($data_obats as $data_obat)<option value="{{ $data_obat->id }}" id="nama_obat" onclick="autofill()">{{ $data_obat->nama_obat }}</option> @endforeach </select>';
+    var divSatuan = document.createElement('div');
+    divSatuan.className ='form-group col-md-6 col-12'
+    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Strip">Strip</option><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
+    document.getElementById('obatMasuk').appendChild(divNama)
+    document.getElementById('obatMasuk').appendChild(divSatuan)
+}
+var date = new Date();
+var day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
 
+if (month < 10) month = "0" + month;
+if (day < 10) day = "0" + day;
+
+var today = year + "-" + month + "-" + day;
+
+document.getElementById("startdateId").value = today;
 
 // window.PerfectScrollbar = require('perfect-scrollbar.min.js');
 
@@ -144,3 +128,4 @@ $(document).ready( function () {
 
 // Scroll into active sidebar
 document.querySelector('.sidebar-item.active').scrollIntoView(true)
+

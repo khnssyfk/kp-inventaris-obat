@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('data_obats', function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->id();
+            $table->string('kode_obat')->unique();
             $table->string('nama_obat');
             $table->string('satuan');
         });

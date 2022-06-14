@@ -47,15 +47,36 @@ class DataObatController extends Controller
             'nama_obat' => 'required|max:255',
             'satuan'=>'required'
         ]);
+                
+        $kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']);
+        // dd($kode_obat);
+        DB::table('data_obats')->insert(['kode_obat'=>$kode_obat,'nama_obat'=>$validatedData['nama_obat'],'satuan'=>$validatedData['satuan']]);
+
+
+        // $kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']);
+        // dd($kode_obat);
         
-        
-        $id = IdGenerator::generate(['table' => 'data_obats','field'=>'id' ,'length' => 10, 'prefix' =>'OBT-']);
-        // dd($validatedData);
-        DB::table('data_obats')->insert(['id'=>$id,'nama_obat'=>$validatedData['nama_obat'],'satuan'=>$validatedData['satuan']]);
+        // if (count($validatedData['nama_obat'])>0){
+        //     foreach($validatedData['nama_obat'] as $item=>$value){
+        //         $data = array(
+        //             'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']),
+        //             'nama_obat'=>$validatedData['nama_obat'][$item],
+        //             'satuan'=>$validatedData['satuan'][$item]
+        //         );
+        //         dump($data);
+        //         // DataObat::create($data);
+
+        //     }
+        // }
+
+        // for ($i=0; $i < 10; $i++) { 
+	    // 	$kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-'])
+        //     dump($kode_obat);
+    	// }
 
         // $request->session()->flash('success','Registration successful! Please Login');
         Alert::success('Sukses', 'Obat Berhasil Ditambah!');
-        return redirect('/nama-obat');
+        return redirect('/nama-obat/create');
     
 
     }
@@ -77,9 +98,13 @@ class DataObatController extends Controller
      * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataObat $dataObat)
+    public function edit($id)
     {
-        //
+        // dd($dataObat->attributes);
+        return view('nama-obat.edit',[
+            'title'=>'Edit Data Obat',
+            'data_obat'=> DataObat::where('id',$id)->first()
+        ]);
     }
 
     /**
@@ -89,9 +114,17 @@ class DataObatController extends Controller
      * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataObat $dataObat)
+    public function update(Request $request, $id)
     {
-        //
+        // dd($id);
+        $validatedData = $request->validate([
+            'nama_obat' => 'required|max:255',
+            'satuan'=>'required'
+        ]);
+        DataObat::where('id',$id)->update($validatedData);
+        Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
+        return redirect('/nama-obat');
+
     }
 
     /**
@@ -100,8 +133,10 @@ class DataObatController extends Controller
      * @param  \App\Models\DataObat  $dataObat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataObat $dataObat)
+    public function destroy($id)
     {
-        //
+        DataObat::destroy($id);
+        Alert::success('Sukses', 'Obat Berhasil Dihapus!');
+        return redirect('/nama-obat');
     }
 }

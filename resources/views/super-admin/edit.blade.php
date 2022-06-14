@@ -9,14 +9,14 @@
 @endif
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Tambah User Baru</h3>
+        <h3>Edit User Baru</h3>
         {{-- <p class="text-subtitle text-muted">Data Pasien</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/data-user">Data User</a></li>
-                <li class="breadcrumb-item active">Tambah User Baru</li>
+                <li class="breadcrumb-item active">Edit User Baru</li>
             </ol>
         </nav>
     </div>
@@ -24,7 +24,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Buat Akun User</h4>
+        <h4 class="card-title">Edit Akun User</h4>
     </div>
     <div class="card-body">
         <form action="/data-user/{{ $user->id }}" method="post" id="createuser-form">
@@ -62,7 +62,7 @@
                     <label for="role_id" class="sr-only">Role</label>
                     <select class="form-select @error('role_id') is-invalid @enderror" name="role_id" required>
                         @foreach($roles as $role)
-                          @if(old('role_id', $user->id)== $role->id)
+                          @if(old('role_id', $role->id)==$user->role_id)
                             <option value="{{ $role->id }}" selected>{{ $role->rolename }}</option>
                           @else
                             <option value="{{ $role->id }}">{{ $role->rolename }}</option>

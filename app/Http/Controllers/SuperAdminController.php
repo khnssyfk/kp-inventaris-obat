@@ -50,7 +50,7 @@ class SuperAdminController extends Controller
             'role_id'=> 'required',
             'password'=> ['required','min:5','max:255']
         ]);
-        
+        // dd($validatedData);
             $validatedData['password'] = bcrypt($validatedData['password']);
             // dd($validatedData);
         //masukan data ke tabel user
@@ -97,12 +97,11 @@ class SuperAdminController extends Controller
      */
     public function update(Request $request,  $id)
     {
-
+        //cari data user berdasarkan id
         $user = User::where('id',$id)->first();
         $rules = ([
             'nama' => 'required|max:255',
             'role_id'=> 'required',
-            'password'=> ['required','min:5','max:255']
         ]);
         if($request->no_hp != $user->no_hp){
             $rules['no_hp'] = 'required|max:20|unique:users';
@@ -111,24 +110,22 @@ class SuperAdminController extends Controller
         if($request->email != $user->email){
             $rules['email'] = 'required|email:dns|unique:users';
         };
-        // dd($request->validate($rules));
         
         $validatedData = $request->validate($rules);
         $validatedData['id'] = $user->id;
         User::where('id',$id)->update($validatedData);
-        Alert::success('Sukses', 'Akun Berhasil Dihapus!');
+        Alert::success('Sukses', 'Akun Berhasil Diganti!');
         return redirect('/data-user');
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        User::destroy($user->id);
+        User::destroy($id);
         Alert::success('Sukses', 'Akun Berhasil Dihapus!');
         return redirect('/data-user');
     }

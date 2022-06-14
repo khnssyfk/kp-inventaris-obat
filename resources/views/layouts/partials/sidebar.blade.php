@@ -12,43 +12,43 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-item"> 
+                <li class="sidebar-item {{ Request::is('/') ? 'active' :'' }}"> 
                     <a href="/" class="sidebar-link">
                         <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item"> 
+                <li class="sidebar-item {{ Request::is('data-pasien*') ? 'active' :'' }}"> 
                     <a href="/data-pasien" class="sidebar-link">
                         <i class="bi bi-grid-1x2-fill"></i><span>Data Pasien</span></a>
                 </li>
-                <li class="sidebar-item ">
+                <li class="sidebar-item {{ Request::is('data-dokter*') ? 'active' :'' }}">
                     <a href="/data-dokter" class="sidebar-link"><span>Data Dokter</span></a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item {{ Request::is('riwayat-pemeriksaan*') ? 'active' :'' }}">
                     <a href="/riwayat-pemeriksaan" class="sidebar-link"><i class="bi bi-file-medical-fill"></i><span>Rekam Medis</span> </a>
                 </li>
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item  has-sub {{ Request::is('nama-obat*','obat-masuk*','obat-keluar*','stok-obat*') ? 'active' :'' }} ">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Data Obat</span>
                     </a>
-                    <ul class="submenu">
-                        <li class="submenu-item">
+                    <ul class="submenu {{ Request::is('nama-obat*','obat-masuk*','obat-keluar*','stok-obat*') ? 'active' :'' }}">
+                        <li class="submenu-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
                             <a href="/nama-obat">Nama Obat</a>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item {{ Request::is('obat-masuk*') ? 'active' :'' }}">
                             <a href="/obat-masuk">Obat Masuk</a>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item {{ Request::is('obat-keluar*') ? 'active' :'' }}">
                             <a href="/obat-keluar">Obat Keluar</a>
                         </li>
-                        <li class="submenu-item ">
+                        <li class="submenu-item {{ Request::is('stok-obat*') ? 'active' :'' }} ">
                             <a href="/stok-obat">Stok Obat</a>
                         </li>
                     </ul>
                 </li>
-                <li class="sidebar-item">
-                    <a href="/data-user" class="sidebar-link"><span>Data User</span> </a>
+                <li class="sidebar-item {{ Request::is('data-user*') ? 'active' :'' }}">
+                    <a href="/data-user " class="sidebar-link"><span>Data User</span> </a>
                 </li>
             </ul>
         </div>
