@@ -49,7 +49,7 @@ class DataObatController extends Controller
         ]);
                 
         $kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']);
-        // dd($kode_obat);
+        // dd($validatedData);
         DB::table('data_obats')->insert(['kode_obat'=>$kode_obat,'nama_obat'=>$validatedData['nama_obat'],'satuan'=>$validatedData['satuan']]);
 
 

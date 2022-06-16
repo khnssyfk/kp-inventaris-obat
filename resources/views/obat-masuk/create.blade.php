@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="kode_obat_id" class="sr-only">Kode Obat</label>
-                    <input type="text" disabled placeholder="Masukkan Kode Obat" name="kode_obat_id" id="kode_obat" class="form-control @error('kode_obat_id') is-invalid @enderror" required value="{{ old('kode_obat_id') }}" onkeyup="autofill()">
+                    <input type="text" readonly placeholder="Masukkan Kode Obat" name="kode_obat_id" id="kode_obat" class="form-control @error('kode_obat_id') is-invalid @enderror" required value="{{ old('kode_obat_id') }}" onkeyup="autofill()">
                     @error('kode_obat_id')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -89,13 +89,19 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="harga" class="sr-only">Harga</label>
-                    <input type="number" placeholder="Masukkan Harga" name="harga" class="form-control @error('harga') is-invalid @enderror" required value="{{ old('harga') }}">
+
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Harga Beli</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Rp</div>
+                      </div>
+                      <input type="number" placeholder="Masukkan Harga" name="harga" class="form-control @error('harga') is-invalid @enderror" required value="{{ old('harga') }}">
                     @error('harga')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
                     @enderror
+                    </div>                    
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="tgl_masuk" class="sr-only">Tanggal Masuk</label>
@@ -150,12 +156,12 @@
                         @foreach($obat_masuks as $obat_masuk)
                         <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $obat_masuk->tgl_masuk }}</td>
+                                <td>{{ date('d-m-Y', strtotime($obat_masuk->tgl_masuk)) }}</td>
                                 <td>{{ $obat_masuk->dataobat->nama_obat }}</td>
                                 <td>{{ $obat_masuk->jumlah}}</td>
                                 <td>{{ $obat_masuk->dataobat->satuan}}</td>
                                 <td>{{ $obat_masuk->nama_apotek}}</td>
-                                <td>{{ $obat_masuk->expired}}</td>
+                                <td>{{ date('d-m-Y', strtotime($obat_masuk->expired))}}</td>
                                 <td>
                                     <form action="/obat-masuk-temp/{{ $obat_masuk->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
                                         @method("delete")

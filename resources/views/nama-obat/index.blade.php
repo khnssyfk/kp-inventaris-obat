@@ -22,6 +22,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped" id="myTable">
                                 <a href="/nama-obat/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah Obat Baru</a>
+                                <a href="/lap-obt" target="_blank" class="btn btn-success mb-3  mx-3 mt-1 me-2"><i class="bi bi-printer-fill"></i> Cetak Data</a>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

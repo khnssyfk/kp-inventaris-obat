@@ -43,6 +43,8 @@
                     @enderror
                 </div>
             {{-- </div> --}}
+            {{-- <input type="hidden" name="jumlah"  required value=0> --}}
+
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan') is-invalid @enderror" name="satuan" required>

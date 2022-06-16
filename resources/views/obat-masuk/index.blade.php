@@ -22,6 +22,11 @@
                     <div class="table-responsive mb-4">
                         <table class="table table-striped " id="myTable">
                                 <a href="obat-masuk/create" class="btn btn-primary mb-3 mt-1 ms-1 "><i class="bi bi-plus-lg"></i> Tambah Riwayat Obat Masuk</a>
+                                <button type="button" class="btn btn-success mb-3 mt-1 ms-2" data-bs-toggle="modal" data-bs-target="#cetakModal">
+                                    <i class="bi bi-printer-fill"></i> Cetak Data
+                                  </button>
+                                {{-- <a href="/lap-obt-msk" target="_blank" class="btn btn-success mb-3 mt-1 me-2 mx-3"><i class="bi bi-printer-fill"></i> Cetak Data</a> --}}
+
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
@@ -39,13 +44,13 @@
                                 @foreach($obatmasuks as $obatmasuk)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $obatmasuk->tgl_masuk }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk))}}</td>
                                     <td>{{  $obatmasuk->kode_transaksi }}</td>
                                     <td>{{  $obatmasuk->dataobat->nama_obat }}</td>
                                     <td>{{  $obatmasuk->jumlah}}</td>
                                     <td>{{  $obatmasuk->dataobat->satuan}}</td>
                                     <td>{{  $obatmasuk->nama_apotek}}</td>
-                                    <td>{{  $obatmasuk->expired}}</td>
+                                    <td>{{  date('d-m-Y', strtotime($obatmasuk->expired))}}</td>
                                     <td>
                                         <a href="/obat-masuk/{{ $obatmasuk->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
                                         <form action="/obat-masuk/{{ $obatmasuk->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
@@ -65,6 +70,32 @@
         </div>
     </div>
 </div>
+  <div class="modal fade" id="cetakModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel">Cetak Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+        </div>
+        <form action="/lap-obt-msk" enctype="multipart/form-data" method="GET" target="_blank">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Tgl Mulai</label>
+                    <input type="date" class="form-control" name="tgl_mulai" required>
+                </div>
+                <div class="form-group">
+                    <label>Tgl Selesai</label>
+                    <input type="date" class="form-control" name="tgl_selesai" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success"><i class="bi bi-printer-fill"></i> Cetak Data</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 
 

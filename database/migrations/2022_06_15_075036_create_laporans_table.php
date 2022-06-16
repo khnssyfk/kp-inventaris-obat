@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('obat_masuk', function (Blueprint $table) {
+        Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_transaksi');
-            $table->date('tgl_masuk');
-            $table->foreignId('dataobat_id')->unsigned;
-            $table->integer('jumlah');
-            $table->integer('harga');
-            $table->string('nama_apotek');
-            $table->date('expired');
             $table->timestamps();
         });
     }
@@ -33,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_obat_masuk');
+        Schema::dropIfExists('laporans');
     }
 };

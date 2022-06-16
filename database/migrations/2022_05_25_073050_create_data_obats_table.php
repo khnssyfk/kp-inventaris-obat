@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_obat')->unique();
             $table->string('nama_obat');
+            $table->integer('jumlah')->default(0);
             $table->string('satuan');
         });
     }

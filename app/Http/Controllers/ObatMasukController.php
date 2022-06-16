@@ -63,7 +63,7 @@ class ObatMasukController extends Controller
             'nama_apotek'=>'required|max:255',
             'expired'=>'required'
         ]);
-        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'prefix' =>date('ym')]);
+        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'prefix' =>'M-']);
 
         switch($request->input('action')){
             case 'add':
@@ -138,18 +138,6 @@ class ObatMasukController extends Controller
         Alert::success('Sukses', 'Data Berhasil Dihapus!');
         return redirect('/obat-masuk');
     }
-    // public function destroy_temp($id)
-    // {
-    //     ObatMasukTemp::destroy($id);
-    //     Alert::success('Sukses', 'Data Berhasil Dihapus!');
-    //     return redirect('/obat-masuk/create');
-    // }
-
-    // public function autocomplete(Request $request)
-    // {
-    //     $datas = DataObat::select('nama_obat')->where("nama_obat","LIKE","%$request->terms%")->get();
-    //     return response()->json($datas);
-    // }
 
     public function getDataMasuk($id=""){
         $columns = DB::table('data_obats')->where('id', $id)->first();
@@ -162,13 +150,22 @@ class ObatMasukController extends Controller
 
     public function getDataTemp(Request $request){
         $temps = ObatMasukTemp::all()->toArray();
+        // $barang = ObatMasukTemp::all();
         
-
+        
         foreach($temps as $temp){
+            // dump($temp['dataobat_id']);
+            $dataobat = DataObat::find($temp['dataobat_id']);
+            $dataobat->jumlah += $temp['jumlah'];
+            // dump($dataobat);
+            $dataobat->save();
+            // dump($dataobat->jumlah);
             DB::table('obat_masuk')->insert($temp);
             DB::table('obat_masuk_temps')->delete($temp);
         }
         // ObatMasukTemp::destroy($temp['kode_transaksi']);
+        // $sum = DataObat::all();
+        // dd($sum);
         return redirect('/obat-masuk');
 
     }
