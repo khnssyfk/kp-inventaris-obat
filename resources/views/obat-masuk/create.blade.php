@@ -173,7 +173,7 @@
                             @endforeach
                     </tbody>
                 </table>
-                <a href="/datatemp" class="btn btn-primary mt-2 float-end">Simpan</a>
+                <a href="/datatemp" class="btn btn-success mt-2 float-end">Simpan</a>
                 {{-- <button class="btn btn-primary mt-2 float-end" name="action" value="submit" id="submit"><a href="/datatemp"></a>Simpan</button> --}}
             </div>
         </div>

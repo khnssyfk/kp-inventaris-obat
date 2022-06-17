@@ -64,7 +64,7 @@ function dataObatBaru(event){
     divNama.innerHTML = '<label for="nama_obat" class="sr-only">Nama Obat</label> <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error("nama_obat") is-invalid @enderror" required>'
     var divSatuan = document.createElement('div');
     divSatuan.className ='form-group col-md-6 col-12'
-    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Strip">Strip</option><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
+    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
     document.getElementById('fieldobat').appendChild(divNama)
     document.getElementById('fieldobat').appendChild(divSatuan)
 
@@ -106,7 +106,7 @@ function addRow(event){
     '<select class="form-select name="nama_obat" required id="nama_obat" onclick="autofill()"><option value="">-- Masukan Nama Obat -- </option> @foreach($data_obats as $data_obat)<option value="{{ $data_obat->id }}" id="nama_obat" onclick="autofill()">{{ $data_obat->nama_obat }}</option> @endforeach </select>';
     var divSatuan = document.createElement('div');
     divSatuan.className ='form-group col-md-6 col-12'
-    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Strip">Strip</option><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
+    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
     document.getElementById('obatMasuk').appendChild(divNama)
     document.getElementById('obatMasuk').appendChild(divSatuan)
 }

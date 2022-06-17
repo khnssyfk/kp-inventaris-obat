@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Dokter;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -50,11 +51,26 @@ class SuperAdminController extends Controller
             'role_id'=> 'required',
             'password'=> ['required','min:5','max:255']
         ]);
-        // dd($validatedData);
-            $validatedData['password'] = bcrypt($validatedData['password']);
-            // dd($validatedData);
+        $validatedData['password'] = bcrypt($validatedData['password']);
         //masukan data ke tabel user
-        User::create($validatedData);
+        $user = User::create($validatedData);
+        $user_id = $user->id;
+        $user_role = $user->role_id;
+        // dd($user_role);
+        
+        
+        if($user_role==4){
+            // dd('uhuy');
+            Dokter::create(
+                [
+                    'user_id'=>$user_id,
+                    'spesialis','tgl_lahir','alamat'
+                ]
+                );
+        
+        }
+
+
         // $request->session()->flash('success','Registration successful! Please Login');
         Alert::success('Sukses', 'Akun Berhasil Dibuat!');
         return redirect('/data-user');

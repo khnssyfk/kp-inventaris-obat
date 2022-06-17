@@ -22,7 +22,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped" id="myTable">
                             {{-- <div class="btn-group"> --}}
-                                <a href="/data-user/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah User Baru</a>
+                                {{-- <a href="/data-dokter/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah User Baru</a> --}}
                                 <div class="col-lg-3 float-end" >
                                     {{-- <div class="input-group mb-3 p-1">
                                         <input type="text" class="form-control" placeholder="Cari User...">
@@ -34,29 +34,29 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">No Hp</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
+                                    <th scope="col">Spesialis</th>
+                                    <th scope="col">SIP</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
+                            <tbody>
                                 @foreach($dokters as $dokter)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->nama }}</td>
-                                    <td>{{ $user->no_hp }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role->rolename }}</td>
+                                    <td>{{ $dokter->user->nama }}</td>
+                                    <td>{{ $dokter->spesialis }}</td>
+                                    <td>{{ $dokter->sip }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
-                                        <form action="/data-user/{{$user->id}}" onclick="swalDelete(event)" method="get" class="d-inline form-delete">
+                                        <a href="/data-dokter/{{ $dokter->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                        <form action="/data-dokter/{{$dokter->id}}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                            @method("delete")
+                                            @csrf
                                             <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
                                         </form>
                                     </td>
                                 </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>

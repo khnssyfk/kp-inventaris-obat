@@ -13,7 +13,7 @@ class DataObat extends Model
     // use HasFactory;
     // protected $guarded =['id'];
     protected $fillable = [
-        'kode_obat'
+        'kode_obat','nama_obat','satuan'
     ];
     // public $incrementing = true;
     public $timestamps = false;

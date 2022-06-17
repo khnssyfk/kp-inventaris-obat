@@ -25,7 +25,7 @@
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">Buat Data Obat</h4>
-            {{-- <a  class="btn btn-primary mt-1 ms-1" onclick=dataObatBaru(event)><i class="bi bi-plus-lg"></i> Tambah Data</a> --}}
+            <a  class="btn btn-primary mt-1 ms-1" onclick=dataObatBaru(event)><i class="bi bi-plus-lg"></i> Tambah Data</a>
 
     </div>
     <div class="card-body">
@@ -35,7 +35,7 @@
             {{-- <div class="col-md-6 col-12"> --}}
                 <div class="form-group col-md-6 col-12">
                     <label for="nama_obat" class="sr-only">Nama Obat</label>
-                    <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat" class="form-control @error('nama_obat') is-invalid @enderror" required value="{{ old('nama_obat') }}">
+                    <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error('nama_obat') is-invalid @enderror" required value="{{ old('nama_obat') }}">
                     @error('nama_obat')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -47,8 +47,7 @@
 
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
-                    <select class="form-select @error('satuan') is-invalid @enderror" name="satuan" required>
-                        <option value="Strip">Strip</option>
+                    <select class="form-select @error('satuan') is-invalid @enderror" name="satuan[]" required>
                         <option value="Tablet">Tablet</option>
                         <option value="Botol">Botol</option>
                         <option value="Ampul">Ampul</option>
@@ -62,7 +61,7 @@
                     @enderror
                 </div>
         </div>
-                <button class="btn btn-primary float-end mt-2 new-user-btn">Simpan</button>
+                <button class="btn btn-success float-end mt-2 new-user-btn">Simpan</button>
 
         
         </form>

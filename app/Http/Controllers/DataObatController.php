@@ -48,26 +48,26 @@ class DataObatController extends Controller
             'satuan'=>'required'
         ]);
                 
-        $kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']);
+        // $kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']);
         // dd($validatedData);
-        DB::table('data_obats')->insert(['kode_obat'=>$kode_obat,'nama_obat'=>$validatedData['nama_obat'],'satuan'=>$validatedData['satuan']]);
+        // DB::table('data_obats')->insert(['kode_obat'=>$kode_obat,'nama_obat'=>$validatedData['nama_obat'],'satuan'=>$validatedData['satuan']]);
 
 
         // $kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']);
         // dd($kode_obat);
         
-        // if (count($validatedData['nama_obat'])>0){
-        //     foreach($validatedData['nama_obat'] as $item=>$value){
-        //         $data = array(
-        //             'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-']),
-        //             'nama_obat'=>$validatedData['nama_obat'][$item],
-        //             'satuan'=>$validatedData['satuan'][$item]
-        //         );
-        //         dump($data);
-        //         // DataObat::create($data);
+        if (count($validatedData['nama_obat'])>0){
+            foreach($validatedData['nama_obat'] as $item=>$value){
+                $data = array(
+                    'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 8, 'prefix' =>'OBT-']),
+                    'nama_obat'=>$validatedData['nama_obat'][$item],
+                    'satuan'=>$validatedData['satuan'][$item]
+                );
+                // dump($data);
+                DataObat::create($data);
 
-        //     }
-        // }
+            }
+        }
 
         // for ($i=0; $i < 10; $i++) { 
 	    // 	$kode_obat = IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 10, 'prefix' =>'OBT-'])
@@ -76,7 +76,7 @@ class DataObatController extends Controller
 
         // $request->session()->flash('success','Registration successful! Please Login');
         Alert::success('Sukses', 'Obat Berhasil Ditambah!');
-        return redirect('/nama-obat/create');
+        return redirect('/nama-obat');
     
 
     }

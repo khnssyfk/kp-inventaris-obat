@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('dokters', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->unsigned();
+            $table->date('tgl_lahir')->nullable(); 
+            $table->string('sip')->nullable(); 
+            $table->string('spesialis')->nullable();
+            $table->string('alamat')->nullable();
             $table->timestamps();
         });
     }

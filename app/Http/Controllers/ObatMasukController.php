@@ -63,7 +63,7 @@ class ObatMasukController extends Controller
             'nama_apotek'=>'required|max:255',
             'expired'=>'required'
         ]);
-        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'prefix' =>'M-']);
+        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 8, 'prefix' =>'M-']);
 
         switch($request->input('action')){
             case 'add':
@@ -166,6 +166,7 @@ class ObatMasukController extends Controller
         // ObatMasukTemp::destroy($temp['kode_transaksi']);
         // $sum = DataObat::all();
         // dd($sum);
+        Alert::success('Sukses', 'Data Berhasil Disimpan!');
         return redirect('/obat-masuk');
 
     }
