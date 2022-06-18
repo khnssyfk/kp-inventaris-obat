@@ -18,6 +18,6 @@ class ObatMasuk extends Model
 
     //satu obat masuk memiliki satu kode obat
     public function dataobat(){
-        return $this->belongsTo(DataObat::class);
+        return $this->belongsTo(DataObat::class,'dataobat_id');
     }
 }

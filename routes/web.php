@@ -48,7 +48,7 @@ Route::resource('/obat-masuk-temp',ObatMasukTempController::class)->middleware('
 Route::resource('/stok-obat',StokObatController::class)->middleware('auth');
 Route::get('/profile',[UpdatePasswordController::class,'index'])->name('profile.index')->middleware('auth');
 Route::get('/profile/edit',[UpdatePasswordController::class,'store'])->name('profile.store')->middleware('auth');
-Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch'])->middleware('auth');
+// Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch'])->middleware('auth');
 Route::get('/data/{id}', [ObatMasukController::class, 'getDataMasuk'])->middleware('auth');
 Route::get('/datatemp',[ObatMasukController::class, 'getDataTemp'])->middleware('auth');
 

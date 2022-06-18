@@ -19,6 +19,8 @@ class DataObat extends Model
     public $timestamps = false;
 
     protected $table = 'data_obats';
+    protected $primaryKey = 'kode_obat';
+    protected $keyType = 'string';
     // protected $primaryKey = 'kode_obat';
 
     //satu dataobat memiliki banyak obat masuk

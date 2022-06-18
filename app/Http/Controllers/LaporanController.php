@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokter;
+use App\Models\Pasien;
 use App\Models\Laporan;
 use App\Models\DataObat;
 use App\Models\ObatMasuk;
@@ -40,5 +42,18 @@ class LaporanController extends Controller
             'tgl'=>date("d-m-Y")
         ]);
     }
+    public function lap_dokter(){
+        return view('laporan.dokter',[
+            'dokters'=>Dokter::all(),
+            'tgl'=>date("d-m-Y")
+        ]);
+    }
+    public function lap_pasien(){
+        return view('laporan.pasien',[
+            'pasiens'=>Pasien::all(),
+            'tgl'=>date("d-m-Y")
+        ]);
+    }
+    
 
 }

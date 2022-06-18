@@ -59,7 +59,7 @@ class DataObatController extends Controller
         if (count($validatedData['nama_obat'])>0){
             foreach($validatedData['nama_obat'] as $item=>$value){
                 $data = array(
-                    'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 8, 'prefix' =>'OBT-']),
+                    'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 8, 'prefix' =>'OBT']),
                     'nama_obat'=>$validatedData['nama_obat'][$item],
                     'satuan'=>$validatedData['satuan'][$item]
                 );
@@ -103,7 +103,7 @@ class DataObatController extends Controller
         // dd($dataObat->attributes);
         return view('nama-obat.edit',[
             'title'=>'Edit Data Obat',
-            'data_obat'=> DataObat::where('id',$id)->first()
+            'data_obat'=> DataObat::where('kode_obat',$id)->first()
         ]);
     }
 
@@ -121,7 +121,7 @@ class DataObatController extends Controller
             'nama_obat' => 'required|max:255',
             'satuan'=>'required'
         ]);
-        DataObat::where('id',$id)->update($validatedData);
+        DataObat::where('kode_obat',$id)->update($validatedData);
         Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
         return redirect('/nama-obat');
 

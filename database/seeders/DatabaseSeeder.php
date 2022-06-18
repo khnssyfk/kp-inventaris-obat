@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Pasien;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -26,6 +27,17 @@ class DatabaseSeeder extends Seeder
             'email'=>'ksyafika@gmail.com',
             'role_id'=>1,
             'password'=> bcrypt('1234')
+        ]);
+        Pasien::create([
+            'nama'=>'Khansa Syafika',
+            'no_rekam_medis'=>'RM2411020001',
+            'no_ktp'=>576556767,
+            'jenis_kelamin'=> 'perempuan',
+            'agama'=> 'islam',
+            'pekerjaan'=> 'pelajar/mahasiswa',
+            'alamat'=> 'jln.cornelia street',
+            'email'=>'ksyafika@gmail.com',
+            'no_hp'=>'098766'
         ]);
         Role::create([
             'rolename' => 'Super Admin',

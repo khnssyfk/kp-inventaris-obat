@@ -63,7 +63,7 @@ class ObatMasukController extends Controller
             'nama_apotek'=>'required|max:255',
             'expired'=>'required'
         ]);
-        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 8, 'prefix' =>'M-']);
+        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 8, 'prefix' =>'M']);
 
         switch($request->input('action')){
             case 'add':
@@ -134,13 +134,21 @@ class ObatMasukController extends Controller
 
     public function destroy($id)
     {
+        $data = ObatMasuk::where('id',$id)->first();
+        $data_id = $data->dataobat_id;
+        // dd($data->jumlah);
+        
+        $dataobat = DataObat::find($data_id);
+        $dataobat->jumlah -= $data->jumlah;
+        // dd($dataobat);
+        $dataobat->save();
         ObatMasuk::destroy($id);
         Alert::success('Sukses', 'Data Berhasil Dihapus!');
         return redirect('/obat-masuk');
     }
 
     public function getDataMasuk($id=""){
-        $columns = DB::table('data_obats')->where('id', $id)->first();
+        $columns = DB::table('data_obats')->where('kode_obat', $id)->first();
         return response()->json([
            'kode_obat' => $columns->kode_obat,
            'satuan' => $columns->satuan

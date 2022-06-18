@@ -35,7 +35,7 @@
                     <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($data_obats as $data_obat)
-                        <option value="{{ $data_obat->id }}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                        <option value="{{ $data_obat->kode_obat }}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
                         
                         @endforeach
                     </select>
@@ -66,7 +66,6 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan') is-invalid @enderror" disabled id="satuan" onclick="autofill()" name="satuan" required onkeyup="autofill()">
-                        <option value="Strip" id="satuan" onclick="autofill()">Strip</option>
                         <option value="Tablet" id="satuan" onclick="autofill()">Tablet</option>
                         <option value="Botol" id="satuan" onclick="autofill()">Botol</option>
                         <option value="Ampul" id="satuan" onclick="autofill()">Ampul</option>

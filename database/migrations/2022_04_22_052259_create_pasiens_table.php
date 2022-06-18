@@ -14,20 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pasiens', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned();
-            $table->string('no_rekam_medis')->nullable();
-            $table->string('no_bpjs')->nullable();
-            $table->string('no_ktp')->nullable();
+            $table->string('no_rekam_medis')->nullable()->primary();
+            $table->string('nama')->nullable();
             $table->date('tgl_lahir')->nullable();
+            $table->string('no_ktp')->nullable();
             $table->string('jenis_kelamin')->nullable();
-            $table->string('status_pernikahan')->nullable();
-            $table->bigInteger('status_id')->nullable();
             $table->string('agama')->nullable();
-            $table->foreignId('role_id')->unsigned();
-            $table->string('pendidikan_terakhir')->nullable();
+            $table->foreignId('role_id')->default(3);
             $table->string('pekerjaan')->nullable();
             $table->longText('alamat')->nullable();
+            $table->string('no_hp')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
             $table->timestamps();
         });
     }

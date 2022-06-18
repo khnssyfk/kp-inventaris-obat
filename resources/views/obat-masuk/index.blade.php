@@ -52,13 +52,12 @@
                                     <td>{{  $obatmasuk->nama_apotek}}</td>
                                     <td>{{  date('d-m-Y', strtotime($obatmasuk->expired))}}</td>
                                     <td>
-                                        <a href="/obat-masuk/{{ $obatmasuk->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
-                                        <form action="/obat-masuk/{{ $obatmasuk->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
-                                            @method("delete")
-                                            @csrf
-                                            <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
-                                        </form>
-                                    
+                                            <a href="/obat-masuk/{{ $obatmasuk->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill d-inline"></i></a>
+                                            <form action="/obat-masuk/{{ $obatmasuk->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                                @method("delete")
+                                                @csrf
+                                                <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
+                                            </form>
                                     </td>
                                 </tr>
                                 @endforeach

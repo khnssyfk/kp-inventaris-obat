@@ -36,10 +36,10 @@
                     <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($data_obats as $data_obat)
-                            @if(old('dataobat_id', $data_obat->id)==$obatmasuk->dataobat_id)
-                                <option value="{{ $data_obat->id}}" selected id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                            @if(old('dataobat_id', $data_obat->kode_obat)==$obatmasuk->dataobat_id)
+                                <option value="{{ $data_obat->kode_obat}}" selected id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
                             @else
-                            <option value="{{ $data_obat->id}}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                            <option value="{{ $data_obat->kode_obat}}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
                             @endif
                         @endforeach
                     </select>

@@ -96,7 +96,7 @@ class DokterController extends Controller
         //     'spesialis'=>''
         // ]);
         Dokter::where('id',$id)->update($validatedData);
-        Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
+        Alert::success('Sukses', 'Data Dokter Berhasil Diganti!');
         return redirect('/data-dokter');
     }
 

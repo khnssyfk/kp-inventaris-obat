@@ -13,4 +13,7 @@ class Laporan extends Model
     public function dataobat(){
         return $this->HasMany(DataObat::class);
     }
+    public function datauser(){
+        return $this->belongsTo(User::class);
+    }
 }

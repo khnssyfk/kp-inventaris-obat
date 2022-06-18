@@ -27,7 +27,7 @@
         <h4 class="card-title">Buat Data Obat</h4>
     </div>
     <div class="card-body">
-        <form action="/nama-obat/{{ $data_obat->id }}" method="post" id="namaobat-form">
+        <form action="/nama-obat/{{ $data_obat->kode_obat }}" method="post" id="namaobat-form">
             @csrf 
             @method('PUT')
         <div class="row" id="fieldobat">
@@ -44,11 +44,19 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan',$data_obat->satuan) is-invalid @enderror" name="satuan" required>
-                        <option value="Strip">Strip</option>
+                        {{-- @if (Input::old('satuan') == $data_obat->satuan)
+                            <option value="{{ $data_obat->satuan }}" selected>{{ $data_obat->satuan }}</option>
+                        @else --}}
+                            <option value="Tablet" {{ old('satuan',$data_obat->satuan)=='Tablet' ? 'selected' : ''  }}>Tablet</option>
+                            <option value="Botol" {{ old('satuan',$data_obat->satuan)=='Botol' ? 'selected' : ''  }}>Botol</option>
+                            <option value="Ampul" {{ old('satuan',$data_obat->satuan)=='Ampul' ? 'selected' : ''  }}>Ampul</option>
+                            <option value="Vial" {{ old('satuan',$data_obat->satuan)=='Vial' ? 'selected' : ''  }}>Vial</option>
+                        {{-- @endif --}}
+                        {{-- <option value="{{ $data_obat->satuan }}" selected>{{ $data_obat->satuan }}</option>
                         <option value="Tablet">Tablet</option>
                         <option value="Botol">Botol</option>
                         <option value="Ampul">Ampul</option>
-                        <option value="Vial">Vial</option>
+                        <option value="Vial">Vial</option> --}}
 
                     </select>
                     @error('satuan')

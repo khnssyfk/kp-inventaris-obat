@@ -15,7 +15,11 @@ class Pasien extends Model
     //     alert
     // };
 
+    protected $primaryKey = 'no_rekam_medis';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
+    
     public function user(){
         return $this->belongsTo(User::class);
     }public function role(){

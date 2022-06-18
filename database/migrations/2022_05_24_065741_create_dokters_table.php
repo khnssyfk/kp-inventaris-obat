@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('tgl_lahir')->nullable(); 
             $table->string('sip')->nullable(); 
             $table->string('spesialis')->nullable();
-            $table->string('alamat')->nullable();
+            $table->longText('alamat')->nullable();
             $table->timestamps();
         });
     }

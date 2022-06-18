@@ -21,14 +21,16 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="myTable">
+                            <a href="/lap-dokter" target="_blank" class="btn btn-success mb-3 mt-1 ms-1 "><i class="bi bi-printer-fill"></i> Cetak Data</a>
+ 
                             {{-- <div class="btn-group"> --}}
                                 {{-- <a href="/data-dokter/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah User Baru</a> --}}
-                                <div class="col-lg-3 float-end" >
+                                {{-- <div class="col-lg-3 float-end" > --}}
                                     {{-- <div class="input-group mb-3 p-1">
                                         <input type="text" class="form-control" placeholder="Cari User...">
                                         <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cari</button>
                                     </div> --}}
-                                </div>
+                                {{-- </div> --}}
                             {{-- </div> --}}
                             <thead>
                                 <tr>
