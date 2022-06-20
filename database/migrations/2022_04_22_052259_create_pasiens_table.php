@@ -16,15 +16,15 @@ return new class extends Migration
         Schema::create('pasiens', function (Blueprint $table) {
             $table->string('no_rekam_medis')->nullable()->primary();
             $table->string('nama')->nullable();
-            $table->date('tgl_lahir')->nullable();
-            $table->string('no_ktp')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
+            $table->longText('alamat')->nullable();
+            $table->string('nik')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->string('no_hp')->unique()->nullable();
+            $table->string('pekerjaan')->nullable();
             $table->string('agama')->nullable();
             $table->foreignId('role_id')->default(3);
-            $table->string('pekerjaan')->nullable();
-            $table->longText('alamat')->nullable();
-            $table->string('no_hp')->unique()->nullable();
-            $table->string('email')->unique()->nullable();
             $table->timestamps();
         });
     }

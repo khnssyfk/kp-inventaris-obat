@@ -16,7 +16,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/nama-obat">Data Obat</a></li>
-                <li class="breadcrumb-item active">Tambah Obat Baru</li>
+                <li class="breadcrumb-item active">Tambah Data Obat Baru</li>
             </ol>
         </nav>
     </div>

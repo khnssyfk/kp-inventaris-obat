@@ -9,14 +9,14 @@
 @endif
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Tambah Riwayat Obat Masuk</h3>
+        <h3>Tambah Riwayat Obat Keluar</h3>
         {{-- <p class="text-subtitle text-muted">Data Pasien</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/obat-masuk">Data Obat Masuk</a></li>
-                <li class="breadcrumb-item active">Tambah Riwayat Obat Masuk</li>
+                <li class="breadcrumb-item"><a href="/obat-keluar">Data Obat Keluar</a></li>
+                <li class="breadcrumb-item active">Tambah Riwayat Obat Keluar</li>
             </ol>
         </nav>
     </div>
@@ -24,18 +24,42 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Buat Riwayat Obat Keluar</h4>
+        <h4 class="card-title">Buat Riwayat Obat Masuk</h4>
     </div>
     <div class="card-body">
-        <form action="/obat-masuk" method="post">
+        <form action="/obat-keluar" method="post">
             @csrf 
         <div class="row" id="obatMasuk">
+                <div class="form-group col-md-6 col-12">
+                    <label for="pasien_id" class="sr-only ">No RM</label>
+                    <select class="form-select @error('pasien_id') is-invalid @enderror" name="pasien_id" required id="pasien_id" onclick="pasienfill()">
+                        <option value="">Masukan No RM</option>
+                        @foreach($pasiens as $pasien)
+                        <option value="{{ $pasien->no_rekam_medis }}" id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
+                        
+                        @endforeach
+                    </select>
+                    @error('pasien_id')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="nama_pasien" class="sr-only">Nama Pasien</label>
+                    <input type="text" readonly placeholder="Masukkan Nama Pasien" name="nama_pasien" id="nama_pasien" class="form-control @error('nama_pasien') is-invalid @enderror" required value="{{ old('nama_pasien') }}" onkeyup="pasienfill()">
+                    @error('nama_pasien')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="dataobat_id" class="sr-only ">Nama Obat</label>
                     <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
-                        @foreach($data_obats as $data_obat)
-                        <option value="{{ $data_obat->kode_obat }}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                        @foreach($dataobats as $dataobat)
+                        <option value="{{ $dataobat->kode_obat }}" id="dataobat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
                         
                         @endforeach
                     </select>
@@ -55,8 +79,8 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="jumlah" class="sr-only">Jumlah</label>
-                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required value="{{ old('jumlah') }}" >
+                    <label for="jumlah" class="sr-only">Stok</label>
+                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" readonly required value="{{ old('jumlah') }}" >
                     @error('jumlah')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -64,6 +88,24 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6 col-12">
+                    <label for="jumlah" class="sr-only">Jumlah</label>
+                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" onkeyup="autofill()" required value="{{ old('jumlah') }}" >
+                    @error('jumlah')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="dosis" class="sr-only">Aturan Pakai</label>
+                    <input type="text" placeholder="Masukkan Dosis" name="dosis" class="form-control @error('dosis') is-invalid @enderror" required value="{{ old('dosis') }}">
+                    @error('dosis')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
+                {{-- <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan') is-invalid @enderror" disabled id="satuan" onclick="autofill()" name="satuan" required onkeyup="autofill()">
                         <option value="Tablet" id="satuan" onclick="autofill()">Tablet</option>
@@ -77,50 +119,17 @@
                         Masukkan Satuan
                     </div>
                     @enderror
-                </div>
-                <div class="form-group col-md-6 col-12">
-                    <label for="nama_apotek" class="sr-only">Supplier</label>
-                    <input type="text" placeholder="Masukkan Supplier" name="nama_apotek" class="form-control @error('nama_apotek') is-invalid @enderror" required value="{{ old('nama_apotek') }}">
-                    @error('nama_apotek')
-                    <div class="invalid-feedback">
-                        {{ $message}}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6 col-12">
-
-                    <label class="sr-only" for="inlineFormInputGroupUsername2">Harga Beli</label>
-                    <div class="input-group mb-2 mr-sm-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">Rp</div>
-                      </div>
-                      <input type="number" placeholder="Masukkan Harga" name="harga" class="form-control @error('harga') is-invalid @enderror" required value="{{ old('harga') }}">
-                    @error('harga')
-                    <div class="invalid-feedback">
-                        {{ $message}}
-                    </div>
-                    @enderror
-                    </div>                    
-                </div>
-                <div class="form-group col-md-6 col-12">
-                    <label for="tgl_masuk" class="sr-only">Tanggal Masuk</label>
-                    <input type="date" placeholder="Masukkan Nama Obat" id="startdateId" name="tgl_masuk" class="form-control @error('tgl_masuk') is-invalid @enderror" required value="{{ old('tgl_masuk') }}">
-                    @error('tgl_masuk')
-                    <div class="invalid-feedback">
-                        {{ $message}}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-group col-md-6 col-12">
-                    <label for="expired" class="sr-only">Expired</label>
-                    <input type="date" placeholder="Masukkan Nama Obat" name="expired" autocomplete="off" class="form-control @error('expired') is-invalid @enderror" required value="{{ old('expired') }}">
-                    @error('expired')
-                    <div class="invalid-feedback">
-                        {{ $message}}
-                    </div>
-                    @enderror
-                </div>
+                </div> --}}
                 
+                <div class="form-group col-md-6 col-12">
+                    <label for="tgl_keluar" class="sr-only">Tanggal Keluar</label>
+                    <input type="date" placeholder="Masukkan Tanggal Keluar" id="startdateId" name="tgl_keluar" class="form-control @error('tgl_keluar') is-invalid @enderror" required value="{{ old('tgl_keluar') }}">
+                    @error('tgl_keluar')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
                 
         </div>
         <button class="btn btn-primary mt-2" name="action" value="add" id="add"><a href="/"></a>Tambah</button>
@@ -152,7 +161,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($obat_masuks as $obat_masuk)
+                        {{-- @foreach($obat_masuks as $obat_masuk)
                         <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ date('d-m-Y', strtotime($obat_masuk->tgl_masuk)) }}</td>
@@ -169,7 +178,7 @@
                                     </form>                         
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach --}}
                     </tbody>
                 </table>
                 <a href="/datatemp" class="btn btn-success mt-2 float-end">Simpan</a>
@@ -196,6 +205,26 @@
         success: function(response) {
              $("#kode_obat").val(response.kode_obat)
             $("#satuan").val(response.satuan)
+            $("#jumlah").val(response.jumlah)
+            }
+        });
+    }
+    function pasienfill(){
+        var pasien_id = $("#pasien_id").val();
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        
+        $.ajax({
+        url: '/temp/' + pasien_id,
+        method: "get",
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function(response) {
+             $("#nama_pasien").val(response.nama)
             }
         });
     }

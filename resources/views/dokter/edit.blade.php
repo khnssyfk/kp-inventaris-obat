@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="tgl_lahir" class="sr-only">Tanggal Lahir</label>
-                    <input type="date" placeholder="Masukkan Tanggal Lahir" name="tgl_lahir" autocomplete="off" class="form-control @error('tgl_lahir') is-invalid @enderror" required value="{{ old('tgl_lahir') }}">
+                    <input type="date" placeholder="Masukkan Tanggal Lahir" name="tgl_lahir" autocomplete="off" class="form-control @error('tgl_lahir') is-invalid @enderror" required value="{{ old('tgl_lahir',$dokter->tgl_lahir) }}">
                     @error('tgl_lahir')
                     <div class="invalid-feedback">
                         {{ $message}}

@@ -30,6 +30,12 @@ class DataObat extends Model
     public function obatmasuktemp(){
         return $this->hasMany(ObatMasukTemp::class);
     }
+    public function obatkeluar(){
+        return $this->hasMany(ObatKeluar::class);
+    }
+    public function obatkeluartemp(){
+        return $this->hasMany(ObatKeluarTemp::class);
+    }
     // public function getLokasi($id = '')
     // {
     //     $results = DB::table('data_obats')

@@ -3,13 +3,13 @@
 @section('container')
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Data Obat Masuk</h3>
+        <h3>Data Obat Keluar</h3>
         {{-- <p class="text-subtitle text-muted">Data Pasien</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Data Obat Masuk</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Obat Keluar</li>
             </ol>
         </nav>
     </div>
@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="table-responsive mb-4">
                         <table class="table table-striped " id="myTable">
-                                <a href="obat-masuk/create" class="btn btn-primary mb-3 mt-1 ms-1 "><i class="bi bi-plus-lg"></i> Tambah Riwayat Obat Masuk</a>
+                                {{-- <a href="obat-keluar/create" class="btn btn-primary mb-3 mt-1 ms-1 "><i class="bi bi-plus-lg"></i> Tambah Riwayat Obat Keluar</a> --}}
                                 <button type="button" class="btn btn-success mb-3 mt-1 ms-2" data-bs-toggle="modal" data-bs-target="#cetakModal">
                                     <i class="bi bi-printer-fill"></i> Cetak Data
                                   </button>
@@ -30,18 +30,17 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Tgl Masuk</th>
-                                    <th scope="col">No Transaksi</th>
+                                    <th scope="col">Tgl Keluar</th>
+                                    <th scope="col">No RM</th>
+                                    <th scope="col">No Resep</th>
                                     <th scope="col">Nama Obat</th>
                                     <th scope="col">Jumlah</th> 
                                     <th scope="col">Satuan</th> 
-                                    <th scope="col">Apotek</th>
-                                    <th scope="col">Expired</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($obatmasuks as $obatmasuk)
+                                {{-- @foreach($obatmasuks as $obatmasuk)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk))}}</td>
@@ -60,7 +59,7 @@
                                             </form>
                                     </td>
                                 </tr>
-                                @endforeach
+                                @endforeach --}}
                             </tbody>
                         </table>
                     </div>
@@ -77,7 +76,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             </button>
         </div>
-        <form action="/lap-obt-msk" enctype="multipart/form-data" method="GET" target="_blank">
+        <form action="/lap-obt-klr" enctype="multipart/form-data" method="GET" target="_blank">
             <div class="modal-body">
                 <div class="form-group">
                     <label>Tgl Mulai</label>

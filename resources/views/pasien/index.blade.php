@@ -49,7 +49,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pasien->no_rekam_medis }}</td>
                                     <td>{{ $pasien->nama }}</td>
-                                    <td>{{ $pasien->no_ktp }}</td>
+                                    <td>{{ $pasien->nik }}</td>
                                     <td>{{ $pasien->alamat }}</td>
                                     <td>
                                         <a href="/data-pasien/{{ $pasien->no_rekam_medis }}" class="btn btn-info btn-sm"><i class="bi bi-eye-fill"></i></a>

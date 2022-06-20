@@ -45,8 +45,8 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $pasien->no_rekam_medis }}</td>
                         <td>{{ $pasien->nama }}</td>
-                        <td>{{ $pasien->no_ktp }}</td>
-                        <td>{{ $pasien->tgl_lahir}}</td>
+                        <td>{{ $pasien->nik }}</td>
+                        <td>{{ date('d-m-Y', strtotime($pasien->tanggal_lahir))}}</td>
                         <td>{{ $pasien->jenis_kelamin}}</td>
                         <td>{{ $pasien->alamat }}</td>
                     </tr>
@@ -55,7 +55,9 @@
             </table>
           </div>
 
-        
+    <script type="text/javascript">
+        window.print()
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>

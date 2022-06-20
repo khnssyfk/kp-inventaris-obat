@@ -7,6 +7,7 @@ use App\Models\Pasien;
 use App\Models\Laporan;
 use App\Models\DataObat;
 use App\Models\ObatMasuk;
+use App\Models\ObatKeluar;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreLaporanRequest;
 use App\Http\Requests\UpdateLaporanRequest;
@@ -31,6 +32,21 @@ class LaporanController extends Controller
 
         return view('laporan.obatmasuk',[
             'obatmasuks' => $obatmasuk,
+            'dataobat'=>DataObat::all(),
+            'tgl_mulai' =>$tgl_mulai,
+            'tgl_selesai'=>$tgl_selesai
+        ]);
+    }
+    public function lap_obt_klr(Request $request){
+        $tgl_mulai = $request->tgl_mulai;
+        $tgl_selesai = $request->tgl_selesai;
+        // dd($tgl_mulai);
+        $obatkeluar = ObatKeluar::select('id', 'no_resep', 'tgl_keluar','dataobat_id','pasien_id','dosis','jumlah_keluar')
+        ->whereBetween('tgl_keluar', [$tgl_mulai, $tgl_selesai])
+        ->get();
+
+        return view('laporan.obatkeluar',[
+            'obatkeluars' => $obatkeluar,
             'dataobat'=>DataObat::all(),
             'tgl_mulai' =>$tgl_mulai,
             'tgl_selesai'=>$tgl_selesai

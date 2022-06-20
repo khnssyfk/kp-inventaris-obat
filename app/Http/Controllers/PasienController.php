@@ -91,11 +91,11 @@ class PasienController extends Controller
         $validatedData =[
             'no_rekam_medis'=>$request->no_rekam_medis,
             'nama'=>$request->nama,
-            'no_ktp'=>$request->no_ktp,
-            'tgl_lahir'=>$request->tgl_lahir,
+            'nik'=>$request->nik,
+            'tanggal_lahir'=>$request->tanggal_lahir,
             'jenis_kelamin'=>$request->jenis_kelamin,
             'agama'=>$request->agama,
-            'pekerjaan'=>$request->perkejaan,
+            'pekerjaan'=>$request->pekerjaan,
             'alamat'=>$request->alamat,
             'email'=>$request->email,
             'no_hp'=>$request->no_hp
@@ -106,7 +106,7 @@ class PasienController extends Controller
         //     'satuan'=>'required'
         // ]);
         Pasien::where('no_rekam_medis',$id)->update($validatedData);
-        Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
+        Alert::success('Sukses', 'Data Pasien Berhasil Diganti!');
         return redirect('/data-pasien');
     }
 

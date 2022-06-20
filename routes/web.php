@@ -10,6 +10,7 @@ use App\Http\Controllers\DataObatController;
 use App\Http\Controllers\StokObatController;
 use App\Http\Controllers\ObatMasukController;
 use App\Http\Controllers\TypeaheadController;
+use App\Http\Controllers\ObatKeluarController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ObatMasukTempController;
 use App\Http\Controllers\UpdatePasswordController;
@@ -45,12 +46,15 @@ Route::resource('/data-user',SuperAdminController::class)->middleware('auth');
 Route::resource('/nama-obat',DataObatController::class)->middleware('auth');
 Route::resource('/obat-masuk',ObatMasukController::class)->middleware('auth');
 Route::resource('/obat-masuk-temp',ObatMasukTempController::class)->middleware('auth');
+Route::resource('/obat-keluar',ObatKeluarController::class)->middleware('auth');
 Route::resource('/stok-obat',StokObatController::class)->middleware('auth');
 Route::get('/profile',[UpdatePasswordController::class,'index'])->name('profile.index')->middleware('auth');
 Route::get('/profile/edit',[UpdatePasswordController::class,'store'])->name('profile.store')->middleware('auth');
 // Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch'])->middleware('auth');
 Route::get('/data/{id}', [ObatMasukController::class, 'getDataMasuk'])->middleware('auth');
 Route::get('/datatemp',[ObatMasukController::class, 'getDataTemp'])->middleware('auth');
+Route::get('/temp/{id}', [ObatKeluarController::class, 'getDataMasuk'])->middleware('auth');
+
 
 //laporan
 Route::get('/lap-obt-msk',[LaporanController::class, 'lap_obt_msk'])->middleware('auth');

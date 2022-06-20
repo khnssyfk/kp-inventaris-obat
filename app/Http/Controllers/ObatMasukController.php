@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\DataObat;
 use App\Models\ObatMasuk;
 use Illuminate\Http\Request;
@@ -63,11 +64,14 @@ class ObatMasukController extends Controller
             'nama_apotek'=>'required|max:255',
             'expired'=>'required'
         ]);
-        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 8, 'prefix' =>'M']);
-
+        // $tgl = Carbon::createFromFormat('m/d/Y', $request->tgl_masuk)->format('Y-m-d');
+        $tgl = explode("-", $request->tgl_masuk);
+        $tahun = substr($tgl[0], -2);
+        $tanggal = "M".$tgl[2].$tgl[1].$tahun;
+        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'prefix' =>$tanggal]);
         switch($request->input('action')){
             case 'add':
-                // dd($validatedData);
+                // dd($kode_transaksi);
                 DB::table('obat_masuk_temps')->insert(['kode_transaksi'=>$kode_transaksi,'tgl_masuk'=>$validatedData['tgl_masuk'],'dataobat_id'=>$validatedData['dataobat_id'],'jumlah'=>$validatedData['jumlah'],'harga'=>$validatedData['harga'],'nama_apotek'=>$validatedData['nama_apotek'],'expired'=>$validatedData['expired']]);
                 Alert::success('Sukses', 'Data Berhasil Ditambah!');
                 return redirect('/obat-masuk/create');
@@ -151,7 +155,8 @@ class ObatMasukController extends Controller
         $columns = DB::table('data_obats')->where('kode_obat', $id)->first();
         return response()->json([
            'kode_obat' => $columns->kode_obat,
-           'satuan' => $columns->satuan
+           'satuan' => $columns->satuan,
+           'jumlah'=>$columns->jumlah
         ]);
 
     }

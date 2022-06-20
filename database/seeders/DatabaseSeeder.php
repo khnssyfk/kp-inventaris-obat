@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         Pasien::create([
             'nama'=>'Khansa Syafika',
             'no_rekam_medis'=>'RM2411020001',
-            'no_ktp'=>576556767,
+            'nik'=>576556767,
             'jenis_kelamin'=> 'perempuan',
             'agama'=> 'islam',
             'pekerjaan'=> 'pelajar/mahasiswa',

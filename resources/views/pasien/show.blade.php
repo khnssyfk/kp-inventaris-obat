@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="nama">NIK</label>
                                     <input type="text" id="first-name-column" class="form-control"
-                                        placeholder="First Name" readonly name="no_ktp" value="{{ $pasien->no_ktp }}">
+                                        placeholder="First Name" readonly name="no_ktp" value="{{ $pasien->nik }}">
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">
@@ -48,7 +48,7 @@
                                 <div class="form-group">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
                                     <input input="date" id="last-name-column" class="form-control"
-                                         name="tgl_lahir"  readonly value="{{ date('d-m-Y', strtotime($pasien->tgl_lahir)) }}">
+                                         name="tgl_lahir"  readonly value="{{ date('d-m-Y', strtotime($pasien->tanggal_lahir)) }}">
                                 </div>
                             </div>
                             <div class="col-md-6 col-12">

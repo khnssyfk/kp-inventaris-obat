@@ -43,7 +43,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $dokter->user->nama }}</td>
-                        <td>{{ $dokter->tgl_lahir }}</td>
+                        <td>{{ date('d-m-Y', strtotime($dokter->tgl_lahir)) }}</td>
                         <td>{{ $dokter->spesialis }}</td>
                         <td>{{ $dokter->sip }}</td>
                         <td>{{ $dokter->alamat }}</td>
@@ -53,7 +53,9 @@
             </table>
           </div>
 
-        
+          <script type="text/javascript">
+            window.print()
+        </script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>

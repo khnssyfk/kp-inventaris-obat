@@ -30,25 +30,21 @@
             <table class="table table-bordered border border-2 border-dark">
                 <thead>
                     <th scope="col">No</th>
-                    <th scope="col">Tgl Masuk</th>
-                    <th scope="col">No Transaksi</th>
+                    <th scope="col">Tgl Keluar</th>
+                    <th scope="col">No RM</th>
+                    <th scope="col">No Resep</th>
                     <th scope="col">Nama Obat</th>
                     <th scope="col">Jumlah</th>
-                    <th scope="col">Satuan</th>
-                    <th scope="col">Apotek</th>
-                    <th scope="col">Expired</th>
                 </thead>
                 <tbody>
-                    @foreach($obatmasuks as $obatmasuk)
+                    @foreach($obatkeluars as $obatkeluar)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk)) }}</td>
-                            <td>{{ $obatmasuk->kode_transaksi }}</td>
-                            <td>{{ $obatmasuk->dataobat->nama_obat }}</td>
-                            <td>{{ $obatmasuk->jumlah }}</td>
-                            <td>{{ $obatmasuk->dataobat->satuan }}</td>
-                            <td>{{ $obatmasuk->nama_apotek }}</td>
-                            <td>{{ date('d-m-Y', strtotime($obatmasuk->expired ))}}</td>
+                            <td>{{ date('d-m-Y', strtotime($obatkeluar->tgl_keluar)) }}</td>
+                            <td>{{ $obatkeluar->pasien_id }}</td>
+                            <td>{{ $obatkeluar->no_resep }}</td>
+                            <td>{{ $obatkeluar->dataobat->nama_obat }}</td>
+                            <td>{{ $obatkeluar->jumlah_keluar }}</td>
                         </tr>
                         @endforeach
                 </tbody>
