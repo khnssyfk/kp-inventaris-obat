@@ -17,6 +17,7 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
+        
         return view('super-admin.index',[
             'title'=>'Data User',
             'users'=>User::all()

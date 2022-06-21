@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="table-responsive mb-4">
                         <table class="table table-striped " id="myTable">
-                                {{-- <a href="obat-keluar/create" class="btn btn-primary mb-3 mt-1 ms-1 "><i class="bi bi-plus-lg"></i> Tambah Riwayat Obat Keluar</a> --}}
+                                <a href="obat-keluar/create" class="btn btn-primary mb-3 mt-1 ms-1 "><i class="bi bi-plus-lg"></i> Tambah Riwayat Obat Keluar</a>
                                 <button type="button" class="btn btn-success mb-3 mt-1 ms-2" data-bs-toggle="modal" data-bs-target="#cetakModal">
                                     <i class="bi bi-printer-fill"></i> Cetak Data
                                   </button>
@@ -40,26 +40,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach($obatmasuks as $obatmasuk)
+                                @foreach($obatkeluars as $obatkeluar)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk))}}</td>
-                                    <td>{{  $obatmasuk->kode_transaksi }}</td>
-                                    <td>{{  $obatmasuk->dataobat->nama_obat }}</td>
-                                    <td>{{  $obatmasuk->jumlah}}</td>
-                                    <td>{{  $obatmasuk->dataobat->satuan}}</td>
-                                    <td>{{  $obatmasuk->nama_apotek}}</td>
-                                    <td>{{  date('d-m-Y', strtotime($obatmasuk->expired))}}</td>
+                                    <td>{{ date('d-m-Y', strtotime($obatkeluar->tgl_keluar))}}</td>
+                                    <td>{{  $obatkeluar->pasien_id }}</td>
+                                    <td>{{  $obatkeluar->no_resep }}</td>
+                                    <td>{{  $obatkeluar->dataobat->nama_obat }}</td>
+                                    <td>{{  $obatkeluar->jumlah_keluar}}</td>
+                                    <td>{{  $obatkeluar->dataobat->satuan}}</td>
+                                   
                                     <td>
-                                            <a href="/obat-masuk/{{ $obatmasuk->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill d-inline"></i></a>
-                                            <form action="/obat-masuk/{{ $obatmasuk->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                            <a href="/obat-keluar/{{ $obatkeluar->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill d-inline"></i></a>
+                                            <form action="/obat-keluar/{{ $obatkeluar->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
                                                 @method("delete")
                                                 @csrf
                                                 <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
                                             </form>
                                     </td>
                                 </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

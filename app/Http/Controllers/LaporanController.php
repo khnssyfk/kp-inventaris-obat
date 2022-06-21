@@ -41,7 +41,7 @@ class LaporanController extends Controller
         $tgl_mulai = $request->tgl_mulai;
         $tgl_selesai = $request->tgl_selesai;
         // dd($tgl_mulai);
-        $obatkeluar = ObatKeluar::select('id', 'no_resep', 'tgl_keluar','dataobat_id','pasien_id','dosis','jumlah_keluar')
+        $obatkeluar = ObatKeluar::select('id', 'no_resep', 'tgl_keluar','dataobat_id','pasien_id','jumlah_keluar')
         ->whereBetween('tgl_keluar', [$tgl_mulai, $tgl_selesai])
         ->get();
 

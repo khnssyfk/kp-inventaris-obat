@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('obat_keluars', function (Blueprint $table) {
+        Schema::create('obat_keluar_temps', function (Blueprint $table) {
             $table->id();
             $table->string('no_resep');
             $table->date('tgl_keluar');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('obat_keluars');
+        Schema::dropIfExists('obat_keluar_temps');
     }
 };

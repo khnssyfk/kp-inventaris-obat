@@ -35,6 +35,7 @@
                     <th scope="col">No Resep</th>
                     <th scope="col">Nama Obat</th>
                     <th scope="col">Jumlah</th>
+                    <th scope="col">Satuan</th>
                 </thead>
                 <tbody>
                     @foreach($obatkeluars as $obatkeluar)
@@ -45,6 +46,7 @@
                             <td>{{ $obatkeluar->no_resep }}</td>
                             <td>{{ $obatkeluar->dataobat->nama_obat }}</td>
                             <td>{{ $obatkeluar->jumlah_keluar }}</td>
+                            <td>{{ $obatkeluar->dataobat->satuan }}</td>
                         </tr>
                         @endforeach
                 </tbody>

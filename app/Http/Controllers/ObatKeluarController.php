@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Pasien;
 use App\Models\DataObat;
 use App\Models\ObatKeluar;
+use Illuminate\Http\Request;
+use App\Models\ObatKeluarTemp;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\StoreObatKeluarRequest;
-use App\Http\Requests\UpdateObatKeluarRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+// use App\Http\Requests\StoreObatKeluarRequest;
+// use App\Http\Requests\UpdateObatKeluarRequest;
 
 class ObatKeluarController extends Controller
 {
@@ -19,7 +23,9 @@ class ObatKeluarController extends Controller
     public function index()
     {
         return view('obat-keluar.index',[
-            'title'=>'Obat Keluar'
+            'title'=>'Obat Keluar',
+            'obatkeluars'=>ObatKeluar::all(),
+            'data_obats'=>DataObat::all()
         ]);
     }
 
@@ -34,18 +40,34 @@ class ObatKeluarController extends Controller
             'title'=>'Tambah Data Obat Keluar',
             'dataobats'=>DataObat::all(),
             'pasiens'=>Pasien::all(),
+            'obat_keluars'=>ObatKeluarTemp::all()
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreObatKeluarRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreObatKeluarRequest $request)
+    public function store(Request $request)
     {
-        //
+        
+        $data = [
+            'tgl_keluar'=>$request->tgl_keluar,
+            'dataobat_id'=>$request->dataobat_id,
+            'pasien_id'=>$request->pasien_id,
+            'jumlah_keluar'=>$request->jumlah_keluar,
+            
+        ];
+        $tgl = explode("-", $request->tgl_keluar);
+        $tahun = substr($tgl[0], -2);
+        $tanggal = "K".$tgl[2].$tgl[1].$tahun;
+        $no_resep = IdGenerator::generate(['table' => 'obat_keluars','field'=>'no_resep' ,'length' => 10, 'prefix' =>$tanggal]);
+        
+        DB::table('obat_keluar_temps')->insert(['no_resep'=>$no_resep,'tgl_keluar'=>$data['tgl_keluar'],'dataobat_id'=>$data['dataobat_id'],'jumlah_keluar'=>$data['jumlah_keluar'],'pasien_id'=>$data['pasien_id']]);
+         Alert::success('Sukses', 'Data Berhasil Ditambah!');
+        return redirect('/obat-keluar/create');
     }
 
     /**
@@ -73,11 +95,11 @@ class ObatKeluarController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateObatKeluarRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\ObatKeluar  $obatKeluar
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateObatKeluarRequest $request, ObatKeluar $obatKeluar)
+    public function update(Request $request, ObatKeluar $obatKeluar)
     {
         //
     }
@@ -90,14 +112,48 @@ class ObatKeluarController extends Controller
      */
     public function destroy(ObatKeluar $obatKeluar)
     {
-        //
+        $id = $obatKeluar->id;
+        $data = ObatKeluar::where('id',$id)->first();
+        $data_id = $data->dataobat_id;
+        // dd($data->jumlah);
+        
+        $dataobat = DataObat::find($data_id);
+        $dataobat->jumlah += $data->jumlah_keluar;
+        // dd($dataobat);
+        $dataobat->save();
+        ObatKeluar::destroy($id);
+        Alert::success('Sukses', 'Data Berhasil Dihapus!');
+        return redirect('/obat-keluar');
     }
 
-    public function getDataMasuk($id=""){
-        $columns = DB::table('pasiens')->where('no_rekam_medis', $id)->first();
-        return response()->json([
-           'nama' => $columns->nama,
-        ]);
+    // public function getDataMasuk($id=""){
+    //     $columns = DB::table('pasiens')->where('no_rekam_medis', $id)->first();
+    //     return response()->json([
+    //        'nama' => $columns->nama,
+    //     ]);
+
+    // }
+
+    public function getDataTemp(Request $request){
+        $temps = ObatKeluarTemp::all()->toArray();
+        // $barang = ObatMasukTemp::all();
+        
+        
+        foreach($temps as $temp){
+            // dump($temp['dataobat_id']);
+            $dataobat = DataObat::find($temp['dataobat_id']);
+            $dataobat->jumlah -= $temp['jumlah_keluar'];
+            // dump($dataobat);
+            $dataobat->save();
+            // dump($dataobat->jumlah);
+            DB::table('obat_keluars')->insert($temp);
+            DB::table('obat_keluar_temps')->delete($temp);
+        }
+        // ObatMasukTemp::destroy($temp['kode_transaksi']);
+        // $sum = DataObat::all();
+        // dd($sum);
+        Alert::success('Sukses', 'Data Berhasil Disimpan!');
+        return redirect('/obat-keluar');
 
     }
 }

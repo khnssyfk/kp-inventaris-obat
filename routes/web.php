@@ -13,6 +13,7 @@ use App\Http\Controllers\TypeaheadController;
 use App\Http\Controllers\ObatKeluarController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ObatMasukTempController;
+use App\Http\Controllers\ObatKeluarTempController;
 use App\Http\Controllers\UpdatePasswordController;
 
 /*
@@ -38,14 +39,14 @@ Route::get('/rekam-medis', function () {
     ]);
 })->middleware('auth');
 
-
-// Route::resource('/data-obat',obatController::class)->middleware('auth');
+//farmasi                                                                                                                                  
+Route::resource('/data-obat',obatController::class)->middleware('auth');
 Route::resource('/data-dokter',DokterController::class)->middleware('auth');
 Route::resource('/data-pasien',PasienController::class)->middleware('auth');
-Route::resource('/data-user',SuperAdminController::class)->middleware('auth');
 Route::resource('/nama-obat',DataObatController::class)->middleware('auth');
 Route::resource('/obat-masuk',ObatMasukController::class)->middleware('auth');
 Route::resource('/obat-masuk-temp',ObatMasukTempController::class)->middleware('auth');
+Route::resource('/obat-keluar-temp',ObatKeluarTempController::class)->middleware('auth');
 Route::resource('/obat-keluar',ObatKeluarController::class)->middleware('auth');
 Route::resource('/stok-obat',StokObatController::class)->middleware('auth');
 Route::get('/profile',[UpdatePasswordController::class,'index'])->name('profile.index')->middleware('auth');
@@ -53,6 +54,7 @@ Route::get('/profile/edit',[UpdatePasswordController::class,'store'])->name('pro
 // Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch'])->middleware('auth');
 Route::get('/data/{id}', [ObatMasukController::class, 'getDataMasuk'])->middleware('auth');
 Route::get('/datatemp',[ObatMasukController::class, 'getDataTemp'])->middleware('auth');
+Route::get('/obatkeluartemp',[ObatkeluarController::class, 'getDataTemp'])->middleware('auth');
 Route::get('/temp/{id}', [ObatKeluarController::class, 'getDataMasuk'])->middleware('auth');
 
 
@@ -70,3 +72,9 @@ Route::get('/login',[LoginController::class, 'index'])->name('login')->middlewar
 Route::post('/login',[LoginController::class, 'authenticate']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
+//admin
+
+
+Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin');
+// Route::group(['middleware' => ['isAdmin']], function () {
+// });
