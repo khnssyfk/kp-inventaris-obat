@@ -39,6 +39,29 @@
 .dataTables_wrapper{
   padding:5px;
 }
+
+.wrapper{
+  height: 350px;
+  width: 300px;
+  margin-bottom: 2.2rem;
+  border: none;
+  background-color: white;
+  margin-top: 5px;
+  padding: 1.5rem 1.5rem;
+  border-radius:5%;
+  margin-right:20px;
+}
+.wrapper-big{
+  height: 350px;
+  width: 582px;
+  margin-bottom: 2.2rem;
+  border: none;
+  background-color: white;
+  margin-top: 5px;
+  padding: 1.5rem 1.5rem;
+  border-radius:5%;
+  margin-right:20px;
+}
 .alert {
   border: none;
 }
@@ -1421,6 +1444,7 @@ a {
     line-height: 24px;
     cursor: pointer;
 }
+
 
 .tt-suggestion:hover {
     color: #f0f0f0;

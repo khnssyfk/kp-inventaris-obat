@@ -34,16 +34,16 @@
                     </a> --}}
                     {{-- <ul class="submenu {{ Request::is('nama-obat*','obat-masuk*','obat-keluar*','stok-obat*') ? 'active' :'' }}"> --}}
                         <li class="sidebar-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
-                            <a href="/nama-obat" class="sidebar-link"><span>Nama Obat</span></a>
+                            <a href="/nama-obat" class="sidebar-link"><i class="bi bi-file-spreadsheet-fill"></i><span>Nama Obat</span></a>
                         </li>
                         <li class="sidebar-item {{ Request::is('obat-masuk*') ? 'active' :'' }}">
-                            <a href="/obat-masuk" class="sidebar-link"><span>Obat Masuk</span></a>
+                            <a href="/obat-masuk" class="sidebar-link"><i class="bi bi-file-earmark-arrow-down-fill"></i><span>Obat Masuk</span></a>
                         </li>
                         <li class="sidebar-item {{ Request::is('obat-keluar*') ? 'active' :'' }}">
-                            <a href="/obat-keluar" class="sidebar-link"> <span>Obat Keluar</span> </a>
+                            <a href="/obat-keluar" class="sidebar-link"><i class="bi bi-file-earmark-arrow-up-fill"></i> <span>Obat Keluar</span> </a>
                         </li>
                         <li class="sidebar-item {{ Request::is('stok-obat*') ? 'active' :'' }} ">
-                            <a href="/stok-obat" class="sidebar-link"><span>Stok Obat</span>  </a>
+                            <a href="/stok-obat" class="sidebar-link"><i class="bi bi-box2-fill"></i><span>Stok Obat</span>  </a>
                         </li>
                     {{-- </ul> --}}
                 {{-- </li> --}}

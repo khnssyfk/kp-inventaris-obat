@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ $title }} | RM Melife</title>
+        <title>{{ $title }} | Inventory Melife</title>
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -46,13 +46,9 @@
         <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
-        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-  
-
-        
-        
+   
     </head>
     <body>
         <div id="app">
@@ -75,6 +71,7 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
         <script src="/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
 
         <script>
         $(document).ready( function () {

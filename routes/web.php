@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Models\Role;
+use App\Models\ObatMasuk;
+use App\Models\ObatKeluar;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DokterController;
@@ -27,11 +31,6 @@ use App\Http\Controllers\UpdatePasswordController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard',[
-        'title'=>'Dashboard'
-    ]);
-})->middleware('auth');
 
 Route::get('/rekam-medis', function () {
     return view('rekam-medis.index',[
@@ -39,8 +38,8 @@ Route::get('/rekam-medis', function () {
     ]);
 })->middleware('auth');
 
-//farmasi                                                                                                                                  
-Route::resource('/data-obat',obatController::class)->middleware('auth');
+//farmasi    
+Route::resource('/',DashboardController::class)->middleware('auth');
 Route::resource('/data-dokter',DokterController::class)->middleware('auth');
 Route::resource('/data-pasien',PasienController::class)->middleware('auth');
 Route::resource('/nama-obat',DataObatController::class)->middleware('auth');
@@ -51,7 +50,6 @@ Route::resource('/obat-keluar',ObatKeluarController::class)->middleware('auth');
 Route::resource('/stok-obat',StokObatController::class)->middleware('auth');
 Route::get('/profile',[UpdatePasswordController::class,'index'])->name('profile.index')->middleware('auth');
 Route::get('/profile/edit',[UpdatePasswordController::class,'store'])->name('profile.store')->middleware('auth');
-// Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch'])->middleware('auth');
 Route::get('/data/{id}', [ObatMasukController::class, 'getDataMasuk'])->middleware('auth');
 Route::get('/datatemp',[ObatMasukController::class, 'getDataTemp'])->middleware('auth');
 Route::get('/obatkeluartemp',[ObatkeluarController::class, 'getDataTemp'])->middleware('auth');
@@ -73,8 +71,6 @@ Route::post('/login',[LoginController::class, 'authenticate']);
 Route::post('/logout',[LoginController::class, 'logout']);
 
 //admin
-
-
 Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin');
 // Route::group(['middleware' => ['isAdmin']], function () {
 // });
