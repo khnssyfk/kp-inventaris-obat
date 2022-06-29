@@ -30,6 +30,7 @@
                                     <th scope="col">Kode Obat</th>
                                     <th scope="col">Nama Obat</th>
                                     <th scope="col">Jumlah</th> 
+                                    <th scope="col">Status</th> 
                                     {{-- <th scope="col">Status</th>  --}}
                                 </tr>
                             </thead>
@@ -40,7 +41,13 @@
                                     <td>{{ $dataobat->kode_obat }}</td>
                                     <td>{{  $dataobat->nama_obat }}</td>
                                     <td>{{  $dataobat->jumlah}}</td>
-                                    {{-- <td>ehe</td> --}}
+                                    <td>
+                                        @if($dataobat->jumlah >150)
+                                            <label for="" class="badge bg-success">In Stock</label>
+                                        @else
+                                            <label for="" class="badge bg-danger">Out of Stock</label>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

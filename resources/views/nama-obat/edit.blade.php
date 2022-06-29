@@ -9,14 +9,14 @@
 @endif
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Edit Obat Baru</h3>
+        <h3>Edit Data Obat</h3>
         {{-- <p class="text-subtitle text-muted">Data Pasien</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/nama-obat">Data Obat</a></li>
-                <li class="breadcrumb-item active">Edit Obat Baru</li>
+                <li class="breadcrumb-item active">Edit Data Obat</li>
             </ol>
         </nav>
     </div>
@@ -24,7 +24,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Buat Data Obat</h4>
+        <h4 class="card-title">Edit Data Obat</h4>
     </div>
     <div class="card-body">
         <form action="/nama-obat/{{ $data_obat->kode_obat }}" method="post" id="namaobat-form">

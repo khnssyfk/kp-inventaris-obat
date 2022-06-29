@@ -48,10 +48,11 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan') is-invalid @enderror" name="satuan[]" required>
-                        <option value="Tablet">Tablet</option>
                         <option value="Botol">Botol</option>
-                        <option value="Ampul">Ampul</option>
-                        <option value="Vial">Vial</option>
+                        <option value="Kaplet">Kapsul</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Tube">Tube</option>
+                        <option value="Suppository">Suppository</option>
 
                     </select>
                     @error('satuan')

@@ -70,6 +70,35 @@ function dataObatBaru(event){
 
 }
 
+// function addRow(event){
+//     // alert('o');
+//     event.preventDefault();
+//     rowKonten = document.createElement('tr');
+//     rowKonten.innerHTML = '<td><select class="form-select dataobat @error("dataobat_id") is-invalid @enderror" name="dataobat_id[]" required id="dataobat_id" onclick=autofill()><option value="">Masukan Nama Obat</option>@foreach($dataobats as $dataobat)<option value="OBT00003" id="dataobat_id">antasida</option>@endforeach</select></td><td width="130px"><input type="text" readonly name="kode_obat_id[]" id="kode_obat" class="form-control @error("kode_obat_id") is-invalid @enderror" required value="{{ old("kode_obat_id") }}" onkeyup="autofill()"></td><td width="100px"><input type="number"  name="jumlah" class="form-control @error("jumlah") is-invalid @enderror" id="jumlah" readonly required value="{{ old("jumlah") }}" ></td><td width="100px"><input type="number" name="jumlah_keluar[]" class="form-control @error("jumlah_keluar") is-invalid @enderror" required value="{{ old("jumlah_keluar") }}" ></td><td><button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" id="deleteRow"></i></button></td>';
+//     document.getElementById('obtklr_tb').children[1].appendChild(rowKonten)
+// }
+// function deleteRow(event){
+//     // alert('p')
+//     event.preventDefault();
+//     // var td = event.target.parentNode; 
+//     //   var tr = td.parentNode; // the row to be removed
+//     // //   tr.parentNode.removeChild(tr);
+//     // console.log(tr)
+
+//     var divTable = document.getElementById('obtklr_tb');
+//     // var divkonten = '<td>1</td>';
+//     var currentIndex = divTable.rows.length;
+//     divTable.removeChild(currentIndex);
+//     // alert(currentIndex);
+//     // document.getElementById('obtklr_tb').appendChild(divkonten)
+// }
+
+$(document).ready(function(){
+    $("#obtklr_tb").on('click','#deleteRow',function(){
+        $(this).closest('tr').remove();
+     });
+ });
+
 // var formDelete = document.getElementsByClassName('form-delete')
 
 function swalDelete(event){
@@ -97,19 +126,6 @@ $(document).ready( function () {
     $('#myTable').DataTable();
 } );
 
-function addRow(event){
-    event.preventDefault();
-    // alert('test');
-    var divNama = document.createElement('div');
-    divNama.className ='form-group col-md-6'
-    divNama.innerHTML = '<label for="nama_obat" class="sr-only ">Nama Obat</label>'+
-    '<select class="form-select name="nama_obat" required id="nama_obat" onclick="autofill()"><option value="">-- Masukan Nama Obat -- </option> @foreach($data_obats as $data_obat)<option value="{{ $data_obat->id }}" id="nama_obat" onclick="autofill()">{{ $data_obat->nama_obat }}</option> @endforeach </select>';
-    var divSatuan = document.createElement('div');
-    divSatuan.className ='form-group col-md-6 col-12'
-    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
-    document.getElementById('obatMasuk').appendChild(divNama)
-    document.getElementById('obatMasuk').appendChild(divSatuan)
-}
 var date = new Date();
 var day = date.getDate();
 var month = date.getMonth() + 1;

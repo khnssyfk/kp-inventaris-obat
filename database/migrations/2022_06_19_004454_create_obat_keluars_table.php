@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('dataobat_id')->unsigned;
             $table->string('pasien_id')->unsigned;
             $table->integer('jumlah_keluar');
+            $table->string('dokter_id')->unsigned;
             // $table->longText('dosis');
             $table->timestamps();
         });

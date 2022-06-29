@@ -24,7 +24,7 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Buat Riwayat Obat Masuk</h4>
+        <h4 class="card-title">Tambah Riwayat Obat Masuk</h4>
     </div>
     <div class="card-body">
         <form action="/obat-masuk" method="post">

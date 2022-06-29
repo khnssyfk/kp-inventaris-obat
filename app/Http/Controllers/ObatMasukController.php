@@ -25,11 +25,11 @@ class ObatMasukController extends Controller
     // }
     public function index()
     {
-        // $temp = ObatMasuk::all();
-        // dd($temp);
+        // $temp = ObatMasuk::orderBy('id','desc')->get();
+        // dump($temp);
         return view('obat-masuk.index',[
             'title'=>'Obat Masuk',
-            'obatmasuks'=>ObatMasuk::all(),
+            'obatmasuks'=>ObatMasuk::orderBy('id','desc')->get(),
             'data_obats'=>DataObat::all()
         ]);
     }

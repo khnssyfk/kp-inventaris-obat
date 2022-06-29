@@ -11,10 +11,17 @@ class ObatKeluar extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'no_resep','tgl_keluar','dataobat_id','pasien_id','jumlah_keluar','dokter_id'
+    ];
+
     public function dataobat(){
         return $this->belongsTo(DataObat::class,'dataobat_id');
     }
     public function pasien(){
         return $this->belongsTo(Pasien::class,'pasien_id');
+    }
+    public function dokter(){
+        return $this->belongsTo(Dokter::class,'dokter_id');
     }
 }
