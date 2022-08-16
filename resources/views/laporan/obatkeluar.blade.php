@@ -31,8 +31,8 @@
                 <thead>
                     <th scope="col">No</th>
                     <th scope="col">Tgl Keluar</th>
-                    <th scope="col">No RM</th>
                     <th scope="col">No Resep</th>
+                    <th scope="col">No RM</th>
                     <th scope="col">Nama Obat</th>
                     <th scope="col">Jumlah</th>
                     <th scope="col">Satuan</th>
@@ -42,8 +42,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ date('d-m-Y', strtotime($obatkeluar->tgl_keluar)) }}</td>
-                            <td>{{ $obatkeluar->pasien_id }}</td>
                             <td>{{ $obatkeluar->no_resep }}</td>
+                            <td>{{ $obatkeluar->pasien_id }}</td>
                             <td>{{ $obatkeluar->dataobat->nama_obat }}</td>
                             <td>{{ $obatkeluar->jumlah_keluar }}</td>
                             <td>{{ $obatkeluar->dataobat->satuan }}</td>

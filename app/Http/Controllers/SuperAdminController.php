@@ -127,6 +127,23 @@ class SuperAdminController extends Controller
         if($request->email != $user->email){
             $rules['email'] = 'required|email:dns|unique:users';
         };
+        if($request->role_id != $user->role_id){
+            if($request->role_id == 4){
+                Dokter::create(
+                    [
+                        'user_id'=>$id,
+                        'spesialis','tgl_lahir','alamat'
+                    ]
+                    );
+            };
+            if($user->role_id == 4 && $request->role_id != 4){
+                $user_id = Dokter::where('user_id',$id)->first();
+                Dokter::destroy($user_id->id);
+
+            }
+        }
+
+
         
         $validatedData = $request->validate($rules);
         $validatedData['id'] = $user->id;
@@ -142,9 +159,22 @@ class SuperAdminController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        Alert::success('Sukses', 'Akun Berhasil Dihapus!');
-        return redirect('/data-user');
+        $user_id = Dokter::where('user_id',$id)->first();
+        $temp = User::where('id','=',$id)->value('role_id');
+        if ($temp == 4){
+            Dokter::destroy($user_id->id);
+            User::destroy($id);
+            Alert::success('Sukses', 'Akun Berhasil Dihapus!');
+            return redirect('/data-user');
+
+        }else{
+            User::destroy($id);
+            Alert::success('Sukses', 'Akun Berhasil Dihapus!');
+            return redirect('/data-user');
+        }
+        // dd($user_id->id);
+        // Alert::success('Sukses', 'Akun Berhasil Dihapus!');
+        // return redirect('/data-user');
     }
 
 }

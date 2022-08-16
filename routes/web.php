@@ -1,17 +1,19 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Models\Role;
+use App\Models\DataObat;
 use App\Models\ObatMasuk;
 use App\Models\ObatKeluar;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\DataObatController;
 use App\Http\Controllers\StokObatController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ObatMasukController;
 use App\Http\Controllers\TypeaheadController;
 use App\Http\Controllers\ObatKeluarController;
@@ -19,6 +21,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ObatMasukTempController;
 use App\Http\Controllers\ObatKeluarTempController;
 use App\Http\Controllers\UpdatePasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,3 +77,8 @@ Route::post('/logout',[LoginController::class, 'logout']);
 Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin');
 // Route::group(['middleware' => ['isAdmin']], function () {
 // });
+
+
+// Route::get('/search', [DataObatController::class, 'search'])->middleware('auth');
+// Route::get('/pasien-search', [PasienController::class, 'search'])->middleware('auth');
+// Route::get('/dokter-search', [DokterController::class, 'search'])->middleware('auth');

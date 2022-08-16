@@ -116,4 +116,18 @@ class DokterController extends Controller
         Alert::success('Sukses', 'Akun Berhasil Dihapus!');
         return redirect('/data-dokter');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->get('query');
+    //     // $filterResult = DataObat::where('nama_obat', 'LIKE', '%'. $query. '%')->get();
+    //     // $filterResult = Dokter::select('user_id')->pluck('user_id');
+    //     // $filterResult = Dokter::select('user_id')->where('user_id', 'LIKE', '%'. $query. '%')
+    //     // ->pluck('user_id');
+
+    //     $log = User::where('role_id','=',4)->select('nama')->where('nama', 'LIKE', '%'. $query. '%')->pluck('nama'); // or whatever, just get one log
+    //     // $username = $log->user_id->nama;
+    //     return response()->json($log);
+    //     // dd($log);
+    // }
 }

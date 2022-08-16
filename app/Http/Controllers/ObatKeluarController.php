@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\DataObat;
@@ -40,10 +41,10 @@ class ObatKeluarController extends Controller
     {
         return view('obat-keluar.create',[
             'title'=>'Tambah Data Obat Keluar',
-            'dataobats'=>DataObat::all(),
-            'pasiens'=>Pasien::all(),
+            'dataobats'=>DataObat::orderBy('nama_obat')->get(),
+            'pasiens'=>Pasien::orderBy('no_rekam_medis')->get(),
             'obat_keluars'=>ObatKeluarTemp::all(),
-            'dokters'=>Dokter::all()
+            'dokters'=>User::where('role_id','=',4)->orderBy('nama')->get()
         ]);
     }
 
@@ -79,22 +80,29 @@ class ObatKeluarController extends Controller
                     'jumlah_keluar'=>$datas['jumlah_keluar'][$item],
                     'dokter_id'=>$datas['dokter_id']
                 );
+                // dump($data);
                 $data_id = $datas['dataobat_id'][$item];
-                // dd($data->jumlah);
+                // // dd($data->jumlah);
                 
                 $dataobat = DataObat::find($data_id);
-                $dataobat->jumlah -= $datas['jumlah_keluar'][$item];
-                // dump($dataobat);
-                $dataobat->save();
-                // dump($data);
-                ObatKeluar::create($data);
+                if ($data['jumlah_keluar'] > $dataobat->jumlah){
+                    Alert::warning('Gagal', 'Jumlah Obat Tidak Boleh Melebihi Stok!');
+                    return redirect('/obat-keluar/create');
+                }else{
+                    $dataobat->jumlah -= $datas['jumlah_keluar'][$item];
+                    // dump($dataobat);
+                    $dataobat->save();
+                    // dump($data);
+                    ObatKeluar::create($data);
+                     Alert::success('Sukses', 'Data Berhasil Ditambah!');
+                    return redirect('/obat-keluar');
+
+                }
 
             }
         }
         
         // DB::table('obat_keluar_temps')->insert(['no_resep'=>$no_resep,'tgl_keluar'=>$data['tgl_keluar'],'dataobat_id'=>$data['dataobat_id'],'jumlah_keluar'=>$data['jumlah_keluar'],'pasien_id'=>$data['pasien_id']]);
-         Alert::success('Sukses', 'Data Berhasil Ditambah!');
-        return redirect('/obat-keluar');
     }
 
     /**
@@ -121,7 +129,7 @@ class ObatKeluarController extends Controller
             'dataobats'=>DataObat::all(),
             'pasiens'=>Pasien::all(),
             'obat_keluars'=>ObatKeluar::where('id',$id)->first(),
-            'dokters'=>Dokter::all()
+            'dokters'=>User::where('role_id','=',4)->orderBy('nama')->get()
         ]);
     }
 
@@ -134,7 +142,7 @@ class ObatKeluarController extends Controller
      */
     public function update(Request $request, ObatKeluar $obatKeluar)
     {
-        //
+        // dump($request->all());
     }
 
     /**

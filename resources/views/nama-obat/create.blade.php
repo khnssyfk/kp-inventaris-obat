@@ -51,6 +51,7 @@
                         <option value="Botol">Botol</option>
                         <option value="Kaplet">Kapsul</option>
                         <option value="Tablet">Tablet</option>
+                        <option value="Tablet">Kaplet</option>
                         <option value="Tube">Tube</option>
                         <option value="Suppository">Suppository</option>
 

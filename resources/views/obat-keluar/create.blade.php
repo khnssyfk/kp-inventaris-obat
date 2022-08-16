@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="card">
+<div class="card" >
     <div class="card-header">
         <h4 class="card-title">Edit Riwayat Obat Keluar</h4>
     </div>
@@ -60,7 +60,7 @@
                     <select class="form-select @error('dokter_id') is-invalid @enderror" name="dokter_id" required id="dokter_id">
                         <option value="">Masukan Nama Dokter</option>
                         @foreach($dokters as $dokter)
-                        <option value="{{ $dokter->id }}" id="dokter_id">{{ $dokter->user->nama }}</option>
+                        <option value="{{ $dokter->id }}" id="dokter_id">{{ $dokter->nama }}</option>
                         
                         @endforeach
                     </select>
@@ -197,11 +197,11 @@
                             @endforeach --}}
                     </tbody>
                 </table>
-                <button class="btn btn-success mt-2" id="btn-simpan">Simpan</button>
+                <button class="btn btn-success mt-2 float-end" id="btn-simpan">Simpan</button>
                 {{-- <a href="/obatkeluartemp"  method="get" class="btn btn-success mt-2">Simpan</a> --}}
+                <button class="btn btn-primary mx-2 mb-2 " id="dataObatKeluarBaru">Tambah</button>
             </div>
         </form>
-        <button class="btn btn-primary mt-2" id="dataObatKeluarBaru">Tambah</button>
 
         {{-- <button class="btn btn-primary mt-2"></a>Tambah</button> --}}
         

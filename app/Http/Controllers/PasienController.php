@@ -122,4 +122,14 @@ class PasienController extends Controller
         Alert::success('Sukses', 'Akun Berhasil Dihapus!');
         return redirect('/data-pasien');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->get('query');
+    //     // $filterResult = DataObat::where('nama_obat', 'LIKE', '%'. $query. '%')->get();
+    //     $filterResult = Pasien::select('no_rekam_medis')->where('no_rekam_medis', 'LIKE', '%'. $query. '%')
+    //     ->pluck('no_rekam_medis');
+    //     return response()->json($filterResult);
+    //     // dd($filterResult);
+    // }
 }

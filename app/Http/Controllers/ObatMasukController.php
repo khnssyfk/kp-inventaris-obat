@@ -41,9 +41,11 @@ class ObatMasukController extends Controller
      */
     public function create()
     {
+        // $temp = DataObat::orderBy('nama_obat')->get();
+        // dump($temp);
         return view('obat-masuk.create',[
             'title'=>'Tambah Riwayat Obat Masuk',
-            'data_obats'=>DataObat::all(),
+            'data_obats'=>DataObat::orderBy('nama_obat')->get(),
             'obat_masuks'=>ObatMasukTemp::all()
         ]);
     }
@@ -101,9 +103,7 @@ class ObatMasukController extends Controller
     public function edit($id)
     {
         return view('obat-masuk.edit',[
-            'data_obats'=>DataObat::all(),
-            'title'=>'Edit Data',
-            'obatmasuk'=> ObatMasuk::where('id',$id)->first()
+             
         ]);
     }
 

@@ -29,6 +29,7 @@
     <div class="card-body">
         <form action="/obat-keluar/{{ $obat_keluars->id }}" method="post">
             @csrf 
+            @method('PUT')
         <div class="row">
             <div class="form-group col-md-6 col-12">
                 <label for="pasien_id" class="sr-only ">No RM</label>
@@ -36,8 +37,11 @@
                 <select class="form-select @error('pasien_id') is-invalid @enderror" name="pasien_id" required id="pasien_id" onclick="pasienfill()">
                     <option value="">Masukan No RM</option>
                     @foreach($pasiens as $pasien)
-                    <option value="{{ $pasien->no_rekam_medis }}" id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
-                    
+                    @if(old('dataobat_id', $pasien->no_rekam_medis)==$obat_keluars->pasien_id)
+                        <option value="{{ $pasien->no_rekam_medis }}" selected id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
+                            @else
+                            <option value="{{ $pasien->no_rekam_medis }}" id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
+                    @endif
                     @endforeach
                 </select>
                 @error('pasien_id')
@@ -48,7 +52,7 @@
             </div>
             <div class="form-group col-md-6 col-12">
                 <label for="nama_pasien" class="sr-only">Nama Pasien</label>
-                <input type="text" placeholder="Masukkan Nama Pasien"   readonly name="nama_pasien" id="nama_pasien"  onkeyup="pasienfill()" class="form-control @error('nama_pasien') is-invalid @enderror" required value="{{ old('nama_pasien') }}">
+                <input type="text" placeholder="Masukkan Nama Pasien"   readonly name="nama_pasien" id="nama_pasien"  onkeyup="pasienfill()" class="form-control @error('nama_pasien') is-invalid @enderror" required value="{{ old('nama_pasien',$obat_keluars->pasien->nama) }}">
                 @error('nama_pasien')
                 <div class="invalid-feedback">
                     {{ $message}}
@@ -60,8 +64,12 @@
                 <select class="form-select @error('dokter_id') is-invalid @enderror" name="dokter_id" required id="dokter_id">
                     <option value="">Masukan Nama Dokter</option>
                     @foreach($dokters as $dokter)
-                    <option value="{{ $dokter->id }}" id="dokter_id">{{ $dokter->user->nama }}</option>
-                    
+                    @if(old('dataobat_id', $dokter->id)==$obat_keluars->dokter_id)
+                            <option value="{{ $dokter->id }}" selected id="dokter_id">{{ $dokter->user->nama }}</option>
+                        @else
+                            <option value="{{ $dokter->id }}" id="dokter_id">{{ $dokter->user->nama }}</option>
+
+                    @endif
                     @endforeach
                 </select>
                 @error('dataobat_id')
@@ -75,7 +83,12 @@
                     <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($dataobats as $dataobat)
+                        @if(old('dataobat_id', $dataobat->nama_obat)==$obat_keluars->dataobat->nama_obat)
+                        <option value="{{ $dataobat->kode_obat }}" selected id="dataobat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
+                        @else
                         <option value="{{ $dataobat->kode_obat }}" id="dataobat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
+                    @endif
+                        
                         
                         @endforeach
                     </select>
@@ -87,7 +100,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="kode_obat_id" class="sr-only">Kode Obat</label>
-                    <input type="text" readonly placeholder="Masukkan Kode Obat" name="kode_obat_id" id="kode_obat" class="form-control @error('kode_obat_id') is-invalid @enderror" required value="{{ old('kode_obat_id') }}" onkeyup="autofill()">
+                    <input type="text" readonly placeholder="Masukkan Kode Obat" name="kode_obat_id" id="kode_obat" class="form-control @error('kode_obat_id') is-invalid @enderror" required value="{{ old('kode_obat_id',$obat_keluars->dataobat->kode_obat) }}" onkeyup="autofill()">
                     @error('kode_obat_id')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -96,7 +109,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="jumlah" class="sr-only">Stok</label>
-                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" readonly required value="{{ old('jumlah') }}" >
+                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" id="jumlah" readonly required value="{{ old('jumlah',$dataobat->jumlah) }}" >
                     @error('jumlah')
                     <div class="invalid-feedback">
                         {{ $message}}

@@ -64,7 +64,7 @@ function dataObatBaru(event){
     divNama.innerHTML = '<label for="nama_obat" class="sr-only">Nama Obat</label> <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error("nama_obat") is-invalid @enderror" required>'
     var divSatuan = document.createElement('div');
     divSatuan.className ='form-group col-md-6 col-12'
-    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Tablet">Tablet</option><option value="Botol">Botol</option><option value="Ampul">Ampul</option><option value="Vial">Vial</option></select>'
+    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Botol">Botol</option><option value="Kaplet">Kapsul</option><option value="Tablet">Tablet</option><option value="Tablet">Kaplet</option><option value="Tube">Tube</option><option value="Suppository">Suppository</option></select>'
     document.getElementById('fieldobat').appendChild(divNama)
     document.getElementById('fieldobat').appendChild(divSatuan)
 

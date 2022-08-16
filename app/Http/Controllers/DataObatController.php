@@ -139,4 +139,14 @@ class DataObatController extends Controller
         Alert::success('Sukses', 'Obat Berhasil Dihapus!');
         return redirect('/nama-obat');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->get('query');
+    //     // $filterResult = DataObat::where('nama_obat', 'LIKE', '%'. $query. '%')->get();
+    //     $filterResult = DataObat::select('nama_obat')->where('nama_obat', 'LIKE', '%'. $query. '%')
+    //     ->pluck('nama_obat');
+    //     return response()->json($filterResult);
+    //     dd($filterResult);
+    // }
 }
