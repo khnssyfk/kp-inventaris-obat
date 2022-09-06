@@ -85,3 +85,4 @@ Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin')
 // Route::get('/pasien-search', [PasienController::class, 'search'])->middleware('auth');
 // Route::get('/dokter-search', [DokterController::class, 'search'])->middleware('auth');
 Route::post('/',[DashboardController::class,'getObatTerbanyak'])->name('Dashboard.getObatTerbanyak')->middleware('auth');
+// Route::post('/obt-terdikit',[DashboardController::class,'getObatTerdikit'])->name('Dashboard.getObatTerdikit')->middleware('auth');

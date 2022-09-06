@@ -24,57 +24,7 @@
 
     </div>
 </div>
-{{-- <div class="row ">
-    <div class="col mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Penggunaan Obat Terbanyak</h5>
-          <div class="form-inline">
-              <select class="form-select mb-3 d-inline" style='width:120px' aria-label="Default select example">
-                <option selected>Pilih Bulan</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-          </div>
-          <button class="btn btn-success">Filter</button>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nama Obat</th>
-                <th scope="col">Jumlah</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        
-      </div>
-    </div>
-    <div class="col mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Penggunaan Obat Terdikit</h5>
-        </div>
-      </div>
-    </div>
-</div> --}}
+
 <div class="row">
   <div class="col-md-6">
     <div class="card">
@@ -85,26 +35,101 @@
           {{-- @method('PUT') --}}
           <select class="form-select mb-3 d-inline" style='width:120px' name="bulan" aria-label="Default select example">
             <option disabled>Pilih Bulan</option>
-            <option value="01">Januari</option>
-            <option value="02">Februari</option>
-            <option value="03">Maret</option>
-            <option value="04">April</option>
-            <option value="05">Mei</option>
-            <option value="06">Juni</option>
-            <option value="07">Juli</option>
-            <option value="08">Agustus</option>
-            <option value="09">September</option>
-            <option value="10">Oktober</option>
-            <option value="11">November</option>
-            <option value="12">Desember</option>
+            @if($bulan == '01')
+              <option value="01" selected>Januari</option>
+              @else
+              <option value="01">Januari</option>
+            @endif
+            @if($bulan == '02')
+              <option value="02" selected>Februari</option>
+              @else
+              <option value="02">Februari</option>
+            @endif
+            @if($bulan == '03')
+              <option value="03" selected>Maret</option>
+              @else
+              <option value="03">Maret</option>
+            @endif
+            @if($bulan == '04')
+              <option value="04" selected>April</option>
+              @else
+              <option value="04">April</option>
+            @endif
+            @if($bulan == '05')
+              <option value="05" selected>Mei</option>
+              @else
+              <option value="05">Mei</option>
+            @endif
+            @if($bulan == '06')
+              <option value="06" selected>Juni</option>
+              @else
+              <option value="06">Juni</option>
+            @endif
+            @if($bulan == '07')
+              <option value="07" selected>Juli</option>
+              @else
+              <option value="07">Juli</option>
+            @endif
+            @if($bulan == '08')
+              <option value="08" selected>Agustus</option>
+              @else
+              <option value="08">Agustus</option>
+            @endif
+            @if ($bulan == '09')
+              <option value="09" selected>September</option>
+              @else
+              <option value="09">September</option>
+            @endif
+            @if($bulan == '10')
+              <option value="10" selected>Oktober</option>
+              @else
+              <option value="10">Oktober</option>
+            @endif
+            @if($bulan == '11')
+              <option value="11" selected>November</option>
+              @else
+              <option value="11">November</option>
+            @endif
+            @if($bulan == '12')
+              <option value="12" selected>Desember</option>
+              @else
+              <option value="12">Desember</option>
+            @endif
+            
           </select>
           <select class="form-select mb-3 d-inline" name="tahun" style='width:120px' aria-label="Default select example">
             <option disabled>Pilih Tahun</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
+            @if($tahun == 2022)
+              <option value="2022" selected>2022</option>
+              @else
+              <option value="2022">2022</option>
+            @endif
+            @if($tahun == 2023)
+              <option value="2023" selected>2023</option>
+              @else
+              <option value="2023">2023</option>
+            @endif
+            @if($tahun == 2024)
+              <option value="2024" selected>2024</option>
+              @else
+              <option value="2024">2024</option>
+            @endif
+            @if($tahun == 2025)
+              <option value="2025" selected>2025</option>
+              @else
+              <option value="2025">2025</option>
+            @endif
+            @if($tahun == 2026)
+              <option value="2026" selected>2026</option>
+              @else
+              <option value="2026">2026</option>
+            @endif
+            @if($tahun == 2027)
+              <option value="2027" selected>2027</option>
+              @else
+              <option value="2027">2027</option>
+            @endif
+          
           </select>
           <button class="btn btn-success">Filter</button>
         </form>
@@ -132,6 +157,138 @@
     </div>
 
   </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Penggunaan Obat Terdikit</h5>
+        <form action="{{ route('Dashboard.getObatTerbanyak') }}" method="POST" id="search-obat-banyak">
+          @csrf
+          {{-- @method('PUT') --}}
+          <select class="form-select mb-3 d-inline" style='width:120px' name="bulan_1" aria-label="Default select example">
+            <option disabled>Pilih Bulan</option>
+            @if($bulan_1 == '01')
+              <option value="01" selected>Januari</option>
+              @else
+              <option value="01">Januari</option>
+            @endif
+            @if($bulan_1 == '02')
+              <option value="02" selected>Februari</option>
+              @else
+              <option value="02">Februari</option>
+            @endif
+            @if($bulan_1 == '03')
+              <option value="03" selected>Maret</option>
+              @else
+              <option value="03">Maret</option>
+            @endif
+            @if($bulan_1 == '04')
+              <option value="04" selected>April</option>
+              @else
+              <option value="04">April</option>
+            @endif
+            @if($bulan_1 == '05')
+              <option value="05" selected>Mei</option>
+              @else
+              <option value="05">Mei</option>
+            @endif
+            @if($bulan_1 == '06')
+              <option value="06" selected>Juni</option>
+              @else
+              <option value="06">Juni</option>
+            @endif
+            @if($bulan_1 == '07')
+              <option value="07" selected>Juli</option>
+              @else
+              <option value="07">Juli</option>
+            @endif
+            @if($bulan_1 == '08')
+              <option value="08" selected>Agustus</option>
+              @else
+              <option value="08">Agustus</option>
+            @endif
+            @if ($bulan_1 == '09')
+              <option value="09" selected>September</option>
+              @else
+              <option value="09">September</option>
+            @endif
+            @if($bulan_1 == '10')
+              <option value="10" selected>Oktober</option>
+              @else
+              <option value="10">Oktober</option>
+            @endif
+            @if($bulan_1 == '11')
+              <option value="11" selected>November</option>
+              @else
+              <option value="11">November</option>
+            @endif
+            @if($bulan_1 == '12')
+              <option value="12" selected>Desember</option>
+              @else
+              <option value="12">Desember</option>
+            @endif
+            
+          </select>
+          <select class="form-select mb-3 d-inline" name="tahun_1" style='width:120px' aria-label="Default select example">
+            <option disabled>Pilih Tahun</option>
+            @if($tahun_1 == 2022)
+              <option value="2022" selected>2022</option>
+              @else
+              <option value="2022">2022</option>
+            @endif
+            @if($tahun_1 == 2023)
+              <option value="2023" selected>2023</option>
+              @else
+              <option value="2023">2023</option>
+            @endif
+            @if($tahun_1 == 2024)
+              <option value="2024" selected>2024</option>
+              @else
+              <option value="2024">2024</option>
+            @endif
+            @if($tahun_1 == 2025)
+              <option value="2025" selected>2025</option>
+              @else
+              <option value="2025">2025</option>
+            @endif
+            @if($tahun_1 == 2026)
+              <option value="2026" selected>2026</option>
+              @else
+              <option value="2026">2026</option>
+            @endif
+            @if($tahun_1 == 2027)
+              <option value="2027" selected>2027</option>
+              @else
+              <option value="2027">2027</option>
+            @endif
+          
+          </select>
+          <button class="btn btn-success">Filter</button>
+        </form>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nama Obat</th>
+              <th scope="col">Jumlah</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($query_1 as $value)
+              <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $value->dataobat->nama_obat}}</td>
+                <td>{{ $value->total }}</td>
+              </tr>
+            @endforeach
+            
+          </tbody>
+        </table>
+      </div>
+  
+    </div>
+
+  </div>
+  
 
 </div>
   
