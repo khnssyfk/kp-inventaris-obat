@@ -66,10 +66,12 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan') is-invalid @enderror" disabled id="satuan" onclick="autofill()" name="satuan" required onkeyup="autofill()">
-                        <option value="Tablet" id="satuan" onclick="autofill()">Tablet</option>
-                        <option value="Botol" id="satuan" onclick="autofill()">Botol</option>
-                        <option value="Ampul" id="satuan" onclick="autofill()">Ampul</option>
-                        <option value="Vial" id="satuan" onclick="autofill()">Vial</option>
+                        <option value="Botol" id="satuan"onclick="autofill()">Botol</option>
+                        <option value="Kaplet"id="satuan"onclick="autofill()">Kapsul</option>
+                        <option value="Tablet"id="satuan"onclick="autofill()">Tablet</option>
+                        <option value="Tablet"id="satuan"onclick="autofill()">Kaplet</option>
+                        <option value="Tube"id="satuan"onclick="autofill()">Tube</option>
+                        <option value="Suppository"id="satuan"onclick="autofill()">Suppository</option>
 
                     </select>
                     @error('satuan')
@@ -104,7 +106,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="tgl_masuk" class="sr-only">Tanggal Masuk</label>
-                    <input type="date" placeholder="Masukkan Nama Obat" id="startdateId" name="tgl_masuk" class="form-control @error('tgl_masuk') is-invalid @enderror" required value="{{ old('tgl_masuk') }}">
+                    <input type="date" placeholder="Masukkan Tanggal Masuk" id="startdateId" name="tgl_masuk" class="form-control @error('tgl_masuk') is-invalid @enderror" required value="{{ old('tgl_masuk') }}">
                     @error('tgl_masuk')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -113,7 +115,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="expired" class="sr-only">Expired</label>
-                    <input type="date" placeholder="Masukkan Nama Obat" name="expired" autocomplete="off" class="form-control @error('expired') is-invalid @enderror" required value="{{ old('expired') }}">
+                    <input type="date" placeholder="Masukkan Expired" name="expired" autocomplete="off" class="form-control @error('expired') is-invalid @enderror" required value="{{ old('expired') }}">
                     @error('expired')
                     <div class="invalid-feedback">
                         {{ $message}}

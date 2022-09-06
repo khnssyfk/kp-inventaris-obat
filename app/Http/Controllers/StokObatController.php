@@ -18,7 +18,7 @@ class StokObatController extends Controller
     public function index(){
         return view('stok-obat.index',[
             'title'=>'Stok Obat',
-            'dataobats'=>DataObat::all()
+            'dataobats'=>DataObat::orderBy('jumlah','desc')->get()
         ]);
     }
 

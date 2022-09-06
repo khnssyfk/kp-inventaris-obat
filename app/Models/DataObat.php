@@ -36,6 +36,9 @@ class DataObat extends Model
     public function obatkeluartemp(){
         return $this->hasMany(ObatKeluarTemp::class);
     }
+    public function dashboard(){
+        return $this->hasMany(Dashboard::class);
+    }
     // public function getLokasi($id = '')
     // {
     //     $results = DB::table('data_obats')

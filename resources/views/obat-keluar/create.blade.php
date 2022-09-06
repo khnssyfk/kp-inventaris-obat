@@ -34,7 +34,7 @@
                     <label for="pasien_id" class="sr-only ">No RM</label>
                     {{-- <input type="text" placeholder="Masukkan No RM" name="pasien_id" id="pasien_id" class="form-control @error('pasien_id') is-invalid @enderror" required value="{{ old('pasien_id') }}"> --}}
                     <select class="form-select @error('pasien_id') is-invalid @enderror" name="pasien_id" required id="pasien_id" onclick="pasienfill()">
-                        <option value="">Masukan No RM</option>
+                        <option disabled>Masukan No RM</option>
                         @foreach($pasiens as $pasien)
                         <option value="{{ $pasien->no_rekam_medis }}" id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
                         
@@ -58,7 +58,7 @@
                 <div class="form-group col-md-6 col-12">
                     <label for="dokter_id" class="sr-only ">Dokter Penanggung Jawab</label>
                     <select class="form-select @error('dokter_id') is-invalid @enderror" name="dokter_id" required id="dokter_id">
-                        <option value="">Masukan Nama Dokter</option>
+                        <option disabled>Masukan Nama Dokter</option>
                         @foreach($dokters as $dokter)
                         <option value="{{ $dokter->id }}" id="dokter_id">{{ $dokter->nama }}</option>
                         
@@ -165,7 +165,7 @@
                     <tbody>
                         <tr>
                             <td ><select class="form-select dataobat @error('dataobat_id') is-invalid @enderror" name="dataobat_id[]" required id="dataobat_id" onclick=autofill()>
-                                <option value="">Masukan Nama Obat</option>
+                                <option disabled>Masukan Nama Obat</option>
                                 @foreach($dataobats as $dataobat)
                                 <option value="{{ $dataobat->kode_obat }}" id="dataobat_id">{{ $dataobat->nama_obat }}</option>
                                 
@@ -199,7 +199,7 @@
                 </table>
                 <button class="btn btn-success mt-2 float-end" id="btn-simpan">Simpan</button>
                 {{-- <a href="/obatkeluartemp"  method="get" class="btn btn-success mt-2">Simpan</a> --}}
-                <button class="btn btn-primary mx-2 mb-2 " id="dataObatKeluarBaru">Tambah</button>
+                <button class="btn btn-primary mt-2" id="dataObatKeluarBaru">Tambah</button>
             </div>
         </form>
 
@@ -262,7 +262,7 @@
 
     $('document').ready(function() {
         $('#dataObatKeluarBaru').click(function() {
-            $("#obtklr_tb").append('<tr><td><select class="form-select dataobat @error("dataobat_id") is-invalid @enderror" name="dataobat_id[]" required id="dataobat_id" onclick=autofill()><option value="">Masukan Nama Obat</option>@foreach($dataobats as $dataobat)<option value="{{ $dataobat->kode_obat }}" id="dataobat_id">{{ $dataobat->nama_obat }}</option>@endforeach</select></td><td width="130px"><input type="text" readonly name="kode_obat_id[]" id="kode_obat" class="form-control @error("kode_obat_id") is-invalid @enderror" required value="{{ old("kode_obat_id") }}" onkeyup="autofill()"></td><td width="100px"><input type="number"  name="jumlah" class="form-control @error("jumlah") is-invalid @enderror" id="jumlah" readonly required value="{{ old("jumlah") }}" ></td><td width="100px"><input type="number" name="jumlah_keluar[]" class="form-control @error("jumlah_keluar") is-invalid @enderror" required value="{{ old("jumlah_keluar") }}" ></td><td><button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" id="deleteRow"></i></button></td></tr>');
+            $("#obtklr_tb").append('<tr><td><select class="form-select dataobat @error("dataobat_id") is-invalid @enderror" name="dataobat_id[]" required id="dataobat_id" onclick=autofill()><option disabled>Masukan Nama Obat</option>@foreach($dataobats as $dataobat)<option value="{{ $dataobat->kode_obat }}" id="dataobat_id">{{ $dataobat->nama_obat }}</option>@endforeach</select></td><td width="130px"><input type="text" readonly name="kode_obat_id[]" id="kode_obat" class="form-control @error("kode_obat_id") is-invalid @enderror" required value="{{ old("kode_obat_id") }}" onkeyup="autofill()"></td><td width="100px"><input type="number"  name="jumlah" class="form-control @error("jumlah") is-invalid @enderror" id="jumlah" readonly required value="{{ old("jumlah") }}" ></td><td width="100px"><input type="number" name="jumlah_keluar[]" class="form-control @error("jumlah_keluar") is-invalid @enderror" required value="{{ old("jumlah_keluar") }}" ></td><td><button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" id="deleteRow"></i></button></td></tr>');
         });
        
         })

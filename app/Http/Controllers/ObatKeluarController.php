@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Dokter;
 use App\Models\Pasien;
@@ -56,7 +57,6 @@ class ObatKeluarController extends Controller
      */
     public function store(Request $request)
     {
-        // dump($request->all());
         $datas = [
             'tgl_keluar'=>$request->tgl_keluar,
             'dataobat_id'=>$request->dataobat_id,
@@ -65,44 +65,49 @@ class ObatKeluarController extends Controller
             'dokter_id'=>$request->dokter_id
             
         ];
-        $tgl = explode("-", $request->tgl_keluar);
-        $tahun = substr($tgl[0], -2);
-        $tanggal = "K".$tgl[2].$tgl[1].$tahun;
-        // $no_resep = IdGenerator::generate(['table' => 'obat_keluars','field'=>'no_resep' ,'length' => 10, 'prefix' =>$tanggal]);
+        // $tgl = explode("-", $request->tgl_keluar);
+        // $tahun = substr($tgl[0], -2);
+        // $tanggal = "K".$tgl[2].$tgl[1].$tahun;
+
+        
+        $no_resep = IdGenerator::generate(['table' => 'obat_keluars','field'=>'no_resep' ,'length' => 10, 'reset_on_prefix_change' => true,'prefix' =>'K'.date('ym')]);
+        // dd($no_resep);
+
+        // $tanggals = Carbon::now()->format('Y-m-d');
+        // $now = Carbon::now();
+        // $thnBulan = $now->year . $now->month;
+        // $cek = ObatKeluar::count();
+
+        // dump($no_resep);
 
         if (count($datas['dataobat_id'])>0){
             foreach($datas['dataobat_id'] as $item=>$value){
                 $data = array(
-                    'no_resep'=>IdGenerator::generate(['table' => 'obat_keluars','field'=>'no_resep' ,'length' => 10, 'prefix' =>$tanggal]),
+                    'no_resep'=>$no_resep,
                     'tgl_keluar'=>$datas['tgl_keluar'],
                     'dataobat_id'=>$datas['dataobat_id'][$item],
                     'pasien_id'=>$datas['pasien_id'],
                     'jumlah_keluar'=>$datas['jumlah_keluar'][$item],
                     'dokter_id'=>$datas['dokter_id']
                 );
-                // dump($data);
+                // dump($data['no_resep']);
                 $data_id = $datas['dataobat_id'][$item];
-                // // dd($data->jumlah);
-                
                 $dataobat = DataObat::find($data_id);
-                if ($data['jumlah_keluar'] > $dataobat->jumlah){
+                if ($data['jumlah_keluar']> $dataobat->jumlah){
                     Alert::warning('Gagal', 'Jumlah Obat Tidak Boleh Melebihi Stok!');
                     return redirect('/obat-keluar/create');
                 }else{
                     $dataobat->jumlah -= $datas['jumlah_keluar'][$item];
-                    // dump($dataobat);
                     $dataobat->save();
-                    // dump($data);
                     ObatKeluar::create($data);
-                     Alert::success('Sukses', 'Data Berhasil Ditambah!');
-                    return redirect('/obat-keluar');
-
+                    
                 }
-
+                
             }
         }
+        Alert::success('Sukses', 'Data Berhasil Ditambah!');
+        return redirect('/obat-keluar');
         
-        // DB::table('obat_keluar_temps')->insert(['no_resep'=>$no_resep,'tgl_keluar'=>$data['tgl_keluar'],'dataobat_id'=>$data['dataobat_id'],'jumlah_keluar'=>$data['jumlah_keluar'],'pasien_id'=>$data['pasien_id']]);
     }
 
     /**

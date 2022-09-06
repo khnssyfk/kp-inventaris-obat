@@ -43,6 +43,8 @@ Route::get('/rekam-medis', function () {
 
 //farmasi    
 Route::resource('/',DashboardController::class)->middleware('auth');
+
+
 Route::resource('/data-dokter',DokterController::class)->middleware('auth');
 Route::resource('/data-pasien',PasienController::class)->middleware('auth');
 Route::resource('/nama-obat',DataObatController::class)->middleware('auth');
@@ -82,3 +84,4 @@ Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin')
 // Route::get('/search', [DataObatController::class, 'search'])->middleware('auth');
 // Route::get('/pasien-search', [PasienController::class, 'search'])->middleware('auth');
 // Route::get('/dokter-search', [DokterController::class, 'search'])->middleware('auth');
+Route::post('/',[DashboardController::class,'getObatTerbanyak'])->name('Dashboard.getObatTerbanyak')->middleware('auth');

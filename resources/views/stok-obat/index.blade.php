@@ -42,7 +42,7 @@
                                     <td>{{  $dataobat->nama_obat }}</td>
                                     <td>{{  $dataobat->jumlah}}</td>
                                     <td>
-                                        @if($dataobat->jumlah >150)
+                                        @if($dataobat->jumlah >100)
                                             <label for="" class="badge bg-success">In Stock</label>
                                         @else
                                             <label for="" class="badge bg-danger">Out of Stock</label>

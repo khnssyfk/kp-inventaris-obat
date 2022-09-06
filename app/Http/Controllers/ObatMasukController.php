@@ -67,10 +67,11 @@ class ObatMasukController extends Controller
             'expired'=>'required'
         ]);
         // $tgl = Carbon::createFromFormat('m/d/Y', $request->tgl_masuk)->format('Y-m-d');
-        $tgl = explode("-", $request->tgl_masuk);
-        $tahun = substr($tgl[0], -2);
-        $tanggal = "M".$tgl[2].$tgl[1].$tahun;
-        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'prefix' =>$tanggal]);
+        // $tgl = explode("-", $request->tgl_masuk);
+        // $tahun = substr($tgl[0], -2);
+        // $tanggal = "M".$tgl[2].$tgl[1].$tahun;
+
+        $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'reset_on_prefix_change' => true,'prefix' =>'M'.date('ym')]);
         switch($request->input('action')){
             case 'add':
                 // dd($kode_transaksi);
@@ -158,6 +159,7 @@ class ObatMasukController extends Controller
            'satuan' => $columns->satuan,
            'jumlah'=>$columns->jumlah
         ]);
+        // dump($columns);
 
     }
 
@@ -176,9 +178,7 @@ class ObatMasukController extends Controller
             DB::table('obat_masuk')->insert($temp);
             DB::table('obat_masuk_temps')->delete($temp);
         }
-        // ObatMasukTemp::destroy($temp['kode_transaksi']);
-        // $sum = DataObat::all();
-        // dd($sum);
+    
         Alert::success('Sukses', 'Data Berhasil Disimpan!');
         return redirect('/obat-masuk');
 
