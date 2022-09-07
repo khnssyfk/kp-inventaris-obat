@@ -12,11 +12,11 @@ class ObatKeluar extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no_resep','tgl_keluar','dataobat_id','pasien_id','jumlah_keluar','dokter_id'
+        'no_resep','tgl_keluar','data_obat_id','pasien_id','jumlah_keluar','dokter_id'
     ];
 
     public function dataobat(){
-        return $this->belongsTo(DataObat::class,'dataobat_id');
+        return $this->belongsTo(DataObat::class,'data_obat_id');
     }
     public function pasien(){
         return $this->belongsTo(Pasien::class,'pasien_id');

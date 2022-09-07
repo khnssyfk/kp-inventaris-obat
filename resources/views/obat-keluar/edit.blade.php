@@ -37,7 +37,7 @@
                 <select class="form-select @error('pasien_id') is-invalid @enderror" name="pasien_id" required id="pasien_id" onclick="pasienfill()">
                     <option value="">Masukan No RM</option>
                     @foreach($pasiens as $pasien)
-                    @if(old('dataobat_id', $pasien->no_rekam_medis)==$obat_keluars->pasien_id)
+                    @if(old('data_obat_id', $pasien->no_rekam_medis)==$obat_keluars->pasien_id)
                         <option value="{{ $pasien->no_rekam_medis }}" selected id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
                             @else
                             <option value="{{ $pasien->no_rekam_medis }}" id="pasien_id" onclick="pasienfill()">{{ $pasien->no_rekam_medis }}</option>
@@ -64,7 +64,7 @@
                 <select class="form-select @error('dokter_id') is-invalid @enderror" name="dokter_id" required id="dokter_id">
                     <option value="">Masukan Nama Dokter</option>
                     @foreach($dokters as $dokter)
-                    @if(old('dataobat_id', $dokter->id)==$obat_keluars->dokter_id)
+                    @if(old('data_obat_id', $dokter->id)==$obat_keluars->dokter_id)
                             <option value="{{ $dokter->id }}" selected id="dokter_id">{{ $dokter->user->nama }}</option>
                         @else
                             <option value="{{ $dokter->id }}" id="dokter_id">{{ $dokter->user->nama }}</option>
@@ -72,27 +72,27 @@
                     @endif
                     @endforeach
                 </select>
-                @error('dataobat_id')
+                @error('data_obat_id')
                 <div class="invalid-feedback">
                     {{ $message}}
                 </div>
                 @enderror
             </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="dataobat_id" class="sr-only ">Nama Obat</label>
-                    <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
+                    <label for="data_obat_id" class="sr-only ">Nama Obat</label>
+                    <select class="form-select @error('data_obat_id') is-invalid @enderror" name="data_obat_id" required id="data_obat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($dataobats as $dataobat)
-                        @if(old('dataobat_id', $dataobat->nama_obat)==$obat_keluars->dataobat->nama_obat)
-                        <option value="{{ $dataobat->kode_obat }}" selected id="dataobat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
+                        @if(old('data_obat_id', $dataobat->nama_obat)==$obat_keluars->dataobat->nama_obat)
+                        <option value="{{ $dataobat->kode_obat }}" selected id="data_obat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
                         @else
-                        <option value="{{ $dataobat->kode_obat }}" id="dataobat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
+                        <option value="{{ $dataobat->kode_obat }}" id="data_obat_id" onclick="autofill()">{{ $dataobat->nama_obat }}</option>
                     @endif
                         
                         
                         @endforeach
                     </select>
-                    @error('dataobat_id')
+                    @error('data_obat_id')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
@@ -144,7 +144,7 @@
 
     <script type="text/javascript">
         function autofill(){
-            var dataobat_id = $("#dataobat_id").val();
+            var data_obat_id = $("#data_obat_id").val();
             $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -152,7 +152,7 @@
             });
             
             $.ajax({
-            url: '/data/' + dataobat_id,
+            url: '/data/' + data_obat_id,
             method: "get",
             dataType: 'json',
             processData: false,

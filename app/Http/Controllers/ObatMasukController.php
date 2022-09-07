@@ -60,7 +60,7 @@ class ObatMasukController extends Controller
     {
         $validatedData = $request->validate([
             'tgl_masuk'=>'required',
-            'dataobat_id'=>'required',
+            'data_obat_id'=>'required',
             'jumlah'=>'required',
             'harga'=>'required',
             'nama_apotek'=>'required|max:255',
@@ -75,7 +75,7 @@ class ObatMasukController extends Controller
         switch($request->input('action')){
             case 'add':
                 // dd($kode_transaksi);
-                DB::table('obat_masuk_temps')->insert(['kode_transaksi'=>$kode_transaksi,'tgl_masuk'=>$validatedData['tgl_masuk'],'dataobat_id'=>$validatedData['dataobat_id'],'jumlah'=>$validatedData['jumlah'],'harga'=>$validatedData['harga'],'nama_apotek'=>$validatedData['nama_apotek'],'expired'=>$validatedData['expired']]);
+                DB::table('obat_masuk_temps')->insert(['kode_transaksi'=>$kode_transaksi,'tgl_masuk'=>$validatedData['tgl_masuk'],'data_obat_id'=>$validatedData['data_obat_id'],'jumlah'=>$validatedData['jumlah'],'harga'=>$validatedData['harga'],'nama_apotek'=>$validatedData['nama_apotek'],'expired'=>$validatedData['expired']]);
                 Alert::success('Sukses', 'Data Berhasil Ditambah!');
                 return redirect('/obat-masuk/create');
             case 'submit':
@@ -119,7 +119,7 @@ class ObatMasukController extends Controller
     {
         $validatedData = $request->validate([
             'tgl_masuk'=>'required',
-            'dataobat_id'=>'required',
+            'data_obat_id'=>'required',
             'jumlah'=>'required',
             'harga'=>'required',
             'nama_apotek'=>'required|max:255',
@@ -140,7 +140,7 @@ class ObatMasukController extends Controller
     public function destroy($id)
     {
         $data = ObatMasuk::where('id',$id)->first();
-        $data_id = $data->dataobat_id;
+        $data_id = $data->data_obat_id;
         // dd($data->jumlah);
         
         $dataobat = DataObat::find($data_id);
@@ -169,8 +169,8 @@ class ObatMasukController extends Controller
         
         
         foreach($temps as $temp){
-            // dump($temp['dataobat_id']);
-            $dataobat = DataObat::find($temp['dataobat_id']);
+            // dump($temp['data_obat_id']);
+            $dataobat = DataObat::find($temp['data_obat_id']);
             $dataobat->jumlah += $temp['jumlah'];
             // dump($dataobat);
             $dataobat->save();

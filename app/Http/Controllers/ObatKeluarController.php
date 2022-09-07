@@ -59,7 +59,7 @@ class ObatKeluarController extends Controller
     {
         $datas = [
             'tgl_keluar'=>$request->tgl_keluar,
-            'dataobat_id'=>$request->dataobat_id,
+            'data_obat_id'=>$request->data_obat_id,
             'pasien_id'=>$request->pasien_id,
             'jumlah_keluar'=>$request->jumlah_keluar,
             'dokter_id'=>$request->dokter_id
@@ -80,18 +80,18 @@ class ObatKeluarController extends Controller
 
         // dump($no_resep);
 
-        if (count($datas['dataobat_id'])>0){
-            foreach($datas['dataobat_id'] as $item=>$value){
+        if (count($datas['data_obat_id'])>0){
+            foreach($datas['data_obat_id'] as $item=>$value){
                 $data = array(
                     'no_resep'=>$no_resep,
                     'tgl_keluar'=>$datas['tgl_keluar'],
-                    'dataobat_id'=>$datas['dataobat_id'][$item],
+                    'data_obat_id'=>$datas['data_obat_id'][$item],
                     'pasien_id'=>$datas['pasien_id'],
                     'jumlah_keluar'=>$datas['jumlah_keluar'][$item],
                     'dokter_id'=>$datas['dokter_id']
                 );
                 // dump($data['no_resep']);
-                $data_id = $datas['dataobat_id'][$item];
+                $data_id = $datas['data_obat_id'][$item];
                 $dataobat = DataObat::find($data_id);
                 if ($data['jumlah_keluar']> $dataobat->jumlah){
                     Alert::warning('Gagal', 'Jumlah Obat Tidak Boleh Melebihi Stok!');
@@ -160,7 +160,7 @@ class ObatKeluarController extends Controller
     {
         $id = $obatKeluar->id;
         $data = ObatKeluar::where('id',$id)->first();
-        $data_id = $data->dataobat_id;
+        $data_id = $data->data_obat_id;
         // dd($data->jumlah);
         
         $dataobat = DataObat::find($data_id);
@@ -186,8 +186,8 @@ class ObatKeluarController extends Controller
         
         
         foreach($temps as $temp){
-            // dump($temp['dataobat_id']);
-            $dataobat = DataObat::find($temp['dataobat_id']);
+            // dump($temp['data_obat_id']);
+            $dataobat = DataObat::find($temp['data_obat_id']);
             $dataobat->jumlah -= $temp['jumlah_keluar'];
             // dump($dataobat);
             $dataobat->save();

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_transaksi');
             $table->date('tgl_masuk');
-            $table->string('dataobat_id')->unsigned;
+            $table->string('data_obat_id')->unsigned;
             $table->string('jumlah');
             $table->string('harga');
             $table->string('nama_apotek');

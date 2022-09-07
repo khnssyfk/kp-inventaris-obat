@@ -52,9 +52,9 @@ class DashboardController extends Controller
         $bulan_1 = $now->format('m');
         $tahun_1 = $now->year;
 
-        // $query = DB::table('obat_keluars')->select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->get();
-        $query = ObatKeluar::select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
-        $query_1 = ObatKeluar::select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
+        // $query = DB::table('obat_keluars')->select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->get();
+        $query = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
+        $query_1 = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
         return view('dashboard',[
             'title'=>'Dashboard',
             'obt_masuk' => $obt_masuk,
@@ -187,8 +187,8 @@ class DashboardController extends Controller
         // dd($request->tahun_1);
         // $query = DB::table('obat_keluars')->select()->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->get();
 
-        $query = ObatKeluar::select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
-        $query_1 = ObatKeluar::select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
+        $query = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
+        $query_1 = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
 
         $obt_masuk = DB::table('obat_masuk')->sum('jumlah');
         $obt_keluar = DB::table('obat_keluars')->sum('jumlah_keluar');
@@ -263,8 +263,8 @@ class DashboardController extends Controller
         $bulan = $now->format('m');
         $tahun = $now->year;
 
-        $query_1 = ObatKeluar::select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
-        $query = ObatKeluar::select('dataobat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('dataobat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
+        $query_1 = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
+        $query = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
 
         $obt_masuk = DB::table('obat_masuk')->sum('jumlah');
         $obt_keluar = DB::table('obat_keluars')->sum('jumlah_keluar');

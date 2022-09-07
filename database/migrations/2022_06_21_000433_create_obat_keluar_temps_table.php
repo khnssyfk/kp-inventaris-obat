@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('no_resep');
             $table->date('tgl_keluar');
-            $table->string('dataobat_id')->unsigned;
+            $table->string('data_obat_id')->unsigned;
             $table->string('pasien_id')->unsigned;
             $table->integer('jumlah_keluar');
             // $table->longText('dosis');

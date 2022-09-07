@@ -28,6 +28,20 @@ class DatabaseSeeder extends Seeder
             'role_id'=>1,
             'password'=> bcrypt('1234')
         ]);
+        User::create([
+            'nama'=>'dr. Agil Wahyu Pangestuputra',
+            'no_hp'=>'0888',
+            'email'=>'agil@gmail.com',
+            'role_id'=>4,
+            'password'=> bcrypt('12345')
+        ]);
+        User::create([
+            'nama'=>'Anakin Skywalker',
+            'no_hp'=>'0889',
+            'email'=>'anakin@gmail.com',
+            'role_id'=>5,
+            'password'=> bcrypt('12345')
+        ]);
         Pasien::create([
             'nama'=>'Khansa Syafika',
             'no_rekam_medis'=>'RM2411020001',

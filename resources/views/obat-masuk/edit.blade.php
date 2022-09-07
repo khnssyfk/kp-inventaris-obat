@@ -32,18 +32,18 @@
             @method('PUT')
         <div class="row" id="obatMasuk">
                 <div class="form-group col-md-6 col-12">
-                    <label for="dataobat_id" class="sr-only ">Nama Obat</label>
-                    <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
+                    <label for="data_obat_id" class="sr-only ">Nama Obat</label>
+                    <select class="form-select @error('data_obat_id') is-invalid @enderror" name="data_obat_id" required id="data_obat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($data_obats as $data_obat)
-                            @if(old('dataobat_id', $data_obat->kode_obat)==$obatmasuk->dataobat_id)
-                                <option value="{{ $data_obat->kode_obat}}" selected id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                            @if(old('data_obat_id', $data_obat->kode_obat)==$obatmasuk->data_obat_id)
+                                <option value="{{ $data_obat->kode_obat}}" selected id="data_obat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
                             @else
-                            <option value="{{ $data_obat->kode_obat}}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                            <option value="{{ $data_obat->kode_obat}}" id="data_obat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
                             @endif
                         @endforeach
                     </select>
-                    @error('dataobat_id')
+                    @error('data_obat_id')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
@@ -71,8 +71,8 @@
                     <label for="satuan" class="sr-only">Satuan</label>
                     <select class="form-select @error('satuan') is-invalid @enderror" disabled id="satuan" onclick="autofill()" name="satuan" required onkeyup="autofill()">
                         @foreach($data_obats as $data_obat)
-                            @if(old('dataobat_id', $data_obat->satuan)==$obatmasuk->dataobat->satuan)
-                                <option value="{{ $data_obat->satuan}}" selected id="dataobat_id" onclick="autofill()">{{ $data_obat->satuan }}</option>
+                            @if(old('data_obat_id', $data_obat->satuan)==$obatmasuk->dataobat->satuan)
+                                <option value="{{ $data_obat->satuan}}" selected id="data_obat_id" onclick="autofill()">{{ $data_obat->satuan }}</option>
                             @else
                                 <option value="Strip" id="satuan" onclick="autofill()">Strip</option>
                                 <option value="Tablet" id="satuan" onclick="autofill()">Tablet</option>
@@ -137,7 +137,7 @@
 </div>
 <script type="text/javascript">
     function autofill(){
-        var dataobat_id = $("#dataobat_id").val();
+        var data_obat_id = $("#data_obat_id").val();
         $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -145,7 +145,7 @@
         });
         
         $.ajax({
-        url: '/data/' + dataobat_id,
+        url: '/data/' + data_obat_id,
         method: "get",
         dataType: 'json',
         processData: false,

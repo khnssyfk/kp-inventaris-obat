@@ -14,14 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pasiens', function (Blueprint $table) {
-            $table->string('no_rekam_medis')->nullable()->primary();
+            $table->id();
+            $table->string('no_rekam_medis')->nullable()->unique();
             $table->string('nama')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
-            $table->longText('alamat')->nullable();
+            $table->string('alamat')->nullable();
             $table->string('nik')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('no_hp')->unique()->nullable();
+            $table->string('email')->nullable();
+            $table->string('no_hp')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('agama')->nullable();
             $table->foreignId('role_id')->default(3);

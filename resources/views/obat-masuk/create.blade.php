@@ -31,15 +31,15 @@
             @csrf 
         <div class="row" id="obatMasuk">
                 <div class="form-group col-md-6 col-12">
-                    <label for="dataobat_id" class="sr-only ">Nama Obat</label>
-                    <select class="form-select @error('dataobat_id') is-invalid @enderror" name="dataobat_id" required id="dataobat_id" onclick="autofill()">
+                    <label for="data_obat_id" class="sr-only ">Nama Obat</label>
+                    <select class="form-select @error('data_obat_id') is-invalid @enderror" name="data_obat_id" required id="data_obat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($data_obats as $data_obat)
-                        <option value="{{ $data_obat->kode_obat }}" id="dataobat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                        <option value="{{ $data_obat->kode_obat }}" id="data_obat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
                         
                         @endforeach
                     </select>
-                    @error('dataobat_id')
+                    @error('data_obat_id')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
@@ -182,7 +182,7 @@
 </div>
 <script type="text/javascript">
     function autofill(){
-        var dataobat_id = $("#dataobat_id").val();
+        var data_obat_id = $("#data_obat_id").val();
         $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -190,7 +190,7 @@
         });
         
         $.ajax({
-        url: '/data/' + dataobat_id,
+        url: '/data/' + data_obat_id,
         method: "get",
         dataType: 'json',
         processData: false,
