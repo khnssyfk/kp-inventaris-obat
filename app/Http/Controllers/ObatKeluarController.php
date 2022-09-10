@@ -43,9 +43,9 @@ class ObatKeluarController extends Controller
         return view('obat-keluar.create',[
             'title'=>'Tambah Data Obat Keluar',
             'dataobats'=>DataObat::orderBy('nama_obat')->get(),
-            'pasiens'=>Pasien::orderBy('no_rekam_medis')->get(),
+            'pasiens'=>Pasien::where('role_id','=',3)->orderBy('no_rekam_medis')->get(),
             'obat_keluars'=>ObatKeluarTemp::all(),
-            'dokters'=>User::where('role_id','=',4)->orderBy('nama')->get()
+            'dokters'=>Pasien::where('role_id','=',4)->orderBy('nama')->get()
         ]);
     }
 
