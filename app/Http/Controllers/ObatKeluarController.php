@@ -29,7 +29,7 @@ class ObatKeluarController extends Controller
             'title'=>'Obat Keluar',
             'obatkeluars'=>ObatKeluar::orderBy('id','desc')->get(),
             'data_obats'=>DataObat::all(),
-            'dokters'=>Dokter::all()
+            'dokters'=>Pasien::where('role_id','=',4)->orderBy('nama')->get()
         ]);
     }
 
@@ -44,7 +44,7 @@ class ObatKeluarController extends Controller
             'title'=>'Tambah Data Obat Keluar',
             'dataobats'=>DataObat::orderBy('nama_obat')->get(),
             'pasiens'=>Pasien::where('role_id','=',3)->orderBy('no_rekam_medis')->get(),
-            'obat_keluars'=>ObatKeluarTemp::all(),
+            // 'obat_keluars'=>ObatKeluarTemp::all(),
             'dokters'=>Pasien::where('role_id','=',4)->orderBy('nama')->get()
         ]);
     }

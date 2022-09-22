@@ -14,10 +14,14 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\DataObatController;
 use App\Http\Controllers\StokObatController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JenisObatController;
 use App\Http\Controllers\ObatMasukController;
 use App\Http\Controllers\TypeaheadController;
 use App\Http\Controllers\ObatKeluarController;
+use App\Http\Controllers\SatuanObatController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\KemasanObatController;
+use App\Http\Controllers\SupplierObatController;
 use App\Http\Controllers\ObatMasukTempController;
 use App\Http\Controllers\ObatKeluarTempController;
 use App\Http\Controllers\UpdatePasswordController;
@@ -43,6 +47,10 @@ Route::get('/rekam-medis', function () {
 
 //farmasi    
 Route::resource('/',DashboardController::class)->middleware('auth');
+Route::resource('/jenis-obat',JenisObatController::class)->middleware('auth');
+Route::resource('/satuan-obat',SatuanObatController::class)->middleware('auth');
+Route::resource('/supplier-obat',SupplierObatController::class)->middleware('auth');
+Route::resource('/kemasan-obat',KemasanObatController::class)->middleware('auth');
 
 
 Route::resource('/data-dokter',DokterController::class)->middleware('auth');
@@ -85,4 +93,8 @@ Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin')
 // Route::get('/pasien-search', [PasienController::class, 'search'])->middleware('auth');
 // Route::get('/dokter-search', [DokterController::class, 'search'])->middleware('auth');
 Route::post('/',[DashboardController::class,'getObatTerbanyak'])->name('Dashboard.getObatTerbanyak')->middleware('auth');
+Route::post('/obat-kosong',[DashboardController::class,'getObatKosong'])->name('Dashboard.getObatKosong')->middleware('auth');
+
+Route::get('/data-satuan', [SatuanObatController::class, 'getSatuan'])->middleware('auth');
+
 // Route::post('/obt-terdikit',[DashboardController::class,'getObatTerdikit'])->name('Dashboard.getObatTerdikit')->middleware('auth');

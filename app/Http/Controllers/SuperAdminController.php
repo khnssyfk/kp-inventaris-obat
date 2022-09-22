@@ -31,9 +31,10 @@ class SuperAdminController extends Controller
      */
     public function create()
     {
+        $role = ['Super Admin', 'Farmasi'];
         return view('super-admin.create',[
             'title'=>'Buat Akun User',
-            'roles'=>Role::all()
+            'roles'=>Role::whereIn('rolename', $role)->get()
         ]);
     }
 
@@ -55,21 +56,21 @@ class SuperAdminController extends Controller
         $validatedData['password'] = bcrypt($validatedData['password']);
         //masukan data ke tabel user
         $user = User::create($validatedData);
-        $user_id = $user->id;
-        $user_role = $user->role_id;
+        // $user_id = $user->id;
+        // $user_role = $user->role_id;
         // dd($user_role);
         
         
-        if($user_role==4){
-            // dd('uhuy');
-            Dokter::create(
-                [
-                    'user_id'=>$user_id,
-                    'spesialis','tgl_lahir','alamat'
-                ]
-                );
+        // if($user_role==4){
+        //     // dd('uhuy');
+        //     Dokter::create(
+        //         [
+        //             'user_id'=>$user_id,
+        //             'spesialis','tgl_lahir','alamat'
+        //         ]
+        //         );
         
-        }
+        // }
 
 
         // $request->session()->flash('success','Registration successful! Please Login');
@@ -98,8 +99,9 @@ class SuperAdminController extends Controller
     {
         // $user = User::where('id',$id)->first();
         // dd($user->email);
+        $role = ['Super Admin', 'Farmasi'];
         return view('super-admin.edit',[
-            'roles'=>Role::all(),
+            'roles'=>Role::whereIn('rolename', $role)->get(),
             'title'=>'Edit Akun',
             'user'=> User::where('id',$id)->first()
         ]);
@@ -159,19 +161,19 @@ class SuperAdminController extends Controller
      */
     public function destroy($id)
     {
-        $user_id = Dokter::where('user_id',$id)->first();
-        $temp = User::where('id','=',$id)->value('role_id');
-        if ($temp == 4){
-            Dokter::destroy($user_id->id);
-            User::destroy($id);
-            Alert::success('Sukses', 'Akun Berhasil Dihapus!');
-            return redirect('/data-user');
+        // $user_id = Dokter::where('user_id',$id)->first();
+        // $temp = User::where('id','=',$id)->value('role_id');
+        // if ($temp == 4){
+        //     Dokter::destroy($user_id->id);
+        //     User::destroy($id);
+        //     Alert::success('Sukses', 'Akun Berhasil Dihapus!');
+        //     return redirect('/data-user');
 
-        }else{
+        // }else{
             User::destroy($id);
             Alert::success('Sukses', 'Akun Berhasil Dihapus!');
             return redirect('/data-user');
-        }
+        // }
         // dd($user_id->id);
         // Alert::success('Sukses', 'Akun Berhasil Dihapus!');
         // return redirect('/data-user');

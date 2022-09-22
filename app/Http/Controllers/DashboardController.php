@@ -20,6 +20,7 @@ class DashboardController extends Controller
     {
         $obt_masuk = DB::table('obat_masuk')->sum('jumlah');
         $obt_keluar = DB::table('obat_keluars')->sum('jumlah_keluar');
+        // dd($obt_masuk);
 
         $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('jumlah');
         $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('jumlah');
@@ -51,6 +52,8 @@ class DashboardController extends Controller
         $tahun = $now->year;
         $bulan_1 = $now->format('m');
         $tahun_1 = $now->year;
+        $bulan_2 = $now->format('m');
+        $tahun_2 = $now->year;
 
         // $query = DB::table('obat_keluars')->select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->get();
         $query = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
@@ -89,7 +92,9 @@ class DashboardController extends Controller
             'bulan'=>$bulan,
             'tahun'=>$tahun,
             'bulan_1'=>$bulan_1,
-            'tahun_1'=>$tahun_1
+            'tahun_1'=>$tahun_1,
+            'bulan_2'=>$bulan_2,
+            'tahun_2'=>$tahun_2
 
         ]);
     }
@@ -331,5 +336,12 @@ class DashboardController extends Controller
             'query'=>$query
             
         ]);
+    }
+
+    public function getObatKosong (Request $request){
+        $now = Carbon::now();
+        $tahun_2 = $request->tahun_2;
+        $bulan_2 = $request->bulan_2;
+        // dd($bulan_2);
     }
 }

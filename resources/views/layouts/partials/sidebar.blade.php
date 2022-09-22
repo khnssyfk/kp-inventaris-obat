@@ -17,6 +17,26 @@
                         <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
                     </a>
                 </li>
+                <li class="sidebar-item  has-sub {{ Request::is('satuan-obat*','jenis-obat*','nama-obat*','supplier-obat*') ? 'active' :'' }} ">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-file-spreadsheet-fill"></i>
+                        <span>Master Data</span>
+                    </a>
+                    <ul class="submenu {{ Request::is('satuan-obat*','jenis-obat*','nama-obat*','supplier-obat*') ? 'active' :'' }}">
+                        <li class="submenu-item {{ Request::is('satuan-obat*') ? 'active' :'' }}">
+                            <a href="/satuan-obat">Satuan & Kemasan Obat</a>
+                        </li>
+                        <li class="submenu-item {{ Request::is('jenis-obat*') ? 'active' :'' }}">
+                            <a href="/jenis-obat">Jenis Obat</a>
+                        </li>
+                        <li class="submenu-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
+                            <a href="/nama-obat">Data Obat</a>
+                        </li>
+                        <li class="submenu-item {{ Request::is('supplier-obat*') ? 'active' :'' }}">
+                            <a href="/supplier-obat">Supplier Obat</a>
+                        </li>
+                    </ul>
+                </li>
                 {{-- <li class="sidebar-item {{ Request::is('data-pasien*') ? 'active' :'' }}"> 
                     <a href="/data-pasien" class="sidebar-link">
                         <i class="bi bi-file-earmark-person-fill"></i><span>Data Pasien</span></a>
@@ -33,9 +53,9 @@
                         <span>Data Obat</span>
                     </a> --}}
                     {{-- <ul class="submenu {{ Request::is('nama-obat*','obat-masuk*','obat-keluar*','stok-obat*') ? 'active' :'' }}"> --}}
-                        <li class="sidebar-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
+                        {{-- <li class="sidebar-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
                             <a href="/nama-obat" class="sidebar-link"><i class="bi bi-file-spreadsheet-fill"></i><span>Nama Obat</span></a>
-                        </li>
+                        </li> --}}
                         <li class="sidebar-item {{ Request::is('obat-masuk*') ? 'active' :'' }}">
                             <a href="/obat-masuk" class="sidebar-link"><i class="bi bi-file-earmark-arrow-down-fill"></i><span>Obat Masuk</span></a>
                         </li>
@@ -47,20 +67,7 @@
                         </li>
                     {{-- </ul> --}}
                 {{-- </li> --}}
-                {{-- <li class="sidebar-item  has-sub {{ Request::is() ? 'active' :'' }} ">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-bar-chart-fill"></i>
-                        <span>Laporan</span>
-                    </a>
-                    <ul class="submenu {{ Request::is() ? 'active' :'' }}">
-                        <li class="submenu-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
-                            <a href="/nama-obat">Data Obat</a>
-                        </li>
-                        <li class="submenu-item {{ Request::is() ? 'active' :'' }}">
-                            <a href="/obat-masuk">Data Pasien</a>
-                        </li>
-                    </ul>
-                </li> --}}
+                
                     @can('admin')
                     <li class="sidebar-item {{ Request::is('data-user*') ? 'active' :'' }}">
                         <a href="/data-user " class="sidebar-link"><i class="bi bi-person-plus-fill"></i><span>Data User</span> </a>

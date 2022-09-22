@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\DataObat;
+use App\Models\JenisObat;
+use App\Models\SatuanObat;
+use App\Models\KemasanObat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,7 +21,7 @@ class DataObatController extends Controller
     {
         return view('nama-obat.index',[
             'title'=>'Nama Obat',
-            'data_obats'=>DataObat::all()
+            'data_obats'=>DataObat::all(),
         ]);
 
     }
@@ -31,7 +34,10 @@ class DataObatController extends Controller
     public function create()
     {
         return view('nama-obat.create',[
-            'title'=>'Tambah Obat Baru'
+            'title'=>'Tambah Obat Baru',
+            'satuan_obats'=>SatuanObat::orderBy('satuan_obat','asc')->get(),
+            'jenis_obats'=>JenisObat::orderBy('jenis_obat','asc')->get(),
+            'kemasan_obats'=>KemasanObat::all()
         ]);
     }
 
@@ -45,17 +51,25 @@ class DataObatController extends Controller
     {
         $validatedData = $request->validate([
             'nama_obat' => 'required|max:255',
-            'satuan'=>'required'
+            'satuan_obat_id'=>'required',
+            'jenis_obat_id'=>'required',
+            'kemasan_obat_id'=>'required',
+            'berat_obat'=>'required',
+            'satuan_berat_obat'=>'required'
         ]);
 
-        // dump($validatedData);
+        // dd($validatedData);
         
         if (count($validatedData['nama_obat'])>0){
             foreach($validatedData['nama_obat'] as $item=>$value){
                 $data = array(
                     'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 8, 'prefix' =>'OBT']),
                     'nama_obat'=>$validatedData['nama_obat'][$item],
-                    'satuan'=>$validatedData['satuan'][$item]
+                    'satuan_obat_id'=>$validatedData['satuan_obat_id'][$item],
+                    'jenis_obat_id'=>$validatedData['jenis_obat_id'][$item],
+                    'kemasan_obat_id'=>$validatedData['kemasan_obat_id'][$item],
+                    'satuan_berat_obat'=>$validatedData['satuan_berat_obat'][$item],
+                    'berat_obat'=>$validatedData['berat_obat'][$item]
                 );
                 // dump($data);
                 DataObat::create($data);
@@ -91,7 +105,10 @@ class DataObatController extends Controller
         // dd($dataObat->attributes);
         return view('nama-obat.edit',[
             'title'=>'Edit Data Obat',
-            'data_obat'=> DataObat::where('kode_obat',$id)->first()
+            'data_obat'=> DataObat::where('kode_obat',$id)->first(),
+            'satuan_obats'=>SatuanObat::orderBy('satuan_obat','asc')->get(),
+            'jenis_obats'=>JenisObat::orderBy('jenis_obat','asc')->get(),
+            'kemasan_obats'=>KemasanObat::all()
         ]);
     }
 
@@ -107,7 +124,11 @@ class DataObatController extends Controller
         // dd($id);
         $validatedData = $request->validate([
             'nama_obat' => 'required|max:255',
-            'satuan'=>'required'
+            'satuan_obat_id'=>'required',
+            'jenis_obat_id'=>'required',
+            'kemasan_obat_id'=>'required',
+            'berat_obat'=>'required',
+            'satuan_berat_obat'=>'required'
         ]);
         DataObat::where('kode_obat',$id)->update($validatedData);
         Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
@@ -127,14 +148,4 @@ class DataObatController extends Controller
         Alert::success('Sukses', 'Obat Berhasil Dihapus!');
         return redirect('/nama-obat');
     }
-
-    // public function search(Request $request)
-    // {
-    //     $query = $request->get('query');
-    //     // $filterResult = DataObat::where('nama_obat', 'LIKE', '%'. $query. '%')->get();
-    //     $filterResult = DataObat::select('nama_obat')->where('nama_obat', 'LIKE', '%'. $query. '%')
-    //     ->pluck('nama_obat');
-    //     return response()->json($filterResult);
-    //     dd($filterResult);
-    // }
 }

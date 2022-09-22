@@ -13,6 +13,24 @@ for(var i = 0; i < sidebarItems.length; i++) {
     })
 }
 
+
+
+document.querySelectorAll('.sidebar-item').forEach(sidebarItem=>{
+    sidebarItem.querySelectorAll('.submenu').forEach(submenu =>{
+        submenu.querySelectorAll('.submenu-item').forEach(submenuItem=>{
+            submenuItem.querySelectorAll('.submenu-item a').forEach(submenuItemLink=>{
+                if(submenuItemLink.href == window.location.href){
+                    submenuItem.classList.add('active')
+                    submenu.classList.add('active')
+                    sidebarItem.classList.add('active')
+                    // console.log('sama')
+                }
+            })
+        })
+
+    })
+})
+
 let submenuItems = document.querySelectorAll('.submenu-item');
 
 
@@ -56,19 +74,42 @@ if(typeof PerfectScrollbar == 'function') {
         
 //     })
 // })
-// console.log(window.location.href)
-function dataObatBaru(event){
+
+
+function JenisObatBaru(event){
     event.preventDefault();
-    var divNama = document.createElement('div');
-    divNama.className ='form-group col-md-6 col-12'
-    divNama.innerHTML = '<label for="nama_obat" class="sr-only">Nama Obat</label> <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error("nama_obat") is-invalid @enderror" required>'
-    var divSatuan = document.createElement('div');
-    divSatuan.className ='form-group col-md-6 col-12'
-    divSatuan.innerHTML = '<label for="satuan" class="sr-only">Satuan</label> <select class="form-select @error("satuan") is-invalid @enderror" name="satuan[]" required><option value="Botol">Botol</option><option value="Kaplet">Kapsul</option><option value="Tablet">Tablet</option><option value="Tablet">Kaplet</option><option value="Tube">Tube</option><option value="Suppository">Suppository</option></select>'
-    document.getElementById('fieldobat').appendChild(divNama)
-    document.getElementById('fieldobat').appendChild(divSatuan)
+    var divJenis = document.createElement('div');
+    divJenis.className ='form-group col-md-6 col-12'
+    divJenis.innerHTML = '<label for="jenis_obat" class="sr-only">Jenis Obat</label> <input type="text" placeholder="Masukkan jenis Obat" name="jenis_obat[]" class="form-control @error("jenis_obat") is-invalid @enderror" required>'
+    var divKeterangan = document.createElement('div');
+    divKeterangan.className ='form-group col-md-6 col-12'
+    divKeterangan.innerHTML = '<label for="keterangan" class="sr-only">Keterangan</label> <input type="text" placeholder="Masukkan Keterangan" name="keterangan[]" class="form-control @error("keterangan") is-invalid @enderror" required>'
+    document.getElementById('fieldjenis').appendChild(divJenis)
+    document.getElementById('fieldjenis').appendChild(divKeterangan)
 
 }
+function SatuanObatBaru(event){
+    event.preventDefault();
+    var divSatuan = document.createElement('div');
+    divSatuan.className ='form-group col-md-6 col-12'
+    divSatuan.innerHTML = '<label for="satuan_obat" class="sr-only">Satuan Obat</label> <input type="text" placeholder="Masukkan Satuan Obat" name="satuan_obat[]" class="form-control @error("satuan_obat") is-invalid @enderror" required>'
+    document.getElementById('fieldsatuan').appendChild(divSatuan)
+
+}
+function KemasanObatBaru(event){
+    event.preventDefault();
+    var divKemasan = document.createElement('div');
+    divKemasan.className ='form-group col-md-6 col-12'
+    divKemasan.innerHTML = '<label for="keterangan" class="sr-only">Kemasan Obat</label> <input type="text" placeholder="Masukkan Kemasan Obat" name="keterangan[]" class="form-control @error("keterangan") is-invalid @enderror" required>'
+    var divJumlah = document.createElement('div');
+    divJumlah.className ='form-group col-md-6 col-12'
+    divJumlah.innerHTML = '<label for="jumlah" class="sr-only">Jumlah Butir/Botol</label> <input type="text" placeholder="Masukkan Jumlah Butir/Botol" name="jumlah[]" class="form-control @error("jumlah") is-invalid @enderror" required>'
+    document.getElementById('fieldkemasan').appendChild(divKemasan)
+    document.getElementById('fieldkemasan').appendChild(divJumlah)
+
+}
+
+
 
 // function addRow(event){
 //     // alert('o');
@@ -144,4 +185,48 @@ document.getElementById("startdateId").value = today;
 
 // Scroll into active sidebar
 document.querySelector('.sidebar-item.active').scrollIntoView(true)
+
+
+// let submenuItems = document.querySelectorAll('.submenu-item');
+// for(var i = 0;i < submenuItems.length;i++){
+//     let submenuItem = submenuItems[i];
+//     // console.log(submenuItems[i])
+//     // if(submenuItem.href == window.location.href){
+//     //     console.log(window.location.href)
+//     // }
+//     // console.log(submenuItems[i])
+//     submenuItems[i].querySelector('.submenu-item a').addEventListener('click',function(e){
+//         // e.preventDefault()
+//         // let submenuItem = e.target.parentNode
+//         // submenuItem.classList.add('active')
+//         // let submenu = submenuItem.parentNode
+//         // submenu.classList.add('active')
+//         // let sidebar = submenu.parentNode
+//         // sidebar.classList.add('active')
+//         let sidebarItem = document.querySelector('.sidebar-item')
+//         console.log(sidebarItem)
+
+
+//         // let submenuItem = submenuItem.querySelector('.submenu-item')
+//         // let submenu = submenuItem.querySelector('.submenu')
+//         // let sidebarItem = submenuItem.querySelector('.sidebar-item')
+
+//         // submenuItem.classList.add('active');
+//         // submenu.classList.add('active');
+//         // sidebarItem.classList.add('active');
+
+
+//     })
+// }
+// document.querySelectorAll('.submenu-item').forEach(submenuItem=>{
+//     if(submenuItem.addEventListener('click',function(){
+//         // console.log(submenuItem);
+//         // e.preventDefault()
+//         console.log(window.location.href)
+//     }));
+// })
+
+
+
+
 

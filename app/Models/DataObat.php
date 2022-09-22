@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\JenisObat;
 use App\Models\ObatMasuk;
+use App\Models\ObatKeluar;
+use App\Models\SatuanObat;
+use App\Models\KemasanObat;
 use App\Models\ObatMasukTemp;
+use App\Models\ObatKeluarTemp;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +18,7 @@ class DataObat extends Model
     // use HasFactory;
     // protected $guarded =['id'];
     protected $fillable = [
-        'kode_obat','nama_obat','satuan'
+        'kode_obat','nama_obat','satuan_obat_id','jenis_obat_id','kemasan_obat_id','berat_obat','satuan_berat_obat'
     ];
     // public $incrementing = true;
     public $timestamps = false;
@@ -38,6 +43,16 @@ class DataObat extends Model
     }
     public function dashboard(){
         return $this->hasMany(Dashboard::class);
+    }
+
+    public function satuan_obat(){
+        return $this->belongsTo(SatuanObat::class,'satuan_obat_id');
+    }
+    public function jenis_obat(){
+        return $this->belongsTo(JenisObat::class,'jenis_obat_id');
+    }
+    public function kemasan_obat(){
+        return $this->belongsTo(KemasanObat::class,'kemasan_obat_id');
     }
     // public function getLokasi($id = '')
     // {
