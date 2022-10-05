@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Pasien;
+use App\Models\BentukObat;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -53,6 +54,18 @@ class DatabaseSeeder extends Seeder
             'email'=>'ksyafika@gmail.com',
             'no_hp'=>'098766'
         ]);
+        Pasien::create([
+            'nama'=>'Anakin',
+            'no_rekam_medis'=>'RM2411020002',
+            'nik'=>5765567673,
+            'jenis_kelamin'=> 'perempuan',
+            'agama'=> 'islam',
+            'pekerjaan'=> 'pelajar/mahasiswa',
+            'alamat'=> 'jln.cornelia street',
+            'email'=>'sss@gmail.com',
+            'no_hp'=>'0987663',
+            'role_id'=>4
+        ]);
         Role::create([
             'rolename' => 'Super Admin',
             'keterangan' => 'Super Admin'
@@ -73,5 +86,6 @@ class DatabaseSeeder extends Seeder
             'rolename' => 'Farmasi',
             'keterangan' => 'Farmasi'
         ]);
+        
     }
 }

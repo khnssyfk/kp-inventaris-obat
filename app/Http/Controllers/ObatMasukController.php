@@ -7,6 +7,7 @@ use App\Models\DataObat;
 use App\Models\ObatMasuk;
 use Illuminate\Http\Request;
 use App\Models\ObatMasukTemp;
+use App\Models\SupplierObat;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Symfony\Component\Console\Input\Input;
@@ -30,7 +31,8 @@ class ObatMasukController extends Controller
         return view('obat-masuk.index',[
             'title'=>'Obat Masuk',
             'obatmasuks'=>ObatMasuk::orderBy('id','desc')->get(),
-            'data_obats'=>DataObat::all()
+            'data_obats'=>DataObat::all(),
+            'suppliers'=>SupplierObat::all()
         ]);
     }
 
@@ -46,7 +48,8 @@ class ObatMasukController extends Controller
         return view('obat-masuk.create',[
             'title'=>'Tambah Riwayat Obat Masuk',
             'data_obats'=>DataObat::orderBy('nama_obat')->get(),
-            'obat_masuks'=>ObatMasukTemp::all()
+            'obat_masuks'=>ObatMasukTemp::all(),
+            'suppliers'=>SupplierObat::all()
         ]);
     }
 
@@ -62,20 +65,24 @@ class ObatMasukController extends Controller
             'tgl_masuk'=>'required',
             'data_obat_id'=>'required',
             'jumlah'=>'required',
+            'total'=>'required',
             'harga'=>'required',
-            'nama_apotek'=>'required|max:255',
-            'expired'=>'required'
+            'expired'=>'required',
+            'supplier_obat_id'=>'required'
         ]);
+        // dd($request->total);
         // $tgl = Carbon::createFromFormat('m/d/Y', $request->tgl_masuk)->format('Y-m-d');
         // $tgl = explode("-", $request->tgl_masuk);
         // $tahun = substr($tgl[0], -2);
         // $tanggal = "M".$tgl[2].$tgl[1].$tahun;
 
         $kode_transaksi = IdGenerator::generate(['table' => 'obat_masuk','field'=>'kode_transaksi' ,'length' => 10, 'reset_on_prefix_change' => true,'prefix' =>'M'.date('ym')]);
+        // dd($kode_transaksi);
         switch($request->input('action')){
             case 'add':
-                // dd($kode_transaksi);
-                DB::table('obat_masuk_temps')->insert(['kode_transaksi'=>$kode_transaksi,'tgl_masuk'=>$validatedData['tgl_masuk'],'data_obat_id'=>$validatedData['data_obat_id'],'jumlah'=>$validatedData['jumlah'],'harga'=>$validatedData['harga'],'nama_apotek'=>$validatedData['nama_apotek'],'expired'=>$validatedData['expired']]);
+                ObatMasukTemp::create(['kode_transaksi'=>$kode_transaksi,'tgl_masuk'=>$validatedData['tgl_masuk'],'data_obat_id'=>$validatedData['data_obat_id'],'jumlah'=>$validatedData['jumlah'],'harga'=>$validatedData['harga'],'total'=>$validatedData['total'],'supplier_obat_id'=>$validatedData['supplier_obat_id'],'expired'=>$validatedData['expired']]);
+
+                // DB::table('obat_masuk_temps')->insert(['kode_transaksi'=>$kode_transaksi,'tgl_masuk'=>$validatedData['tgl_masuk'],'data_obat_id'=>$validatedData['data_obat_id'],'jumlah'=>$validatedData['jumlah'],'harga'=>$validatedData['harga'],'total'=>$validatedData['total'],'supplier_obat_id'=>$validatedData['supplier_obat_id'],'expired'=>$validatedData['expired']]);
                 Alert::success('Sukses', 'Data Berhasil Ditambah!');
                 return redirect('/obat-masuk/create');
             case 'submit':
@@ -123,7 +130,8 @@ class ObatMasukController extends Controller
             'jumlah'=>'required',
             'harga'=>'required',
             'nama_apotek'=>'required|max:255',
-            'expired'=>'required'
+            'expired'=>'required',
+            'supplier_obat_id'=>'required'
         ]);
         ObatMasuk::where('id',$id)->update($validatedData);
         Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
@@ -154,12 +162,19 @@ class ObatMasukController extends Controller
 
     public function getDataMasuk($id=""){
         $columns = DB::table('data_obats')->where('kode_obat', $id)->first();
+        $satuanObat = DB::table('kemasan_obats')->where('kode_kemasan', $columns->kemasan_obat_id)->first()->bentuk_obat_id;
+        $data = DB::table('bentuk_obats')->where('kode_bentuk', $satuanObat)->first()->bentuk_obat;
+        $kemasanObat = DB::table('kemasan_obats')->where('kode_kemasan', $columns->kemasan_obat_id)->first()->keterangan;
+        $isikemasanObat = DB::table('kemasan_obats')->where('kode_kemasan', $columns->kemasan_obat_id)->first()->jumlah;
         return response()->json([
            'kode_obat' => $columns->kode_obat,
-           'satuan' => $columns->satuan,
+           'satuan' => $data,
+           'kemasan'=>$kemasanObat,
+           'isikemasan'=>$isikemasanObat,
            'jumlah'=>$columns->jumlah
         ]);
-        // dump($columns);
+        
+        // dd($kemasanObat);
 
     }
 
@@ -171,12 +186,14 @@ class ObatMasukController extends Controller
         foreach($temps as $temp){
             // dump($temp['data_obat_id']);
             $dataobat = DataObat::find($temp['data_obat_id']);
-            $dataobat->jumlah += $temp['jumlah'];
+            $dataobat->jumlah += $temp['total'];
             // dump($dataobat);
             $dataobat->save();
             // dump($dataobat->jumlah);
-            DB::table('obat_masuk')->insert($temp);
-            DB::table('obat_masuk_temps')->delete($temp);
+            ObatMasuk::create($temp);
+            ObatMasukTemp::destroy($temp);
+            // DB::table('obat_masuk')->insert($temp);
+            // DB::table('obat_masuk_temps')->delete($temp);
         }
     
         Alert::success('Sukses', 'Data Berhasil Disimpan!');

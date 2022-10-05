@@ -71,7 +71,7 @@
 
         </div>
         <div class="row" id="fieldobat">
-            <div class="form-group col-5">
+            {{-- <div class="form-group col-5">
                 <label for="satuan_obat_id" class="sr-only">Satuan Terkecil</label>
                 <select class="form-select @error('satuan') is-invalid @enderror" name="satuan_obat_id" required>
                     @foreach($satuan_obats as $satuan_obat)
@@ -87,15 +87,15 @@
                     Masukan Satuan
                 </div>
                 @enderror
-            </div>
+            </div> --}}
             <div class="form-group col">
                 <label for="kemasan_obat_id" class="sr-only">Kemasan Obat</label>
                 <select class="form-select @error('kemasan_obat_id') is-invalid @enderror" name="kemasan_obat_id" required>
                     @foreach($kemasan_obats as $kemasan_obat)
                       @if(old('kemasan_obat_id')== $data_obat->kemasan_obat_id)
-                        <option value="{{ $kemasan_obat->id }}" selected>{{ $kemasan_obat->keterangan }}</option>
+                        <option value="{{ $kemasan_obat->kode_kemasan }}" selected>{{ $kemasan_obat->keterangan }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
                       @else
-                        <option value="{{ $kemasan_obat->id }}">{{ $kemasan_obat->keterangan }}</option>
+                        <option value="{{ $kemasan_obat->kode_kemasan }}">{{ $kemasan_obat->keterangan }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
                       @endif
                     @endforeach
 

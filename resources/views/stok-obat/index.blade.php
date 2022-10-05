@@ -30,6 +30,7 @@
                                     <th scope="col">Kode Obat</th>
                                     <th scope="col">Nama Obat</th>
                                     <th scope="col">Jumlah</th> 
+                                    <th scope="col">Bentuk Obat</th> 
                                     <th scope="col">Status</th> 
                                     {{-- <th scope="col">Status</th>  --}}
                                 </tr>
@@ -39,8 +40,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $dataobat->kode_obat }}</td>
-                                    <td>{{  $dataobat->nama_obat }}</td>
+                                    <td>{{  $dataobat->nama_obat }} {{  $dataobat->berat_obat }} {{  $dataobat->satuan_berat_obat }} {{  $dataobat->merk_obat }}</td>
                                     <td>{{  $dataobat->jumlah}}</td>
+                                    <td>{{  $dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
                                     <td>
                                         @if($dataobat->jumlah >100)
                                             <label for="" class="badge bg-success">In Stock</label>

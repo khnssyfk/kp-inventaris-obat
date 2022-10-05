@@ -88,26 +88,15 @@ function JenisObatBaru(event){
     document.getElementById('fieldjenis').appendChild(divKeterangan)
 
 }
-function SatuanObatBaru(event){
+function BentukObatBaru(event){
     event.preventDefault();
-    var divSatuan = document.createElement('div');
-    divSatuan.className ='form-group col-md-6 col-12'
-    divSatuan.innerHTML = '<label for="satuan_obat" class="sr-only">Satuan Obat</label> <input type="text" placeholder="Masukkan Satuan Obat" name="satuan_obat[]" class="form-control @error("satuan_obat") is-invalid @enderror" required>'
-    document.getElementById('fieldsatuan').appendChild(divSatuan)
+    var divBentuk = document.createElement('div');
+    divBentuk.className ='form-group col-md-6 col-12'
+    divBentuk.innerHTML = '<label for="bentuk_obat" class="sr-only">Bentuk Obat</label> <input type="text" placeholder="Masukkan Bentuk Obat" name="bentuk_obat[]" class="form-control @error("bentuk_obat") is-invalid @enderror" required> @error("bentuk_obat") <div class="invalid-feedback"> Bentuk Obat Sudah Ada<div>@enderror'
+    document.getElementById('fieldbentuk').appendChild(divBentuk)
 
 }
-function KemasanObatBaru(event){
-    event.preventDefault();
-    var divKemasan = document.createElement('div');
-    divKemasan.className ='form-group col-md-6 col-12'
-    divKemasan.innerHTML = '<label for="keterangan" class="sr-only">Kemasan Obat</label> <input type="text" placeholder="Masukkan Kemasan Obat" name="keterangan[]" class="form-control @error("keterangan") is-invalid @enderror" required>'
-    var divJumlah = document.createElement('div');
-    divJumlah.className ='form-group col-md-6 col-12'
-    divJumlah.innerHTML = '<label for="jumlah" class="sr-only">Jumlah Butir/Botol</label> <input type="text" placeholder="Masukkan Jumlah Butir/Botol" name="jumlah[]" class="form-control @error("jumlah") is-invalid @enderror" required>'
-    document.getElementById('fieldkemasan').appendChild(divKemasan)
-    document.getElementById('fieldkemasan').appendChild(divJumlah)
 
-}
 
 
 
@@ -185,46 +174,6 @@ document.getElementById("startdateId").value = today;
 
 // Scroll into active sidebar
 document.querySelector('.sidebar-item.active').scrollIntoView(true)
-
-
-// let submenuItems = document.querySelectorAll('.submenu-item');
-// for(var i = 0;i < submenuItems.length;i++){
-//     let submenuItem = submenuItems[i];
-//     // console.log(submenuItems[i])
-//     // if(submenuItem.href == window.location.href){
-//     //     console.log(window.location.href)
-//     // }
-//     // console.log(submenuItems[i])
-//     submenuItems[i].querySelector('.submenu-item a').addEventListener('click',function(e){
-//         // e.preventDefault()
-//         // let submenuItem = e.target.parentNode
-//         // submenuItem.classList.add('active')
-//         // let submenu = submenuItem.parentNode
-//         // submenu.classList.add('active')
-//         // let sidebar = submenu.parentNode
-//         // sidebar.classList.add('active')
-//         let sidebarItem = document.querySelector('.sidebar-item')
-//         console.log(sidebarItem)
-
-
-//         // let submenuItem = submenuItem.querySelector('.submenu-item')
-//         // let submenu = submenuItem.querySelector('.submenu')
-//         // let sidebarItem = submenuItem.querySelector('.sidebar-item')
-
-//         // submenuItem.classList.add('active');
-//         // submenu.classList.add('active');
-//         // sidebarItem.classList.add('active');
-
-
-//     })
-// }
-// document.querySelectorAll('.submenu-item').forEach(submenuItem=>{
-//     if(submenuItem.addEventListener('click',function(){
-//         // console.log(submenuItem);
-//         // e.preventDefault()
-//         console.log(window.location.href)
-//     }));
-// })
 
 
 

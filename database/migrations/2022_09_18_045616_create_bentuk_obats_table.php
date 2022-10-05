@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('satuan_obats', function (Blueprint $table) {
-            $table->string('kode_satuan')->primary();
-            $table->string('satuan_obat');
+        Schema::create('bentuk_obats', function (Blueprint $table) {
+            $table->string('kode_bentuk')->primary();
+            $table->string('bentuk_obat');
             $table->timestamps();
         });
     }

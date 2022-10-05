@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BentukObat;
 use App\Models\KemasanObat;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -28,7 +29,8 @@ class KemasanObatController extends Controller
     {
         return view('kemasan-obat.create',[
             'title'=>'Tambah Kemasan Obat',
-            'kemasan_obats'=>KemasanObat::all()
+            'kemasan_obats'=>KemasanObat::all(),
+            'bentuk_obats'=>BentukObat::orderBy('bentuk_obat')->get()
         ]);
     }
 
@@ -43,16 +45,18 @@ class KemasanObatController extends Controller
         // dd($request);
         $validatedData = $request->validate([
             'keterangan' => 'required',
-            'jumlah'=> 'required'
+            'jumlah'=> 'required',
+            'bentuk_obat_id'=>'required'
         ]);
 
         // dd($request);        
         if (count($validatedData['jumlah'])>0){
             foreach($validatedData['jumlah'] as $item=>$value){
                 $data = array(
-                    'id'=>IdGenerator::generate(['table' => 'kemasan_obats','field'=>'id' ,'length' => 4, 'prefix' =>'K']),
+                    'kode_kemasan'=>IdGenerator::generate(['table' => 'kemasan_obats','field'=>'kode_kemasan' ,'length' => 4, 'prefix' =>'K']),
                     'keterangan'=>$validatedData['keterangan'][$item],
                     'jumlah'=>$validatedData['jumlah'][$item],
+                    'bentuk_obat_id'=>$validatedData['bentuk_obat_id'][$item],
                 );
                 // dd($data);
                 KemasanObat::create($data);
@@ -60,8 +64,8 @@ class KemasanObatController extends Controller
             }
         }
 
-        Alert::success('Sukses', 'Satuan Obat Berhasil Ditambah!');
-        return redirect('/satuan-obat');
+        Alert::success('Sukses', 'Bentuk Obat Berhasil Ditambah!');
+        return redirect('/bentuk-obat');
     }
 
     /**
@@ -83,7 +87,11 @@ class KemasanObatController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('kemasan-obat.edit',[
+            'title'=>'Edit kemasan Obat',
+            'kemasan_obat'=> kemasanObat::where('kode_kemasan',$id)->first(),
+            'bentuk_obats'=>BentukObat::orderBy('bentuk_obat')->get()
+        ]);
     }
 
     /**
@@ -95,7 +103,15 @@ class KemasanObatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'keterangan' => 'required',
+            'jumlah'=> 'required',
+            'bentuk_obat_id'=>'required'
+        ]);
+        // dd($id);
+        kemasanObat::where('kode_kemasan',$id)->update($validatedData);
+        Alert::success('Sukses', 'Kemasan Obat Berhasil Diganti!');
+        return redirect('/bentuk-obat');
     }
 
     /**
@@ -104,8 +120,10 @@ class KemasanObatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode_kemasan)
     {
-        //
+        KemasanObat::where('kode_kemasan',$kode_kemasan)->delete();
+        Alert::success('Sukses', 'Bentuk Berhasil Dihapus!');
+        return redirect('/bentuk-obat');
     }
 }

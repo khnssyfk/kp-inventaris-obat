@@ -18,22 +18,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $obt_masuk = DB::table('obat_masuk')->sum('jumlah');
+        $obt_masuk = DB::table('obat_masuk')->sum('total');
         $obt_keluar = DB::table('obat_keluars')->sum('jumlah_keluar');
         // dd($obt_masuk);
 
-        $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('jumlah');
-        $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('jumlah');
-        $msk_mar = ObatMasuk::whereMonth('tgl_masuk','03')->sum('jumlah');
-        $msk_apr = ObatMasuk::whereMonth('tgl_masuk','04')->sum('jumlah');
-        $msk_mei = ObatMasuk::whereMonth('tgl_masuk','05')->sum('jumlah');
-        $msk_jun = ObatMasuk::whereMonth('tgl_masuk','06')->sum('jumlah');
-        $msk_jul = ObatMasuk::whereMonth('tgl_masuk','07')->sum('jumlah');
-        $msk_agu = ObatMasuk::whereMonth('tgl_masuk','08')->sum('jumlah');
-        $msk_sep = ObatMasuk::whereMonth('tgl_masuk','09')->sum('jumlah');
-        $msk_okt = ObatMasuk::whereMonth('tgl_masuk','10')->sum('jumlah');
-        $msk_nov = ObatMasuk::whereMonth('tgl_masuk','11')->sum('jumlah');
-        $msk_des = ObatMasuk::whereMonth('tgl_masuk','12')->sum('jumlah');
+        $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('total');
+        $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('total');
+        $msk_mar = ObatMasuk::whereMonth('tgl_masuk','03')->sum('total');
+        $msk_apr = ObatMasuk::whereMonth('tgl_masuk','04')->sum('total');
+        $msk_mei = ObatMasuk::whereMonth('tgl_masuk','05')->sum('total');
+        $msk_jun = ObatMasuk::whereMonth('tgl_masuk','06')->sum('total');
+        $msk_jul = ObatMasuk::whereMonth('tgl_masuk','07')->sum('total');
+        $msk_agu = ObatMasuk::whereMonth('tgl_masuk','08')->sum('total');
+        $msk_sep = ObatMasuk::whereMonth('tgl_masuk','09')->sum('total');
+        $msk_okt = ObatMasuk::whereMonth('tgl_masuk','10')->sum('total');
+        $msk_nov = ObatMasuk::whereMonth('tgl_masuk','11')->sum('total');
+        $msk_des = ObatMasuk::whereMonth('tgl_masuk','12')->sum('total');
         
         $klr_jan = ObatKeluar::whereMonth('tgl_keluar','01')->sum('jumlah_keluar');
         $klr_feb = ObatKeluar::whereMonth('tgl_keluar','02')->sum('jumlah_keluar');
@@ -195,20 +195,20 @@ class DashboardController extends Controller
         $query = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
         $query_1 = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
 
-        $obt_masuk = DB::table('obat_masuk')->sum('jumlah');
+        $obt_masuk = DB::table('obat_masuk')->sum('total');
         $obt_keluar = DB::table('obat_keluars')->sum('jumlah_keluar');
-        $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('jumlah');
-        $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('jumlah');
-        $msk_mar = ObatMasuk::whereMonth('tgl_masuk','03')->sum('jumlah');
-        $msk_apr = ObatMasuk::whereMonth('tgl_masuk','04')->sum('jumlah');
-        $msk_mei = ObatMasuk::whereMonth('tgl_masuk','05')->sum('jumlah');
-        $msk_jun = ObatMasuk::whereMonth('tgl_masuk','06')->sum('jumlah');
-        $msk_jul = ObatMasuk::whereMonth('tgl_masuk','07')->sum('jumlah');
-        $msk_agu = ObatMasuk::whereMonth('tgl_masuk','08')->sum('jumlah');
-        $msk_sep = ObatMasuk::whereMonth('tgl_masuk','09')->sum('jumlah');
-        $msk_okt = ObatMasuk::whereMonth('tgl_masuk','10')->sum('jumlah');
-        $msk_nov = ObatMasuk::whereMonth('tgl_masuk','11')->sum('jumlah');
-        $msk_des = ObatMasuk::whereMonth('tgl_masuk','12')->sum('jumlah');
+        $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('total');
+        $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('total');
+        $msk_mar = ObatMasuk::whereMonth('tgl_masuk','03')->sum('total');
+        $msk_apr = ObatMasuk::whereMonth('tgl_masuk','04')->sum('total');
+        $msk_mei = ObatMasuk::whereMonth('tgl_masuk','05')->sum('total');
+        $msk_jun = ObatMasuk::whereMonth('tgl_masuk','06')->sum('total');
+        $msk_jul = ObatMasuk::whereMonth('tgl_masuk','07')->sum('total');
+        $msk_agu = ObatMasuk::whereMonth('tgl_masuk','08')->sum('total');
+        $msk_sep = ObatMasuk::whereMonth('tgl_masuk','09')->sum('total');
+        $msk_okt = ObatMasuk::whereMonth('tgl_masuk','10')->sum('total');
+        $msk_nov = ObatMasuk::whereMonth('tgl_masuk','11')->sum('total');
+        $msk_des = ObatMasuk::whereMonth('tgl_masuk','12')->sum('total');
         
         $klr_jan = ObatKeluar::whereMonth('tgl_keluar','01')->sum('jumlah_keluar');
         $klr_feb = ObatKeluar::whereMonth('tgl_keluar','02')->sum('jumlah_keluar');
@@ -271,20 +271,20 @@ class DashboardController extends Controller
         $query_1 = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan_1)->whereYear('tgl_keluar','=',$tahun_1)->orderBy('total','asc')->take(10)->get();
         $query = ObatKeluar::select('data_obat_id', DB::raw('sum(jumlah_keluar) as total'))->groupBy('data_obat_id')->whereMonth('tgl_keluar','=',$bulan)->whereYear('tgl_keluar','=',$tahun)->orderBy('total','desc')->take(10)->get();
 
-        $obt_masuk = DB::table('obat_masuk')->sum('jumlah');
+        $obt_masuk = DB::table('obat_masuk')->sum('total');
         $obt_keluar = DB::table('obat_keluars')->sum('jumlah_keluar');
-        $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('jumlah');
-        $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('jumlah');
-        $msk_mar = ObatMasuk::whereMonth('tgl_masuk','03')->sum('jumlah');
-        $msk_apr = ObatMasuk::whereMonth('tgl_masuk','04')->sum('jumlah');
-        $msk_mei = ObatMasuk::whereMonth('tgl_masuk','05')->sum('jumlah');
-        $msk_jun = ObatMasuk::whereMonth('tgl_masuk','06')->sum('jumlah');
-        $msk_jul = ObatMasuk::whereMonth('tgl_masuk','07')->sum('jumlah');
-        $msk_agu = ObatMasuk::whereMonth('tgl_masuk','08')->sum('jumlah');
-        $msk_sep = ObatMasuk::whereMonth('tgl_masuk','09')->sum('jumlah');
-        $msk_okt = ObatMasuk::whereMonth('tgl_masuk','10')->sum('jumlah');
-        $msk_nov = ObatMasuk::whereMonth('tgl_masuk','11')->sum('jumlah');
-        $msk_des = ObatMasuk::whereMonth('tgl_masuk','12')->sum('jumlah');
+        $msk_jan = ObatMasuk::whereMonth('tgl_masuk','01')->sum('total');
+        $msk_feb = ObatMasuk::whereMonth('tgl_masuk','02')->sum('total');
+        $msk_mar = ObatMasuk::whereMonth('tgl_masuk','03')->sum('total');
+        $msk_apr = ObatMasuk::whereMonth('tgl_masuk','04')->sum('total');
+        $msk_mei = ObatMasuk::whereMonth('tgl_masuk','05')->sum('total');
+        $msk_jun = ObatMasuk::whereMonth('tgl_masuk','06')->sum('total');
+        $msk_jul = ObatMasuk::whereMonth('tgl_masuk','07')->sum('total');
+        $msk_agu = ObatMasuk::whereMonth('tgl_masuk','08')->sum('total');
+        $msk_sep = ObatMasuk::whereMonth('tgl_masuk','09')->sum('total');
+        $msk_okt = ObatMasuk::whereMonth('tgl_masuk','10')->sum('total');
+        $msk_nov = ObatMasuk::whereMonth('tgl_masuk','11')->sum('total');
+        $msk_des = ObatMasuk::whereMonth('tgl_masuk','12')->sum('total');
         
         $klr_jan = ObatKeluar::whereMonth('tgl_keluar','01')->sum('jumlah_keluar');
         $klr_feb = ObatKeluar::whereMonth('tgl_keluar','02')->sum('jumlah_keluar');

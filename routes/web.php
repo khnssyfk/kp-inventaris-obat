@@ -18,7 +18,7 @@ use App\Http\Controllers\JenisObatController;
 use App\Http\Controllers\ObatMasukController;
 use App\Http\Controllers\TypeaheadController;
 use App\Http\Controllers\ObatKeluarController;
-use App\Http\Controllers\SatuanObatController;
+use App\Http\Controllers\BentukObatController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\KemasanObatController;
 use App\Http\Controllers\SupplierObatController;
@@ -48,7 +48,7 @@ Route::get('/rekam-medis', function () {
 //farmasi    
 Route::resource('/',DashboardController::class)->middleware('auth');
 Route::resource('/jenis-obat',JenisObatController::class)->middleware('auth');
-Route::resource('/satuan-obat',SatuanObatController::class)->middleware('auth');
+Route::resource('/bentuk-obat',BentukObatController::class)->middleware('auth');
 Route::resource('/supplier-obat',SupplierObatController::class)->middleware('auth');
 Route::resource('/kemasan-obat',KemasanObatController::class)->middleware('auth');
 
@@ -95,6 +95,6 @@ Route::resource('/data-user',SuperAdminController::class)->middleware('isAdmin')
 Route::post('/',[DashboardController::class,'getObatTerbanyak'])->name('Dashboard.getObatTerbanyak')->middleware('auth');
 Route::post('/obat-kosong',[DashboardController::class,'getObatKosong'])->name('Dashboard.getObatKosong')->middleware('auth');
 
-Route::get('/data-satuan', [SatuanObatController::class, 'getSatuan'])->middleware('auth');
+Route::get('/data-bentuk', [BentukObatController::class, 'getBentuk'])->middleware('auth');
 
 // Route::post('/obt-terdikit',[DashboardController::class,'getObatTerdikit'])->name('Dashboard.getObatTerdikit')->middleware('auth');

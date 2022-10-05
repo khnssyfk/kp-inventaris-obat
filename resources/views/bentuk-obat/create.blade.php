@@ -9,14 +9,14 @@
 @endif
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Tambah Satuan Obat</h3>
+        <h3>Tambah Bentuk Obat</h3>
         {{-- <p class="text-subtitle text-muted">Data Pasien</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/satuan-obat">Satuan Obat</a></li>
-                <li class="breadcrumb-item active">Tambah Satuan Obat</li>
+                <li class="breadcrumb-item"><a href="/bentuk-obat">Bentuk Obat</a></li>
+                <li class="breadcrumb-item active">Tambah Bentuk Obat</li>
             </ol>
         </nav>
     </div>
@@ -24,21 +24,21 @@
 
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title">Buat Satuan Obat</h4>
-            <a  class="btn btn-primary mt-1 ms-1" onclick=SatuanObatBaru(event)><i class="bi bi-plus-lg"></i> Tambah Data</a>
+        <h4 class="card-title">Buat Bentuk Obat</h4>
+            <a  class="btn btn-primary mt-1 ms-1" onclick=BentukObatBaru(event)><i class="bi bi-plus-lg"></i> Tambah Data</a>
 
     </div>
     <div class="card-body">
-        <form action="/satuan-obat" method="post" id="satuanobat-form">
+        <form action="/bentuk-obat" method="post" id="bentukobat-form">
             @csrf 
-        <div class="row" id="fieldsatuan">
+        <div class="row" id="fieldbentuk">
             {{-- <div class="col-md-6 col-12"> --}}
                 <div class="form-group col-md-6 col-12">
-                    <label for="satuan_obat" class="sr-only">Satuan Obat</label>
-                    <input type="text" placeholder="Masukkan Satuan Obat" name="satuan_obat[]" class="form-control @error('satuan_obat') is-invalid @enderror" required value="{{ old('satuan_obat') }}">
-                    @error('satuan_obat')
+                    <label for="bentuk_obat" class="sr-only">Bentuk Obat</label>
+                    <input type="text" placeholder="Masukkan Bentuk Obat" name="bentuk_obat[]" class="form-control @error('bentuk_obat') is-invalid @enderror" required value="{{ old('bentuk_obat') }}">
+                    @error('bentuk_obat')
                     <div class="invalid-feedback">
-                        {{ $message}}
+                        Bentuk Obat Sudah Ada
                     </div>
                     @enderror
                 </div>

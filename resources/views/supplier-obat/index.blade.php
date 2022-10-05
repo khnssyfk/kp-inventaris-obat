@@ -3,13 +3,13 @@
 @section('container')
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Data Obat</h3>
+        <h3>Data Supplier</h3>
         {{-- <p class="text-subtitle text-muted">This is the main page.</p> --}}
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Data Obat</li>
+                <li class="breadcrumb-item active" aria-current="page">Data Supplier</li>
             </ol>
         </nav>
     </div>
@@ -21,41 +21,29 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="myTable">
-                                <a href="/nama-obat/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah Obat Baru</a>
-                                <a href="/lap-obt" target="_blank" class="btn btn-success mb-3  mx-3 mt-1 me-2"><i class="bi bi-printer-fill"></i> Cetak Data</a>
+                                <a href="/supplier-obat/create" class="btn btn-primary mb-3 mt-1 ms-1"><i class="bi bi-plus-lg"></i> Tambah Supplier</a>
+                                <a href="/lap-supplier-obat" target="_blank" class="btn btn-success mb-3  mx-3 mt-1 me-2"><i class="bi bi-printer-fill"></i> Cetak Data</a>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Kode Obat</th>
-                                    <th scope="col">Nama Obat</th>
-                                    <th scope="col">Dosis</th>
-                                    <th scope="col">Unit</th>
-                                    <th scope="col">Merk</th>
-                                    <th scope="col">Jenis Obat</th>
-                                    <th scope="col">Kemasan</th>
-                                    <th scope="col">Bentuk Obat</th>
+                                    <th scope="col">Kode Supplier</th>
+                                    <th scope="col">Nama Supplier</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">No Hp</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data_obats as $data_obat)
+                                @foreach($supplier_obats as $supplier_obat)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data_obat->kode_obat }}</td>
-                                    <td>{{ $data_obat->nama_obat }}</td>
-                                    <td>{{ $data_obat->berat_obat }}</td>
-                                    <td>{{ $data_obat->satuan_berat_obat }}</td>
-                                    <td>{{ $data_obat->merk_obat }}</td>
-                                    <td>{{ $data_obat->jenis_obat->jenis_obat }}</td>
-                                    <td>{{ $data_obat->kemasan_obat->keterangan }}</td>
-                                    <td>{{ $data_obat->kemasan_obat->bentukobat->bentuk_obat }}</td>
+                                    <td>{{ $supplier_obat->kode_supplier }}</td>
+                                    <td>{{ $supplier_obat->nama_supplier }}</td>
+                                    <td>{{ $supplier_obat->alamat }}</td>
+                                    <td>{{ $supplier_obat->no_hp }}</td>
                                     <td>
-                                        {{-- <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal"  data-kode ="{{ $data_obat->kode_obat }}" data-nama ="{{ $data_obat->nama_obat }}" data-jenis ="{{ $data_obat->jenis_obat->jenis_obat }}" data-obat ="{{ $data_obat->satuan_obat->satuan_obat }}" data-kemasan ="{{ $data_obat->kemasan_obat->keterangan }}" data-berat ="{{ $data_obat->berat_obat }}" data-bs-target="#view_kemasan"><i class="bi bi-eye-fill"></i></button> --}}
-                                        {{-- <button type="button" class="btn btn-success mb-3 mt-1 ms-2" data-bs-toggle="modal" data-bs-target="#cetakModal">
-                                            <i class="bi bi-printer-fill"></i> Cetak Data
-                                          </button> --}}
-                                        <a href="/nama-obat/{{ $data_obat->kode_obat }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
-                                        <form action="/nama-obat/{{ $data_obat->kode_obat }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
+                                        <a href="/supplier-obat/{{ $supplier_obat->kode_supplier }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                        <form action="/supplier-obat/{{ $supplier_obat->kode_supplier }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
                                             @method("delete")
                                             @csrf
                                             <button class="btn btn-danger btn-sm border-0"><i class="bi bi-trash-fill" ></i></button>
@@ -75,7 +63,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalToggleLabel">Detail Data Obat</h5>
+            <h5 class="modal-title" id="exampleModalToggleLabel">Detail Data Supplier</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
             </button>
         </div>

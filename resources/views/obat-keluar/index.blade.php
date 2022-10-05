@@ -35,7 +35,7 @@
                                     <th scope="col">No RM</th>
                                     <th scope="col">Nama Obat</th>
                                     <th scope="col">Jumlah</th> 
-                                    <th scope="col">Satuan</th> 
+                                    <th scope="col">Bentuk Obat</th> 
                                     {{-- <th scope="col">Aksi</th> --}}
                                 </tr>
                             </thead>
@@ -46,9 +46,9 @@
                                     <td>{{ date('d-m-Y', strtotime($obatkeluar->tgl_keluar))}}</td>
                                     <td>{{  $obatkeluar->no_resep }}</td>
                                     <td>{{  $obatkeluar->pasien_id }}</td>
-                                    <td>{{  $obatkeluar->dataobat->nama_obat }}</td>
+                                    <td>{{  $obatkeluar->dataobat->nama_obat }} {{  $obatkeluar->dataobat->berat_obat }} {{$obatkeluar->dataobat->satuan_berat_obat }} {{  $obatkeluar->dataobat->merk_obat }}</td>
                                     <td>{{  $obatkeluar->jumlah_keluar}}</td>
-                                    <td>{{  $obatkeluar->dataobat->satuan}}</td>
+                                    <td>{{  $obatkeluar->dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
                                    
                                     {{-- <td>
                                             <a href="/obat-keluar/{{ $obatkeluar->id }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill d-inline"></i></a>

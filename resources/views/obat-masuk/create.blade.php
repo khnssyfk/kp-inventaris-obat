@@ -29,13 +29,14 @@
     <div class="card-body">
         <form action="/obat-masuk" method="post">
             @csrf 
-        <div class="row" id="obatMasuk">
+        <div class="container">
+            <div class="row" id="obatMasuk">
                 <div class="form-group col-md-6 col-12">
                     <label for="data_obat_id" class="sr-only ">Nama Obat</label>
                     <select class="form-select @error('data_obat_id') is-invalid @enderror" name="data_obat_id" required id="data_obat_id" onclick="autofill()">
                         <option value="">Masukan Nama Obat</option>
                         @foreach($data_obats as $data_obat)
-                        <option value="{{ $data_obat->kode_obat }}" id="data_obat_id" onclick="autofill()">{{ $data_obat->nama_obat }}</option>
+                        <option value="{{ $data_obat->kode_obat }}" id="data_obat_id" onclick="autofill()">{{ $data_obat->nama_obat }} {{ $data_obat->berat_obat }} {{ $data_obat->satuan_berat_obat }} {{ $data_obat->merk_obat }}</option>
                         
                         @endforeach
                     </select>
@@ -55,8 +56,8 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="jumlah" class="sr-only">Jumlah</label>
-                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required value="{{ old('jumlah') }}" >
+                    <label for="jumlah" class="sr-only">Jumlah Strip/Botol Masuk</label>
+                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required id='jumlah' value="{{ old('jumlah') }}"  onkeyup="totalfill()">
                     @error('jumlah')
                     <div class="invalid-feedback">
                         {{ $message}}
@@ -64,16 +65,28 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="satuan" class="sr-only">Satuan</label>
-                    <select class="form-select @error('satuan') is-invalid @enderror" disabled id="satuan" onclick="autofill()" name="satuan" required onkeyup="autofill()">
-                        <option value="Botol" id="satuan"onclick="autofill()">Botol</option>
-                        <option value="Kaplet"id="satuan"onclick="autofill()">Kapsul</option>
-                        <option value="Tablet"id="satuan"onclick="autofill()">Tablet</option>
-                        <option value="Tablet"id="satuan"onclick="autofill()">Kaplet</option>
-                        <option value="Tube"id="satuan"onclick="autofill()">Tube</option>
-                        <option value="Suppository"id="satuan"onclick="autofill()">Suppository</option>
+                    <label for="kemasan" class="sr-only">Kemasan</label>
+                    <input type="text" placeholder="Masukkan Kemasan" class="form-control @error('kemasan') is-invalid @enderror" disabled id="kemasan" onclick="autofill()" name="kemasan" required onkeyup="autofill()">
+                    @error('kemasan')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="total" class="sr-only">Total</label>
+                    <input type="text" placeholder="Masukkan Total" class="form-control @error('total') is-invalid @enderror" id="total" onclick="totalfill()" name="total" required onkeyup="totalfill()">
 
-                    </select>
+                    @error('total')
+                    <div class="invalid-feedback">
+                        Masukkan total
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label for="satuan" class="sr-only">Bentuk Obat</label>
+                    <input type="text" placeholder="Masukkan Satuan" class="form-control @error('satuan') is-invalid @enderror" disabled id="satuan" name="satuan" required onkeyup="autofill()">
+
                     @error('satuan')
                     <div class="invalid-feedback">
                         Masukkan Satuan
@@ -81,9 +94,16 @@
                     @enderror
                 </div>
                 <div class="form-group col-md-6 col-12">
-                    <label for="nama_apotek" class="sr-only">Supplier</label>
-                    <input type="text" placeholder="Masukkan Supplier" name="nama_apotek" class="form-control @error('nama_apotek') is-invalid @enderror" required value="{{ old('nama_apotek') }}">
-                    @error('nama_apotek')
+                    <label for="supplier_obat_id" class="sr-only">Supplier</label>
+                    <select class="form-select @error('supplier_obat_id') is-invalid @enderror" name="supplier_obat_id" required id="supplier_obat_id">
+                    
+                    <option value="">Masukan Supplier</option>
+                        @foreach($suppliers as $supplier)
+                        <option value="{{ $supplier->kode_supplier }}" id="supplier_id">{{ $supplier->nama_supplier }}</option>
+                        
+                        @endforeach
+                    </select>
+                    @error('supplier_obat_id')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
@@ -125,6 +145,8 @@
                 
                 
         </div>
+        </div>
+        
         <button class="btn btn-primary mt-2" name="action" value="add" id="add"><a href="/"></a>Tambah</button>
         
     </form>
@@ -146,8 +168,9 @@
                             <th scope="col">#</th>
                             <th scope="col">Tgl Masuk</th>
                             <th scope="col">Nama Obat</th>
-                            <th scope="col">Jumlah</th> 
-                            <th scope="col">Satuan</th> 
+                            <th scope="col-2">Jum Strip/Botol Masuk</th> 
+                            <th scope="col">Total</th> 
+                            <th scope="col">Bentuk Obat</th> 
                             <th scope="col">Apotek</th>
                             <th scope="col">Expired</th>
                             <th scope="col">Aksi</th>
@@ -158,10 +181,11 @@
                         <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ date('d-m-Y', strtotime($obat_masuk->tgl_masuk)) }}</td>
-                                <td>{{ $obat_masuk->dataobat->nama_obat }}</td>
+                                <td>{{ $obat_masuk->dataobat->nama_obat }} {{ $obat_masuk->dataobat->berat_obat }} {{ $obat_masuk->dataobat->satuan_berat_obat }} {{ $data_obat->merk_obat }}</td>
                                 <td>{{ $obat_masuk->jumlah}}</td>
-                                <td>{{ $obat_masuk->dataobat->satuan}}</td>
-                                <td>{{ $obat_masuk->nama_apotek}}</td>
+                                <td>{{ $obat_masuk->total}}</td>
+                                <td>{{ $obat_masuk->dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
+                                <td>{{ $obat_masuk->supplier->nama_supplier}}</td>
                                 <td>{{ date('d-m-Y', strtotime($obat_masuk->expired))}}</td>
                                 <td>
                                     <form action="/obat-masuk-temp/{{ $obat_masuk->id }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">
@@ -196,10 +220,32 @@
         processData: false,
         contentType: false,
         success: function(response) {
-             $("#kode_obat").val(response.kode_obat)
+            $("#kode_obat").val(response.kode_obat)
             $("#satuan").val(response.satuan)
+            $("#kemasan").val(response.kemasan)
             }
         });
+    }
+    function totalfill(){
+        var data_obat_id = $("#data_obat_id").val();
+        var jumlah = parseInt($("#jumlah").val());
+        // var total = $("#total").val();
+        // var sum = 1+1;
+        // $("#total").val(sum)
+        // alert(jumlah)
+        $.ajax({
+        url: '/data/' + data_obat_id,
+        method: "get",
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            var sum = jumlah * parseInt(response.isikemasan)
+            // alert(sum
+            $("#total").val(sum)
+            }
+        });
+        
     }
 </script>
 @endsection

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Obat;
 use App\Models\DataObat;
 use App\Models\JenisObat;
-use App\Models\SatuanObat;
+use App\Models\BentukObat;
 use App\Models\KemasanObat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,6 @@ class DataObatController extends Controller
     {
         return view('nama-obat.create',[
             'title'=>'Tambah Obat Baru',
-            'satuan_obats'=>SatuanObat::orderBy('satuan_obat','asc')->get(),
             'jenis_obats'=>JenisObat::orderBy('jenis_obat','asc')->get(),
             'kemasan_obats'=>KemasanObat::all()
         ]);
@@ -49,14 +49,24 @@ class DataObatController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama_obat' => 'required|max:255',
-            'satuan_obat_id'=>'required',
-            'jenis_obat_id'=>'required',
-            'kemasan_obat_id'=>'required',
-            'berat_obat'=>'required',
-            'satuan_berat_obat'=>'required'
-        ]);
+        // $validatedData = $request->validate([
+        //     'nama_obat' => 'required|max:255',
+        //     'bentuk_obat_id'=>'required',
+        //     'jenis_obat_id'=>'required',
+        //     'kemasan_obat_id'=>'required',
+        //     'berat_obat'=>'required',
+        //     'satuan_berat_obat'=>'required',
+        //     'merk_obat'
+        // ]);
+
+        $validatedData = [
+            'nama_obat'=>$request->nama_obat,
+            'jenis_obat_id'=>$request->jenis_obat_id,
+            'kemasan_obat_id'=>$request->kemasan_obat_id,
+            'berat_obat'=>$request->berat_obat,
+            'satuan_berat_obat'=>$request->satuan_berat_obat,
+            'merk_obat'=>$request->merk_obat
+        ];
 
         // dd($validatedData);
         
@@ -65,11 +75,11 @@ class DataObatController extends Controller
                 $data = array(
                     'kode_obat'=>IdGenerator::generate(['table' => 'data_obats','field'=>'kode_obat' ,'length' => 8, 'prefix' =>'OBT']),
                     'nama_obat'=>$validatedData['nama_obat'][$item],
-                    'satuan_obat_id'=>$validatedData['satuan_obat_id'][$item],
                     'jenis_obat_id'=>$validatedData['jenis_obat_id'][$item],
                     'kemasan_obat_id'=>$validatedData['kemasan_obat_id'][$item],
                     'satuan_berat_obat'=>$validatedData['satuan_berat_obat'][$item],
-                    'berat_obat'=>$validatedData['berat_obat'][$item]
+                    'berat_obat'=>$validatedData['berat_obat'][$item],
+                    'merk_obat'=>$validatedData['merk_obat'][$item]
                 );
                 // dump($data);
                 DataObat::create($data);
@@ -106,7 +116,6 @@ class DataObatController extends Controller
         return view('nama-obat.edit',[
             'title'=>'Edit Data Obat',
             'data_obat'=> DataObat::where('kode_obat',$id)->first(),
-            'satuan_obats'=>SatuanObat::orderBy('satuan_obat','asc')->get(),
             'jenis_obats'=>JenisObat::orderBy('jenis_obat','asc')->get(),
             'kemasan_obats'=>KemasanObat::all()
         ]);
@@ -124,7 +133,6 @@ class DataObatController extends Controller
         // dd($id);
         $validatedData = $request->validate([
             'nama_obat' => 'required|max:255',
-            'satuan_obat_id'=>'required',
             'jenis_obat_id'=>'required',
             'kemasan_obat_id'=>'required',
             'berat_obat'=>'required',

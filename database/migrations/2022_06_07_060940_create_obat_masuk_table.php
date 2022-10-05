@@ -19,8 +19,9 @@ return new class extends Migration
             $table->date('tgl_masuk');
             $table->string('data_obat_id')->unsigned;
             $table->integer('jumlah');
+            $table->integer('total');
             $table->integer('harga');
-            $table->string('nama_apotek');
+            $table->string('supplier_obat_id');
             $table->date('expired');
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class DataObat extends Model
     // use HasFactory;
     // protected $guarded =['id'];
     protected $fillable = [
-        'kode_obat','nama_obat','satuan_obat_id','jenis_obat_id','kemasan_obat_id','berat_obat','satuan_berat_obat'
+        'kode_obat','nama_obat','satuan_obat_id','jenis_obat_id','kemasan_obat_id','berat_obat','satuan_berat_obat','merk_obat'
     ];
     // public $incrementing = true;
     public $timestamps = false;
@@ -45,8 +45,8 @@ class DataObat extends Model
         return $this->hasMany(Dashboard::class);
     }
 
-    public function satuan_obat(){
-        return $this->belongsTo(SatuanObat::class,'satuan_obat_id');
+    public function bentukbat(){
+        return $this->belongsTo(BentukObat::class,'bentuk_obat_id');
     }
     public function jenis_obat(){
         return $this->belongsTo(JenisObat::class,'jenis_obat_id');

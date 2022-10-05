@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SatuanObat;
+use App\Models\BentukObat;
 use App\Models\KemasanObat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
-class SatuanObatController extends Controller
+class BentukObatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +19,10 @@ class SatuanObatController extends Controller
      */
     public function index()
     {
-        // dd(SatuanObat::all());
-        return view('satuan-obat.index',[
-            'title'=>'Satuan Obat',
-            'satuan_obats'=>SatuanObat::all(),
+        // dd(bentukObat::all());
+        return view('bentuk-obat.index',[
+            'title'=>'Bentuk & Kemasan Obat',
+            'bentuk_obats'=>BentukObat::all(),
             'kemasan_obats'=>KemasanObat::all()
         ]);
     }
@@ -34,9 +34,9 @@ class SatuanObatController extends Controller
      */
     public function create()
     {
-        return view('satuan-obat.create',[
-            'title'=>'Tambah Satuan Obat',
-            'satuan_obats'=>SatuanObat::all()
+        return view('bentuk-obat.create',[
+            'title'=>'Tambah Bentuk Obat',
+            'bentuk_obats'=>BentukObat::all()
         ]);
     }
 
@@ -49,24 +49,24 @@ class SatuanObatController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'satuan_obat' => 'required|max:255'
+            'bentuk_obat' => 'required|max:255'
         ]);
 
         // dd($validatedData);        
-        if (count($validatedData['satuan_obat'])>0){
-            foreach($validatedData['satuan_obat'] as $item=>$value){
+        if (count($validatedData['bentuk_obat'])>0){
+            foreach($validatedData['bentuk_obat'] as $item=>$value){
                 $data = array(
-                    'kode_satuan'=>IdGenerator::generate(['table' => 'satuan_obats','field'=>'kode_satuan' ,'length' => 4, 'prefix' =>'U']),
-                    'satuan_obat'=>$validatedData['satuan_obat'][$item],
+                    'kode_bentuk'=>IdGenerator::generate(['table' => 'bentuk_obats','field'=>'kode_bentuk' ,'length' => 4, 'prefix' =>'U']),
+                    'bentuk_obat'=>$validatedData['bentuk_obat'][$item],
                 );
                 // dump($data);
-                satuanObat::create($data);
+                bentukObat::create($data);
 
             }
         }
 
-        Alert::success('Sukses', 'Satuan Obat Berhasil Ditambah!');
-        return redirect('/satuan-obat');
+        Alert::success('Sukses', 'Bentuk Obat Berhasil Ditambah!');
+        return redirect('/bentuk-obat');
     
     }
 
@@ -89,9 +89,9 @@ class SatuanObatController extends Controller
      */
     public function edit($id)
     {
-        return view('satuan-obat.edit',[
-            'title'=>'Edit Satuan Obat',
-            'satuan_obat'=> SatuanObat::where('kode_satuan',$id)->first()
+        return view('bentuk-obat.edit',[
+            'title'=>'Edit Bentuk Obat',
+            'bentuk_obat'=> bentukObat::where('kode_bentuk',$id)->first()
         ]);
     }
 
@@ -105,11 +105,11 @@ class SatuanObatController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'satuan_obat' => 'required|max:255',
+            'bentuk_obat' => 'required|max:255',
         ]);
-        SatuanObat::where('kode_satuan',$id)->update($validatedData);
-        Alert::success('Sukses', 'Satuan Obat Berhasil Diganti!');
-        return redirect('/satuan-obat');
+        bentukObat::where('kode_bentuk',$id)->update($validatedData);
+        Alert::success('Sukses', 'Bentuk Obat Berhasil Diganti!');
+        return redirect('/bentuk-obat');
     }
 
     /**
@@ -118,20 +118,20 @@ class SatuanObatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($kode_satuan)
+    public function destroy($kode_bentuk)
     {
-        SatuanObat::where('kode_satuan',$kode_satuan)->delete();
-        Alert::success('Sukses', 'Satuan Berhasil Dihapus!');
-        return redirect('/satuan-obat');
+        bentukObat::where('kode_bentuk',$kode_bentuk)->delete();
+        Alert::success('Sukses', 'Bentuk Berhasil Dihapus!');
+        return redirect('/bentuk-obat');
     }
 
-    public function getSatuan(){
-        $columns = SatuanObat::all();
+    public function getBentuk(){
+        $columns = bentukObat::all();
         // dd(json_encode($columns));
         return(json_encode($columns));
         // return response()->json([
-        //    'kode_satuan' => $columns->kode_satuan,
-        //    'satuan_obat' => $columns->satuan_obat,
+        //    'kode_bentuk' => $columns->kode_bentuk,
+        //    'bentuk_obat' => $columns->bentuk_obat,
         // ]);
 
         // 'rooms' => $rooms->values()->toArray()

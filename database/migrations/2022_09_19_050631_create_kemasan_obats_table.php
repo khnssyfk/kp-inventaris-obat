@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kemasan_obats', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->string('kode_kemasan')->primary();
             $table->string('keterangan');
+            $table->string('bentuk_obat_id');
             $table->integer('jumlah')->default(0);
         });
     }

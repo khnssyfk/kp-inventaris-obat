@@ -17,20 +17,17 @@
                         <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item  has-sub {{ Request::is('satuan-obat*','jenis-obat*','nama-obat*','supplier-obat*') ? 'active' :'' }} ">
+                <li class="sidebar-item  has-sub {{ Request::is('bentuk-obat*','jenis-obat*','supplier-obat*','kemasan-obat*') ? 'active' :'' }} ">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-file-spreadsheet-fill"></i>
                         <span>Master Data</span>
                     </a>
-                    <ul class="submenu {{ Request::is('satuan-obat*','jenis-obat*','nama-obat*','supplier-obat*') ? 'active' :'' }}">
-                        <li class="submenu-item {{ Request::is('satuan-obat*') ? 'active' :'' }}">
-                            <a href="/satuan-obat">Satuan & Kemasan Obat</a>
+                    <ul class="submenu {{ Request::is('bentuk-obat*','jenis-obat*','supplier-obat*','kemasan-obat*') ? 'active' :'' }}">
+                        <li class="submenu-item {{ Request::is('bentuk-obat*','kemasan-obat*') ? 'active' :'' }}">
+                            <a href="/bentuk-obat">Bentuk & Kemasan Obat</a>
                         </li>
                         <li class="submenu-item {{ Request::is('jenis-obat*') ? 'active' :'' }}">
                             <a href="/jenis-obat">Jenis Obat</a>
-                        </li>
-                        <li class="submenu-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
-                            <a href="/nama-obat">Data Obat</a>
                         </li>
                         <li class="submenu-item {{ Request::is('supplier-obat*') ? 'active' :'' }}">
                             <a href="/supplier-obat">Supplier Obat</a>
@@ -47,7 +44,7 @@
                 {{-- <li class="sidebar-item {{ Request::is('riwayat-pemeriksaan*') ? 'active' :'' }}">
                     <a href="/riwayat-pemeriksaan" class="sidebar-link"><i class="bi bi-file-medical-fill"></i><span>Rekam Medis</span> </a>
                 </li> --}}
-                {{-- <li class="sidebar-item  has-sub {{ Request::is('nama-obat*','obat-masuk*','obat-keluar*','stok-obat*') ? 'active' :'' }} ">
+                {{-- <li class="sidebar-item  has-sub {{ Request::is('nama-obat*','obat-masuk*','obat-keluar*','stok-obat*','') ? 'active' :'' }} ">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Data Obat</span>
@@ -56,6 +53,9 @@
                         {{-- <li class="sidebar-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
                             <a href="/nama-obat" class="sidebar-link"><i class="bi bi-file-spreadsheet-fill"></i><span>Nama Obat</span></a>
                         </li> --}}
+                        <li class="sidebar-item {{ Request::is('nama-obat*') ? 'active' :'' }}">
+                            <a href="/nama-obat" class="sidebar-link"><i class="bi bi-clipboard-data-fill"></i><span>Data Obat</span></a>
+                        </li>
                         <li class="sidebar-item {{ Request::is('obat-masuk*') ? 'active' :'' }}">
                             <a href="/obat-masuk" class="sidebar-link"><i class="bi bi-file-earmark-arrow-down-fill"></i><span>Obat Masuk</span></a>
                         </li>
