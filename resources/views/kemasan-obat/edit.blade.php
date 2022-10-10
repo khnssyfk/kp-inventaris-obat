@@ -45,6 +45,15 @@
                     @enderror
                 </div>
                 <div class="form-group col">
+                    <label for="jumlah" class="sr-only">Jumlah Butir/Botol</label>
+                    <input type="text" placeholder="Masukkan Jumlah Butir/Botol" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required value="{{ old('jumlah',$kemasan_obat->jumlah) }}">
+                    @error('jumlah')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group col">
                     <label for="bentuk_obat_id" class="sr-only">Bentuk Obat</label>
                     <select class="form-select @error('bentuk') is-invalid @enderror" name="bentuk_obat_id" required>
                         @foreach($bentuk_obats as $bentuk_obat)
@@ -61,15 +70,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="form-group col">
-                    <label for="jumlah" class="sr-only">Jumlah Butir/Botol</label>
-                    <input type="text" placeholder="Masukkan Jumlah Butir/Botol" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required value="{{ old('jumlah',$kemasan_obat->jumlah) }}">
-                    @error('jumlah')
-                    <div class="invalid-feedback">
-                        {{ $message}}
-                    </div>
-                    @enderror
-                </div>
+                
             
         </div>
                 <button class="btn btn-success float-end mt-2 new-user-btn">Simpan</button>

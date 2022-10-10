@@ -47,7 +47,7 @@
                                     <td>{{ $data_obat->satuan_berat_obat }}</td>
                                     <td>{{ $data_obat->merk_obat }}</td>
                                     <td>{{ $data_obat->jenis_obat->jenis_obat }}</td>
-                                    <td>{{ $data_obat->kemasan_obat->keterangan }}</td>
+                                    <td>{{ $data_obat->kemasan_obat->keterangan }} {{ $data_obat->kemasan_obat->jumlah }}</td>
                                     <td>{{ $data_obat->kemasan_obat->bentukobat->bentuk_obat }}</td>
                                     <td>
                                         {{-- <button class="btn btn-success btn-sm" type="button" data-bs-toggle="modal"  data-kode ="{{ $data_obat->kode_obat }}" data-nama ="{{ $data_obat->nama_obat }}" data-jenis ="{{ $data_obat->jenis_obat->jenis_obat }}" data-obat ="{{ $data_obat->satuan_obat->satuan_obat }}" data-kemasan ="{{ $data_obat->kemasan_obat->keterangan }}" data-berat ="{{ $data_obat->berat_obat }}" data-bs-target="#view_kemasan"><i class="bi bi-eye-fill"></i></button> --}}

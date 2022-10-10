@@ -171,7 +171,7 @@ class ObatMasukController extends Controller
            'satuan' => $data,
            'kemasan'=>$kemasanObat,
            'isikemasan'=>$isikemasanObat,
-           'jumlah'=>$columns->jumlah
+           'jumlah'=>$columns->stok_obat
         ]);
         
         // dd($kemasanObat);
@@ -186,7 +186,7 @@ class ObatMasukController extends Controller
         foreach($temps as $temp){
             // dump($temp['data_obat_id']);
             $dataobat = DataObat::find($temp['data_obat_id']);
-            $dataobat->jumlah += $temp['total'];
+            $dataobat->stok_obat += $temp['total'];
             // dump($dataobat);
             $dataobat->save();
             // dump($dataobat->jumlah);

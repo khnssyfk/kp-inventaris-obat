@@ -97,12 +97,11 @@
                 <select class="form-select @error('kemasan_obat_id') is-invalid @enderror" name="kemasan_obat_id[]" required>
                     @foreach($kemasan_obats as $kemasan_obat)
                       @if(old('kemasan_obat_id')== $kemasan_obat->kode_kemasan)
-                        <option value="{{ $kemasan_obat->kode_kemasan }}" selected>{{ $kemasan_obat->keterangan }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
+                        <option value="{{ $kemasan_obat->kode_kemasan }}" selected>{{ $kemasan_obat->keterangan }} {{ $kemasan_obat->jumlah }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
                       @else
-                        <option value="{{ $kemasan_obat->kode_kemasan }}">{{ $kemasan_obat->keterangan }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
+                        <option value="{{ $kemasan_obat->kode_kemasan }}">{{ $kemasan_obat->keterangan }} {{ $kemasan_obat->jumlah }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
                       @endif
                     @endforeach
-
                 </select>
                 @error('kemasan_obat_id')
                 <div class="invalid-feedback">
@@ -146,7 +145,7 @@
         divRow2.classList.add('row');
 
         var divNama = document.createElement('div');
-        divNama.className ='form-group col-5';
+        divNama.className ='form-group col-4';
         divNama.innerHTML = '<label for="nama_obat" class="sr-only">Nama Obat</label> <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error("nama_obat") is-invalid @enderror" required>';
         divBerat = document.createElement('div');
         divBerat.className = 'form-group col'
@@ -162,7 +161,16 @@
 
         var divKemasan = document.createElement('div');
         divKemasan.className ='form-group col'
-        divKemasan.innerHTML = `<label for="kemasan_obat_id" class="sr-only">Kemasan Obat</label><select class="form-select @error('kemasan_obat_id') is-invalid @enderror" name="kemasan_obat_id[]" required>@foreach($kemasan_obats as $kemasan_obat) @if(old('kemasan_obat_id') == $kemasan_obat->id)<option value="{{ $kemasan_obat->id }}" selected>{{ $kemasan_obat->keterangan }} {{ $kemasan_obat->bentukobat->bentuk_obat }} </option>@else <option value="{{ $kemasan_obat->id }}">{{ $kemasan_obat->keterangan }} {{ $kemasan_obat->bentukobat->bentuk_obat }} </option>@endif @endforeach</select> @error('kemasan_obat_id') <div class="invalid-feedback">{{ $message}}</div>@enderror`
+        divKemasan.innerHTML = `<label for="kemasan_obat_id" class="sr-only">Kemasan Obat</label>
+                <select class="form-select @error('kemasan_obat_id') is-invalid @enderror" name="kemasan_obat_id[]" required>
+                    @foreach($kemasan_obats as $kemasan_obat)
+                      @if(old('kemasan_obat_id')== $kemasan_obat->kode_kemasan)
+                        <option value="{{ $kemasan_obat->kode_kemasan }}" selected>{{ $kemasan_obat->keterangan }} {{ $kemasan_obat->jumlah }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
+                      @else
+                        <option value="{{ $kemasan_obat->kode_kemasan }}">{{ $kemasan_obat->keterangan }} {{ $kemasan_obat->jumlah }} {{$kemasan_obat->bentukobat->bentuk_obat}}</option>
+                      @endif
+                    @endforeach
+                </select>`
         
 
         var divJenis = document.createElement('div');

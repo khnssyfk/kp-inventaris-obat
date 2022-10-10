@@ -17,7 +17,7 @@ return new class extends Migration
             // $table->id();
             $table->string('kode_obat')->primary();
             $table->string('nama_obat');
-            $table->integer('jumlah')->default(0);
+            $table->integer('stok_obat')->default(0);
             $table->string('jenis_obat_id');
             $table->string('merk_obat')->nullable();
             $table->string('kemasan_obat_id');

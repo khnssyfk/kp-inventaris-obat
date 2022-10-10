@@ -93,11 +93,11 @@ class ObatKeluarController extends Controller
                 // dump($data['no_resep']);
                 $data_id = $datas['data_obat_id'][$item];
                 $dataobat = DataObat::find($data_id);
-                if ($data['jumlah_keluar']> $dataobat->jumlah){
+                if ($data['jumlah_keluar']> $dataobat->stok_obat){
                     Alert::warning('Gagal', 'Jumlah Obat Tidak Boleh Melebihi Stok!');
                     return redirect('/obat-keluar/create');
                 }else{
-                    $dataobat->jumlah -= $datas['jumlah_keluar'][$item];
+                    $dataobat->stok_obat -= $datas['jumlah_keluar'][$item];
                     $dataobat->save();
                     ObatKeluar::create($data);
                     
@@ -164,7 +164,7 @@ class ObatKeluarController extends Controller
         // dd($data->jumlah);
         
         $dataobat = DataObat::find($data_id);
-        $dataobat->jumlah += $data->jumlah_keluar;
+        $dataobat->stok_obat += $data->jumlah_keluar;
         // dd($dataobat);
         $dataobat->save();
         ObatKeluar::destroy($id);
@@ -188,7 +188,7 @@ class ObatKeluarController extends Controller
         foreach($temps as $temp){
             // dump($temp['data_obat_id']);
             $dataobat = DataObat::find($temp['data_obat_id']);
-            $dataobat->jumlah -= $temp['jumlah_keluar'];
+            $dataobat->stok_obat -= $temp['jumlah_keluar'];
             // dump($dataobat);
             $dataobat->save();
             // dump($dataobat->jumlah);

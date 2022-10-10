@@ -35,8 +35,17 @@
             {{-- <div class="col-md-6 col-12"> --}}
                 <div class="form-group col-5">
                     <label for="keterangan" class="sr-only">Kemasan Obat</label>
-                    <input type="text" placeholder="cth: 1 strip isi 10" name="keterangan[]" class="form-control @error('keterangan') is-invalid @enderror" required value="{{ old('keterangan') }}">
+                    <input type="text" placeholder="cth: 1 strip" name="keterangan[]" class="form-control @error('keterangan') is-invalid @enderror" required value="{{ old('keterangan') }}">
                     @error('keterangan')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-group col">
+                    <label for="jumlah" class="sr-only">Jumlah Isi Kemasan</label>
+                    <input type="text" placeholder="Jumlah Isi Kemasan" name="jumlah[]" class="form-control @error('jumlah') is-invalid @enderror" required value="{{ old('jumlah') }}">
+                    @error('jumlah')
                     <div class="invalid-feedback">
                         {{ $message}}
                     </div>
@@ -59,15 +68,7 @@
                     </div>
                     @enderror
                 </div>
-                <div class="form-group col">
-                    <label for="jumlah" class="sr-only">Jumlah Isi Kemasan</label>
-                    <input type="text" placeholder="Jumlah Isi Kemasan" name="jumlah[]" class="form-control @error('jumlah') is-invalid @enderror" required value="{{ old('jumlah') }}">
-                    @error('jumlah')
-                    <div class="invalid-feedback">
-                        {{ $message}}
-                    </div>
-                    @enderror
-                </div>
+                
             
         </div>
                 <button class="btn btn-success float-end mt-2 new-user-btn">Simpan</button>
@@ -81,7 +82,7 @@ function KemasanObatBaru(event){
     event.preventDefault();
     var divKemasan = document.createElement('div');
     divKemasan.className ='form-group col-5'
-    divKemasan.innerHTML = '<label for="keterangan" class="sr-only">Kemasan Obat</label> <input type="text" placeholder="Masukkan Kemasan Obat" name="keterangan[]" class="form-control @error("keterangan") is-invalid @enderror" required>'
+    divKemasan.innerHTML = '<label for="keterangan" class="sr-only">Kemasan Obat</label> <input type="text" placeholder="cth: 1 strip" name="keterangan[]" class="form-control @error("keterangan") is-invalid @enderror" required>'
     var divJumlah = document.createElement('div');
     divJumlah.className ='form-group col'
     divJumlah.innerHTML = '<label for="jumlah" class="sr-only">Jumlah Butir/Botol</label> <input type="text" placeholder="Masukkan Jumlah Butir/Botol" name="jumlah[]" class="form-control @error("jumlah") is-invalid @enderror" required>'
@@ -90,8 +91,8 @@ function KemasanObatBaru(event){
         divBentuk.innerHTML = `<label for="bentuk_obat_id" class="sr-only">Bentuk Obat</label><select class="form-select" name="bentuk_obat_id[]" required> @foreach($bentuk_obats as $bentuk_obat)@if(old('bentuk_obat_id')== $bentuk_obat->kode_bentuk)<option value="{{ $bentuk_obat->kode_bentuk }}" selected>{{ $bentuk_obat->bentuk_obat }}</option>@else<option value="{{ $bentuk_obat->kode_bentuk }}">{{ $bentuk_obat->bentuk_obat }}</option>@endif @endforeach</select>`
 
     document.getElementById('fieldkemasan').appendChild(divKemasan)
-    document.getElementById('fieldkemasan').appendChild(divBentuk)
     document.getElementById('fieldkemasan').appendChild(divJumlah)
+    document.getElementById('fieldkemasan').appendChild(divBentuk)
 
 }
 </script>

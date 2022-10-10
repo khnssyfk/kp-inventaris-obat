@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group col-md-6 col-12">
                     <label for="jumlah" class="sr-only">Jumlah Strip/Botol Masuk</label>
-                    <input type="number" placeholder="Masukkan Jumlah" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required id='jumlah' value="{{ old('jumlah') }}"  onkeyup="totalfill()">
+                    <input type="number" placeholder="Masukkan Jumlah Strip/Botol Masuk" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror" required id='jumlah' value="{{ old('jumlah') }}"  onkeyup="totalfill()">
                     @error('jumlah')
                     <div class="invalid-feedback">
                         {{ $message}}
