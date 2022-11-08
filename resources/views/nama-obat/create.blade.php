@@ -33,7 +33,7 @@
             <div class="row" id="fieldobat">
                 <div class="form-group col-4">
                     <label for="nama_obat" class="sr-only">Nama Obat</label>
-                    <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error('nama_obat') is-invalid @enderror" required value="{{ old('nama_obat') }}">
+                    <input type="text" placeholder="Masukkan Nama Obat" name="nama_obat[]" class="form-control @error('nama_obat') is-invalid @enderror" required value="{{ old('nama_obat') }}" >
                     @error('nama_obat')
                     <div class="invalid-feedback">
                         {{ $message}}

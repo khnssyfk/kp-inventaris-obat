@@ -22,6 +22,26 @@ class DatabaseSeeder extends Seeder
         // Pasien::factory(3)->create();
         // Post::factory(20) ->create();
 
+        Role::create([
+            'rolename' => 'Super Admin',
+            'keterangan' => 'Super Admin'
+        ]);
+        Role::create([
+            'rolename' => 'Admin Klinik',
+            'keterangan' => 'Admin Klinik'
+        ]);
+        Role::create([
+            'rolename' => 'Pasien',
+            'keterangan' => 'Pasien'
+        ]);
+        Role::create([
+            'rolename' => 'Dokter/Lab',
+            'keterangan' => 'Dokter/Lab'
+        ]);
+        Role::create([
+            'rolename' => 'Farmasi',
+            'keterangan' => 'Farmasi'
+        ]);
         User::create([
             'nama'=>'khansa',
             'no_hp'=>'082251920006',
@@ -55,37 +75,11 @@ class DatabaseSeeder extends Seeder
             'no_hp'=>'098766'
         ]);
         Pasien::create([
-            'nama'=>'Anakin',
-            'no_rekam_medis'=>'RM2411020002',
-            'nik'=>5765567673,
-            'jenis_kelamin'=> 'perempuan',
-            'agama'=> 'islam',
-            'pekerjaan'=> 'pelajar/mahasiswa',
-            'alamat'=> 'jln.cornelia street',
-            'email'=>'sss@gmail.com',
-            'no_hp'=>'0987663',
+            'nama'=>'dr. Prihan Fakhri',
+            'no_rekam_medis'=>'RM010000001',    
             'role_id'=>4
         ]);
-        Role::create([
-            'rolename' => 'Super Admin',
-            'keterangan' => 'Super Admin'
-        ]);
-        Role::create([
-            'rolename' => 'Admin Klinik',
-            'keterangan' => 'Admin Klinik'
-        ]);
-        Role::create([
-            'rolename' => 'Pasien',
-            'keterangan' => 'Pasien'
-        ]);
-        Role::create([
-            'rolename' => 'Dokter/Lab',
-            'keterangan' => 'Dokter/Lab'
-        ]);
-        Role::create([
-            'rolename' => 'Farmasi',
-            'keterangan' => 'Farmasi'
-        ]);
+        
         
     }
 }

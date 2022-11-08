@@ -9,7 +9,7 @@
 @endif
 <div class="row">
     <div class="col-12 col-md-6 order-md-1 order-last">
-        <h3>Tambah Supplier</h3>
+        <h3>Tambah Data Supplier</h3>
     </div>
     <div class="col-12 col-md-6 order-md-2 order-first mb-3">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -50,8 +50,8 @@
                     @enderror
                 </div>
                 <div class="form-group col">
-                    <label for="no_hp" class="sr-only">No Telp</label>
-                    <input type="number" placeholder="Masukkan No Telp" name="no_hp[]" class="form-control @error('no_hp') is-invalid @enderror" required value="{{ old('no_hp') }}">
+                    <label for="no_hp" class="sr-only">No Hp</label>
+                    <input type="number" placeholder="Masukkan No Hp" name="no_hp[]" class="form-control @error('no_hp') is-invalid @enderror" required value="{{ old('no_hp') }}">
                     @error('no_hp')
                     <div class="invalid-feedback">
                         {{ $message}}

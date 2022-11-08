@@ -29,22 +29,30 @@
     
             <table class="table table-bordered border border-2 border-dark">
                 <thead>
-                    <th scope="col">No</th>
+                    <th scope="col">#</th>
                     <th scope="col">Kode Obat</th>
                     <th scope="col">Nama Obat</th>
-                    {{-- <th scope="col">Jumlah</th> --}}
-                    <th scope="col">Satuan</th>
+                    <th scope="col">Dosis</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Merk</th>
+                    <th scope="col">Jenis Obat</th>
+                    <th scope="col">Kemasan</th>
+                    <th scope="col">Bentuk Obat</th>
                 </thead>
                 <tbody>
-                    @foreach($dataobats as $dataobat)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $dataobat->kode_obat }}</td>
-                            <td>{{ $dataobat->nama_obat }}</td>
-                            {{-- <td>{{ $dataobat->jumlah }}</td> --}}
-                            <td>{{ $dataobat->satuan }}</td>
-                        </tr>
-                        @endforeach
+                    @foreach($data_obats as $data_obat)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data_obat->kode_obat }}</td>
+                                    <td>{{ $data_obat->nama_obat }}</td>
+                                    <td>{{ $data_obat->berat_obat }}</td>
+                                    <td>{{ $data_obat->satuan_berat_obat }}</td>
+                                    <td>{{ $data_obat->merk_obat }}</td>
+                                    <td>{{ $data_obat->jenis_obat->jenis_obat }}</td>
+                                    <td>{{ $data_obat->kemasan_obat->keterangan }} {{ $data_obat->kemasan_obat->jumlah }}</td>
+                                    <td>{{ $data_obat->kemasan_obat->bentukobat->bentuk_obat }}</td>
+                                </tr>
+                                @endforeach
                 </tbody>
             </table>
           </div>

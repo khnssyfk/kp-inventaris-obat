@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\JenisObat;
+use App\Models\KemasanObat;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -19,8 +21,10 @@ return new class extends Migration
             $table->string('nama_obat');
             $table->integer('stok_obat')->default(0);
             $table->string('jenis_obat_id');
+            $table->foreign('jenis_obat_id')->nullable()->references('kode_jenis')->on('jenis_obats')->onDelete('cascade');
             $table->string('merk_obat')->nullable();
             $table->string('kemasan_obat_id');
+            $table->foreign('kemasan_obat_id')->nullable()->references('kode_kemasan')->on('kemasan_obats')->onDelete('cascade');
             $table->string('berat_obat')->default(0);
             $table->string('satuan_berat_obat');
         });

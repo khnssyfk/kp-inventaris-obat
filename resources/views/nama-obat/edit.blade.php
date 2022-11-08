@@ -68,6 +68,15 @@
                     </div>
                     @enderror
                 </div>
+                <div class="form-group col">
+                    <label for="merk_obat" class="sr-only">Merk</label>
+                    <input type="text" placeholder="cth: (YUSIMOX)" name="merk_obat" formnovalidate class="form-control @error('merk_obat') is-invalid @enderror" value="{{ old('merk_obat',$data_obat->merk_obat) }}">
+                    @error('merk_obat')
+                    <div class="invalid-feedback">
+                        {{ $message}}
+                    </div>
+                    @enderror
+                </div>
 
         </div>
         <div class="row" id="fieldobat">

@@ -222,7 +222,7 @@
         success: function(response) {
             $("#kode_obat").val(response.kode_obat)
             $("#satuan").val(response.satuan)
-            $("#kemasan").val(response.kemasan)
+            $("#kemasan").val(response.sum)
             }
         });
     }

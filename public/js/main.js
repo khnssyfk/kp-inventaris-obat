@@ -92,7 +92,7 @@ function BentukObatBaru(event){
     event.preventDefault();
     var divBentuk = document.createElement('div');
     divBentuk.className ='form-group col-md-6 col-12'
-    divBentuk.innerHTML = '<label for="bentuk_obat" class="sr-only">Bentuk Obat</label> <input type="text" placeholder="Masukkan Bentuk Obat" name="bentuk_obat[]" class="form-control @error("bentuk_obat") is-invalid @enderror" required> @error("bentuk_obat") <div class="invalid-feedback"> Bentuk Obat Sudah Ada<div>@enderror'
+    divBentuk.innerHTML = '<label for="bentuk_obat" class="sr-only">Bentuk Obat</label> <input type="text" placeholder="Masukkan Bentuk Obat" name="bentuk_obat[]" class="form-control" required>'
     document.getElementById('fieldbentuk').appendChild(divBentuk)
 
 }

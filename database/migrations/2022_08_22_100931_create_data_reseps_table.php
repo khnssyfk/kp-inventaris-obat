@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('obat_keluar_temps', function (Blueprint $table) {
+        Schema::create('data_reseps', function (Blueprint $table) {
             $table->id();
-            $table->string('no_resep');
-            $table->date('tgl_keluar');
-            $table->string('data_obat_id')->unsigned;
-            $table->string('pasien_id')->unsigned;
-            $table->integer('jumlah_keluar');
-            // $table->longText('dosis');
+            $table->foreignId('resep_id');
+            $table->string('nama_obat');
+            $table->string('no');
+            $table->string('signa');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('obat_keluar_temps');
+        Schema::dropIfExists('data_reseps');
     }
 };

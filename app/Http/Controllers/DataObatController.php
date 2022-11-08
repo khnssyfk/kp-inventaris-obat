@@ -56,7 +56,7 @@ class DataObatController extends Controller
         //     'kemasan_obat_id'=>'required',
         //     'berat_obat'=>'required',
         //     'satuan_berat_obat'=>'required',
-        //     'merk_obat'
+        //     'merk_obat'=>'nullable'
         // ]);
 
         $validatedData = [
@@ -131,13 +131,14 @@ class DataObatController extends Controller
     public function update(Request $request, $id)
     {
         // dd($id);
-        $validatedData = $request->validate([
-            'nama_obat' => 'required|max:255',
-            'jenis_obat_id'=>'required',
-            'kemasan_obat_id'=>'required',
-            'berat_obat'=>'required',
-            'satuan_berat_obat'=>'required'
-        ]);
+        $validatedData = [
+            'nama_obat'=>$request->nama_obat,
+            'jenis_obat_id'=>$request->jenis_obat_id,
+            'kemasan_obat_id'=>$request->kemasan_obat_id,
+            'berat_obat'=>$request->berat_obat,
+            'satuan_berat_obat'=>$request->satuan_berat_obat,
+            'merk_obat'=>$request->merk_obat
+        ];
         DataObat::where('kode_obat',$id)->update($validatedData);
         Alert::success('Sukses', 'Data Obat Berhasil Diganti!');
         return redirect('/nama-obat');

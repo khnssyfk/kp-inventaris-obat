@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('kode_kemasan')->primary();
             $table->string('keterangan');
             $table->string('bentuk_obat_id');
+            $table->foreign('bentuk_obat_id')->nullable()->references('kode_bentuk')->on('bentuk_obats')->onDelete('cascade');
             $table->integer('jumlah')->default(0);
         });
     }

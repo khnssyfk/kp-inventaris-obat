@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('nama');
             $table->string('no_hp')->unique();
             $table->string('email')->unique();
-            $table->foreignId('role_id')->unsigned();
+            $table->foreignId('role_id')->references('id')->on('roles')->onDelete('cascade')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
+        
     }
 
     /**

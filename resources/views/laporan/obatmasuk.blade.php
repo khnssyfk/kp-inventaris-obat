@@ -29,26 +29,28 @@
     
             <table class="table table-bordered border border-2 border-dark">
                 <thead>
-                    <th scope="col">No</th>
+                    <th scope="col">#</th>
                     <th scope="col">Tgl Masuk</th>
                     <th scope="col">No Transaksi</th>
                     <th scope="col">Nama Obat</th>
-                    <th scope="col">Jumlah</th>
-                    <th scope="col">Satuan</th>
+                    <th scope="col-2">Jum Strip/Botol Masuk</th> 
+                    <th scope="col">Total</th> 
+                    <th scope="col">Bentuk Obat</th> 
                     <th scope="col">Apotek</th>
-                    <th scope="col">Expired</th>
+                    <th scope="col">Expiredx</th>
                 </thead>
                 <tbody>
                     @foreach($obatmasuks as $obatmasuk)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk)) }}</td>
-                            <td>{{ $obatmasuk->kode_transaksi }}</td>
-                            <td>{{ $obatmasuk->dataobat->nama_obat }}</td>
-                            <td>{{ $obatmasuk->jumlah }}</td>
-                            <td>{{ $obatmasuk->dataobat->satuan }}</td>
-                            <td>{{ $obatmasuk->nama_apotek }}</td>
-                            <td>{{ date('d-m-Y', strtotime($obatmasuk->expired ))}}</td>
+                            <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk))}}</td>
+                            <td>{{  $obatmasuk->kode_transaksi }}</td>
+                            <td>{{ $obatmasuk->dataobat->nama_obat }} {{ $obatmasuk->dataobat->berat_obat }} {{ $obatmasuk->dataobat->satuan_berat_obat }} {{ $obatmasuk->dataobat->merk_obat }}</td>
+                            <td>{{  $obatmasuk->jumlah}}</td>
+                            <td>{{  $obatmasuk->total}}</td>
+                            <td>{{ $obatmasuk->dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
+                            <td>{{ $obatmasuk->supplier->nama_supplier}}</td>
+                            <td>{{  date('d-m-Y', strtotime($obatmasuk->expired))}}</td>
                         </tr>
                         @endforeach
                 </tbody>

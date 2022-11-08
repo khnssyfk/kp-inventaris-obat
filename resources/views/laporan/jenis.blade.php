@@ -23,39 +23,33 @@
         <div class="px-5">
             <hr class="border border-dark">
             <div class="text-center">
-                <p>LAPORAN OBAT KELUAR</p>
-                <p style="margin-top:-1rem"> Periode Tanggal {{ date('d-m-Y', strtotime($tgl_mulai)) }} s/d {{ date('d-m-Y', strtotime($tgl_selesai)) }}</p>
+                <p>LAPORAN SUPPLIER OBAT</p>
+                <p style="margin-top:-1rem">{{ $tgl }}</p>
             </div>
     
             <table class="table table-bordered border border-2 border-dark">
                 <thead>
                     <th scope="col">#</th>
-                    <th scope="col">Tgl Keluar</th>
-                    <th scope="col">No Resep</th>
-                    <th scope="col">No RM</th>
-                    <th scope="col">Nama Obat</th>
-                    <th scope="col">Jumlah</th> 
-                    <th scope="col">Bentuk Obat</th> 
+                    <th scope="col">Kode Jenis</th>
+                    <th scope="col">Jenis Obat</th>
+                    <th scope="col">Keterangan</th>
                 </thead>
                 <tbody>
-                    @foreach($obatkeluars as $obatkeluar)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($obatkeluar->tgl_keluar))}}</td>
-                                    <td>{{  $obatkeluar->no_resep }}</td>
-                                    <td>{{  $obatkeluar->pasien_id }}</td>
-                                    <td>{{  $obatkeluar->dataobat->nama_obat }} {{  $obatkeluar->dataobat->berat_obat }} {{$obatkeluar->dataobat->satuan_berat_obat }} {{  $obatkeluar->dataobat->merk_obat }}</td>
-                                    <td>{{  $obatkeluar->jumlah_keluar}}</td>
-                                    <td>{{  $obatkeluar->dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
-                        </tr>
-                        @endforeach
+                    @foreach($jenis_obats as $jenis_obat)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $jenis_obat->kode_jenis }}</td>
+                                    <td>{{ $jenis_obat->jenis_obat }}</td>
+                                    <td>{{ $jenis_obat->keterangan }}</td>
+                                </tr>
+                                @endforeach
                 </tbody>
             </table>
           </div>
 
-    <script type="text/javascript">
-        window.print()
-    </script>    
+        <script type="text/javascript">
+            window.print()
+        </script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
 </html>

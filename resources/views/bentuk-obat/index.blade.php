@@ -71,8 +71,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Kode Kemasan</th>
                                     <th scope="col">Keterangan</th>
-                                    <th scope="col">Bentuk Obat</th>
                                     <th scope="col">Jumlah Butir/botol</th>
+                                    <th scope="col">Bentuk Obat</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -82,8 +82,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $kemasan_obat->kode_kemasan }}</td>
                                     <td>{{ $kemasan_obat->keterangan }}</td>
-                                    <td>{{ $kemasan_obat->bentukobat->bentuk_obat }}</td>
                                     <td>{{ $kemasan_obat->jumlah }}</td>
+                                    <td>{{ $kemasan_obat->bentukobat->bentuk_obat }}</td>
                                     <td>
                                         <a href="/kemasan-obat/{{ $kemasan_obat->kode_kemasan }}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-fill"></i></a>
                                         <form action="/kemasan-obat/{{ $kemasan_obat->kode_kemasan }}" onclick="swalDelete(event)" method="post" class="d-inline form-delete">

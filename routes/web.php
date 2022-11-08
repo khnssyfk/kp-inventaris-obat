@@ -76,6 +76,10 @@ Route::get('/lap-pasien',[LaporanController::class, 'lap_pasien'])->middleware('
 Route::get('/lap-obt-klr',[LaporanController::class, 'lap_obt_klr'])->middleware('auth');
 Route::get('/lap-obt',[LaporanController::class, 'lap_obt'])->middleware('auth');
 Route::get('/lap-stk-obt',[LaporanController::class, 'lap_stk_obt'])->middleware('auth');
+Route::get('/lap-bentuk-obt',[LaporanController::class, 'lap_bentuk_obt'])->middleware('auth');
+Route::get('/lap-kemasan-obt',[LaporanController::class, 'lap_kemasan_obt'])->middleware('auth');
+Route::get('/lap-jenis-obt',[LaporanController::class, 'lap_jenis_obt'])->middleware('auth');
+Route::get('/lap-supplier-obt',[LaporanController::class, 'lap_supplier_obt'])->middleware('auth');
 
 
 //login logout

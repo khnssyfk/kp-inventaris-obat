@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('no_resep');
             $table->date('tgl_keluar');
-            $table->string('data_obat_id')->unsigned;
-            $table->string('pasien_id')->unsigned;
+            $table->string('data_obat_id');
+            $table->foreign('data_obat_id')->nullable()->references('kode_obat')->on('data_obats')->onDelete('cascade');
+            // $table->string('pasien_id');
+            $table->foreignId('pasien_id')->nullable()->references('id')->on('pasiens')->onDelete('cascade');
             $table->integer('jumlah_keluar');
-            $table->string('dokter_id')->unsigned;
             // $table->longText('dosis');
             $table->timestamps();
         });

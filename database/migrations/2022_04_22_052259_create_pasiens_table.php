@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Role;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -25,7 +26,9 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('agama')->nullable();
-            $table->foreignId('role_id')->default(3);
+            // $table->foreignId('role_id')->default(3);
+            $table->foreignId('role_id')->nullable()->references('id')->on('roles')->onDelete('cascade')->default(3);
+
             $table->timestamps();
         });
     }

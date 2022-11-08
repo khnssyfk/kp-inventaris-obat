@@ -29,22 +29,30 @@
     
             <table class="table table-bordered border border-2 border-dark">
                 <thead>
-                    <th scope="col">No</th>
+                    <th scope="col">#</th>
                     <th scope="col">Kode Obat</th>
                     <th scope="col">Nama Obat</th>
-                    <th scope="col">Jumlah</th>
-                    <th scope="col">Satuan</th>
+                    <th scope="col">Stok Obat</th> 
+                    <th scope="col">Bentuk Obat</th> 
+                    <th scope="col">Status</th> 
                 </thead>
                 <tbody>
                     @foreach($dataobats as $dataobat)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $dataobat->kode_obat }}</td>
-                            <td>{{ $dataobat->nama_obat }}</td>
-                            <td>{{ $dataobat->jumlah }}</td>
-                            <td>{{ $dataobat->satuan }}</td>
-                        </tr>
-                        @endforeach
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $dataobat->kode_obat }}</td>
+                                    <td>{{  $dataobat->nama_obat }} {{  $dataobat->berat_obat }} {{  $dataobat->satuan_berat_obat }} {{  $dataobat->merk_obat }}</td>
+                                    <td>{{  $dataobat->stok_obat}}</td>
+                                    <td>{{  $dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
+                                    <td>
+                                        @if($dataobat->jumlah >100)
+                                            <label for="" class="badge bg-success">In Stock</label>
+                                        @else
+                                            <label for="" class="badge bg-danger">Out of Stock</label>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @endforeach
                 </tbody>
             </table>
           </div>

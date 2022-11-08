@@ -48,7 +48,7 @@
                                     <td>{{ date('d-m-Y', strtotime($obatmasuk->tgl_masuk))}}</td>
                                     <td>{{  $obatmasuk->kode_transaksi }}</td>
                                     <td>{{ $obatmasuk->dataobat->nama_obat }} {{ $obatmasuk->dataobat->berat_obat }} {{ $obatmasuk->dataobat->satuan_berat_obat }} {{ $obatmasuk->dataobat->merk_obat }}</td>
-                                    <td>{{  $obatmasuk->stok_obat}}</td>
+                                    <td>{{  $obatmasuk->jumlah}}</td>
                                     <td>{{  $obatmasuk->total}}</td>
                                     <td>{{ $obatmasuk->dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
                                     <td>{{ $obatmasuk->supplier->nama_supplier}}</td>
@@ -83,7 +83,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Tgl Mulai</label>
-                    <input type="date" class="form-control" name="tgl_mulai" required>
+                    <input type="date" class="form-control" id="startdateId" name="tgl_mulai" required>
                 </div>
                 <div class="form-group">
                     <label>Tgl Selesai</label>

@@ -80,7 +80,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Tgl Mulai</label>
-                    <input type="date" class="form-control" name="tgl_mulai" required>
+                    <input type="date" class="form-control" id="startdateId" name="tgl_mulai" required>
                 </div>
                 <div class="form-group">
                     <label>Tgl Selesai</label>

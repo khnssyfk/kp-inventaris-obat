@@ -171,7 +171,8 @@ class ObatMasukController extends Controller
            'satuan' => $data,
            'kemasan'=>$kemasanObat,
            'isikemasan'=>$isikemasanObat,
-           'jumlah'=>$columns->stok_obat
+           'jumlah'=>$columns->stok_obat,
+           'sum'=> $kemasanObat.' '.$isikemasanObat
         ]);
         
         // dd($kemasanObat);
