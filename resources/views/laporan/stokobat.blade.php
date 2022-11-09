@@ -45,7 +45,7 @@
                                     <td>{{  $dataobat->stok_obat}}</td>
                                     <td>{{  $dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
                                     <td>
-                                        @if($dataobat->jumlah >100)
+                                        @if($dataobat->stok_obat >50)
                                             <label for="" class="badge bg-success">In Stock</label>
                                         @else
                                             <label for="" class="badge bg-danger">Out of Stock</label>

@@ -147,7 +147,7 @@
         </div>
         </div>
         
-        <button class="btn btn-primary mt-2" name="action" value="add" id="add"><a href="/"></a>Tambah</button>
+        <button class="btn btn-primary mx-3 mt-2" name="action" value="add" id="add"><a href="/"></a>Tambah</button>
         
     </form>
     {{-- <button class="btn btn-primary mt-2" name="action" value="add" id="add"><a href="/"></a>Tambah</button> --}}

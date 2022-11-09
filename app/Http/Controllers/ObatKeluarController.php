@@ -29,7 +29,8 @@ class ObatKeluarController extends Controller
             'title'=>'Obat Keluar',
             'obatkeluars'=>ObatKeluar::orderBy('id','desc')->get(),
             'data_obats'=>DataObat::all(),
-            'dokters'=>Pasien::where('role_id','=',4)->orderBy('nama')->get()
+            'dokters'=>Pasien::where('role_id','=',4)->orderBy('nama')->get(),
+            'pasiens'=>Pasien::all()
         ]);
     }
 

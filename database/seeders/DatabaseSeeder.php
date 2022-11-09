@@ -72,7 +72,8 @@ class DatabaseSeeder extends Seeder
             'pekerjaan'=> 'pelajar/mahasiswa',
             'alamat'=> 'jln.cornelia street',
             'email'=>'ksyafika@gmail.com',
-            'no_hp'=>'098766'
+            'no_hp'=>'098766',
+            'role_id'=>3
         ]);
         Pasien::create([
             'nama'=>'dr. Prihan Fakhri',

@@ -19,8 +19,9 @@ return new class extends Migration
             $table->date('tgl_keluar');
             $table->string('data_obat_id');
             $table->foreign('data_obat_id')->nullable()->references('kode_obat')->on('data_obats')->onDelete('cascade');
-            // $table->string('pasien_id');
-            $table->foreignId('pasien_id')->nullable()->references('id')->on('pasiens')->onDelete('cascade');
+            $table->string('pasien_id');
+            $table->foreign('pasien_id')->references('no_rekam_medis')->on('pasiens')->onDelete('cascade');
+            $table->string('dokter_id')->unsigned;
             $table->integer('jumlah_keluar');
             // $table->longText('dosis');
             $table->timestamps();

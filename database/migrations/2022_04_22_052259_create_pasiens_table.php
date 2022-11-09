@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('pekerjaan')->nullable();
             $table->string('agama')->nullable();
             // $table->foreignId('role_id')->default(3);
-            $table->foreignId('role_id')->nullable()->references('id')->on('roles')->onDelete('cascade')->default(3);
+            $table->foreignId('role_id')->references('id')->on('roles')->onDelete('cascade');
 
             $table->timestamps();
         });

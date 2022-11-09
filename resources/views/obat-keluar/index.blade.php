@@ -45,7 +45,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ date('d-m-Y', strtotime($obatkeluar->tgl_keluar))}}</td>
                                     <td>{{  $obatkeluar->no_resep }}</td>
-                                    <td>{{  $obatkeluar->pasien_id }}</td>
+                                    <td>{{  $obatkeluar->pasien_id}}</td>
                                     <td>{{  $obatkeluar->dataobat->nama_obat }} {{  $obatkeluar->dataobat->berat_obat }} {{$obatkeluar->dataobat->satuan_berat_obat }} {{  $obatkeluar->dataobat->merk_obat }}</td>
                                     <td>{{  $obatkeluar->jumlah_keluar}}</td>
                                     <td>{{  $obatkeluar->dataobat->kemasan_obat->bentukobat->bentuk_obat}}</td>
