@@ -55,7 +55,11 @@
                         <option value="gr">gr</option>
                         <option value="ml">ml</option>
                         <option value="mg">mg</option>
+                        <option value="ng">ng</option>
+                        <option value="mcg">mcg</option>
                         <option value="µg">µg</option>
+                        <option value="iu">IU</option>
+                        <option value="lainnya">Unit Lainnya</option>
                     </select>
                     @error('satuan_berat_obat')
                     <div class="invalid-feedback">
@@ -153,7 +157,7 @@
        
         divSatuanBerat = document.createElement('div');
         divSatuanBerat.className = 'form-group col'
-        divSatuanBerat.innerHTML = `<label for="satuan_berat_obat" class="sr-only">Unit</label><select name="satuan_berat_obat[]" id="" class="form-select @error('satuan') is-invalid @enderror"><option value="gr">gr</option><option value="ml">ml</option><option value="mg">mg</option><option value="µg">µg</option></select>@error('satuan_berat_obat')<div class="invalid-feedback">{{ $message}}</div>@enderror`
+        divSatuanBerat.innerHTML = `<label for="satuan_berat_obat" class="sr-only">Unit</label><select name="satuan_berat_obat[]" id="" class="form-select @error('satuan') is-invalid @enderror"><option value="gr">gr</option><option value="ml">ml</option><option value="mg">mg</option><option value="ng">ng</option><option value="mcg">mcg</option><option value="µg">µg</option><option value="iu">IU</option><option value="lainnya">Unit Lainnya</option></select>@error('satuan_berat_obat')<div class="invalid-feedback">{{ $message}}</div>@enderror`
 
         divMerk = document.createElement('div');
         divMerk.className = 'form-group col'
